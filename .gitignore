@@ -5,3 +5,6 @@
 *~
 .project
 .pydevproject
+node_modules
+npm_debug.log
+wsgi/cookbook/db.cookbook
