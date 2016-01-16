@@ -3,19 +3,12 @@
 from setuptools import setup
 
 setup(
-    # GETTING-STARTED: set your app name:
-    name='YourAppName',
-    # GETTING-STARTED: set your app version:
+    name='cookbook',
     version='1.0',
-    # GETTING-STARTED: set your app description:
-    description='OpenShift App',
-    # GETTING-STARTED: set author name (your name):
-    author='Your Name',
-    # GETTING-STARTED: set author email (your email):
-    author_email='example@example.com',
-    # GETTING-STARTED: set author url (your url):
-    url='http://www.python.org/sigs/distutils-sig/',
-    # GETTING-STARTED: define required django version:
+    description='A place to store recipes',
+    author='Mateusz Bocian',
+    author_email='mateusz.bocian@mail.utoronto.ca',
+    url='http://mrstork.github.io/',
     install_requires=[
         'Django==1.8.4'
     ],

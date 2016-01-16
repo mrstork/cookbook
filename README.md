@@ -1,17 +1,14 @@
 Django on OpenShift
 ===================
 
-This git repository helps you get up and running quickly w/ a Django
-installation on OpenShift.  The Django project name used in this repo
-is 'myproject' but you can feel free to change it.  Right now the
-backend is sqlite3 and the database runtime is found in
+Right now the backend is sqlite3 and the database runtime is found in
 `$OPENSHIFT_DATA_DIR/db.sqlite3`.
 
 Before you push this app for the first time, you will need to change
 the [Django admin password](#admin-user-name-and-password).
 Then, when you first push this
 application to the cloud instance, the sqlite database is copied from
-`wsgi/myproject/db.sqlite3` with your newly changed login
+`wsgi/cookbook/db.sqlite3` with your newly changed login
 credentials. Other than the password change, this is the stock
 database that is created when `python manage.py syncdb` is run with
 only the admin app installed.
@@ -41,7 +38,7 @@ Running on OpenShift
 Create an account at https://www.openshift.com
 
 Install the RHC client tools if you have not already done so:
-    
+
     sudo gem install rhc
     rhc setup
 
@@ -59,9 +56,9 @@ Then push the repo upstream
 
     git push
 
-Now, you have to create [admin account](#admin-user-name-and-password), so you 
+Now, you have to create [admin account](#admin-user-name-and-password), so you
 can setup your Django instance.
-	
+
 That's it. You can now checkout your application at:
 
     http://django-$yournamespace.rhcloud.com
@@ -70,7 +67,7 @@ Admin user name and password
 ----------------------------
 Use `rhc ssh` to log into python gear and run this command:
 
-	python $OPENSHIFT_REPO_DIR/wsgi/myproject/manage.py createsuperuser
+	python $OPENSHIFT_REPO_DIR/wsgi/cookbook/manage.py createsuperuser
 
 You should be now able to login at:
 
