@@ -28,7 +28,7 @@ SECRETS = secrets.getter(os.path.join(DATA_DIR, 'secrets.json'))
 SECRET_KEY = SECRETS['secret_key']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG') == 'True'
+DEBUG = True
 
 from socket import gethostname
 ALLOWED_HOSTS = [
@@ -48,6 +48,8 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'public',
+    'recipes',
 )
 
 MIDDLEWARE_CLASSES = (
