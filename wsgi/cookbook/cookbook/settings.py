@@ -28,7 +28,7 @@ SECRETS = secrets.getter(os.path.join(DATA_DIR, 'secrets.json'))
 SECRET_KEY = SECRETS['secret_key']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 from socket import gethostname
 ALLOWED_HOSTS = [
@@ -50,6 +50,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'general',
     'public',
+    'accounts',
     'recipes',
 )
 
@@ -94,17 +95,28 @@ DATABASES = {
     }
 }
 
+
+# Passwords
+# https://docs.djangoproject.com/en/1.9/topics/auth/passwords/
+
+PASSWORD_HASHERS = [
+    'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',
+    'django.contrib.auth.hashers.BCryptPasswordHasher',
+    'django.contrib.auth.hashers.PBKDF2PasswordHasher',
+    'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
+    'django.contrib.auth.hashers.SHA1PasswordHasher',
+    'django.contrib.auth.hashers.MD5PasswordHasher',
+    'django.contrib.auth.hashers.CryptPasswordHasher',
+]
+
+
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'UTC'
-
 USE_I18N = True
-
 USE_L10N = True
-
 USE_TZ = True
 
 
@@ -113,3 +125,26 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(WSGI_DIR, 'static')
+
+
+# Email settings
+# https://developers.openshift.com/en/marketplace-sendgrid.html#python-django
+
+EMAIL_HOST = os.getenv('SENDGRID_HOSTNAME')
+EMAIL_HOST_USER = os.getenv('SENDGRID_USERNAME')
+EMAIL_HOST_PASSWORD = os.getenv('SENDGRID_PASSWORD')
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
+
+# Settings for development environment
+
+if not os.environ.get('OPENSHIFT_APP_DNS'):
+    DEBUG = True
+
+    # Local email server: python -m smtpd -n -c DebuggingServer localhost:1025
+    EMAIL_HOST = 'localhost'
+    EMAIL_HOST_USER = None
+    EMAIL_HOST_PASSWORD = None
+    EMAIL_PORT = 1025
+    EMAIL_USE_TLS = False
