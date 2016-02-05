@@ -19,6 +19,8 @@ def request_account(request):
         if not user.is_active:
             form.send_confirmation_email(user)
 
+    return render(request, 'thank_you.html')
+
 
 def confirm_account(request, uidb64, token):
     try:
@@ -30,15 +32,22 @@ def confirm_account(request, uidb64, token):
     if user is None or not default_token_generator.check_token(user, token):
         return render(request, 'invalid_token.html')
 
-    if request.method == 'POST':
-        form = ConfirmAccountForm(request.POST)
-        if form.confirm_account(user) is not None:
-            login(request, user)
-            return redirect('welcome')
-    else:
-        form = ConfirmAccountForm()
+    form = ConfirmAccountForm(request.POST or None)
 
-    return render(request, 'confirm_account.html', {'form': form})
+    if request.method == 'POST' and form.is_valid():
+        user = form.confirm_account(user)
+        if user is not None:
+            login(request, user)
+            return render(request, 'welcome.html')
+
+    context = {
+        'uidb64': uidb64,
+        'token': token,
+        'email': user.email,
+        'form': form,
+    }
+
+    return render(request, 'confirm_account.html', context)
 
 
 @login_required

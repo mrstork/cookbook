@@ -8,7 +8,7 @@
 
 	  <div class="one-half column centered">
 
-			<h2>Create Account</h2>
+			<h2>Login</h2>
 
 			<form method="post">
 				{% csrf_token %}
@@ -20,18 +20,8 @@
         {% endif %}
 
         <dl class="form">
-          <dt><label>First name</label></dt>
-          <dd>{{ form.first_name }}</dd>
-        </dl>
-
-        <dl class="form">
-          <dt><label>Last name</label></dt>
-          <dd>{{ form.last_name }}</dd>
-        </dl>
-
-        <dl class="form">
           <dt><label>Email address</label></dt>
-          <dd><input type="text" value={{ email }} disabled></dd>
+          <dd>{{ form.email }}</dd>
         </dl>
 
         <dl class="form">

@@ -2,16 +2,28 @@
 
 {% block content %}
 
-<p>Yo dawg</p>
+<div class="container">
 
-{% if user.is_anonymous %}
+	<div class="columns">
+	  <div class="one-half column centered">
+			<h2>Request account</h2>
 
-	<p>login</p>
+			<form method="post" action={% url 'request_account' %}>
+				{% csrf_token %}
 
-{% else %}
+				<dl class="form">
+					<dt><label>Email address</label></dt>
+					<dd>{{ request_account_form.email }}</dd>
+				</dl>
 
-	<p>logout</p>
+				<div class="form-actions">
+					<button type="submit" class="btn btn-primary">Submit</button>
+				</div>
 
-{% endif %}
+			</form>
+	  </div>
+	</div>
+
+</div>
 
 {% endblock content %}

@@ -32,16 +32,16 @@ class RequestAccountForm(forms.Form):
             'uid': urlsafe_base64_encode(force_bytes(user.pk)),
             'token': default_token_generator.make_token(user),
         }
-        body = loader.render_to_string('registration/request_account_email.html', context)
+        body = loader.render_to_string('request_account_email.html', context)
         email_message = EmailMultiAlternatives(subject, body, from_email, [user.email])
         email_message.content_subtype = 'html'
         email_message.send()
 
 
 class ConfirmAccountForm(forms.Form):
-    first_name = forms.CharField(label='First Name', max_length=100)
-    last_name = forms.CharField(label='Last Name', max_length=100)
-    password = forms.CharField(label='Password', widget=forms.PasswordInput)
+    first_name = forms.CharField(label='First Name', max_length=100, widget=forms.TextInput(attrs={'required': 'true'}))
+    last_name = forms.CharField(label='Last Name', max_length=100, widget=forms.TextInput(attrs={'required': 'true'}))
+    password = forms.CharField(label='Password', widget=forms.PasswordInput(attrs={'required': 'true'}))
 
     def __init__(self, *args, **kwargs):
         super(ConfirmAccountForm, self).__init__(*args, **kwargs)
