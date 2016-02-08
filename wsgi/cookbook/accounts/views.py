@@ -1,12 +1,24 @@
 from .forms import RequestAccountForm, ConfirmAccountForm
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.models import User
 from django.contrib.auth.tokens import default_token_generator
+from django.contrib.auth.views import login
 from django.shortcuts import render, redirect
 from django.utils.encoding import force_text
 from django.utils.http import urlsafe_base64_decode
 from django.views.decorators.http import require_POST
+
+
+def authentication(request):
+    if request.user.is_authenticated():
+        return redirect('list_recipes')
+
+    response = login(request,
+                     authentication_form=AuthenticationForm,
+                     template_name='login.html')
+    return response
 
 
 @require_POST

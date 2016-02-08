@@ -138,7 +138,12 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
 
-# Settings for development environment
+# Successful login url
+# https://docs.djangoproject.com/en/1.9/ref/settings/
+LOGIN_REDIRECT_URL = '/recipes/'
+
+
+# Overwrite settings for development environment
 
 if not os.environ.get('OPENSHIFT_APP_DNS'):
     DEBUG = True
