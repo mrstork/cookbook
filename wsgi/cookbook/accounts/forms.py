@@ -39,13 +39,12 @@ class RequestAccountForm(forms.Form):
 
 
 class ConfirmAccountForm(forms.Form):
-    first_name = forms.CharField(label='First Name', max_length=100, widget=forms.TextInput(attrs={'required': 'true'}))
-    last_name = forms.CharField(label='Last Name', max_length=100, widget=forms.TextInput(attrs={'required': 'true'}))
-    password = forms.CharField(label='Password', widget=forms.PasswordInput(attrs={'required': 'true'}))
-
-    def __init__(self, *args, **kwargs):
-        super(ConfirmAccountForm, self).__init__(*args, **kwargs)
-        self.fields['first_name'].widget.attrs.update({'autofocus': ''})
+    first_name = forms.CharField(label='First Name', max_length=100,
+                                 widget=forms.TextInput(attrs={'required': 'true', 'autofocus': ''}))
+    last_name = forms.CharField(label='Last Name', max_length=100,
+                                widget=forms.TextInput(attrs={'required': 'true'}))
+    password = forms.CharField(label='Password',
+                               widget=forms.PasswordInput(attrs={'required': 'true'}))
 
     def confirm_account(self, user):
         user.first_name = self.cleaned_data['first_name']
