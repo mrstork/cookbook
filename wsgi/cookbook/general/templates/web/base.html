@@ -1,29 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang='en'>
 	<head>
 		<title></title>
 
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		<meta name="viewport" content="width=device-width,initial-scale=1.0">
+		<meta charset='utf-8'>
+		<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+		<meta name='viewport' content='width=device-width,initial-scale=1.0'>
 
 		<!--[if lt IE 9]>
-			<script src="http://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js"></script>
+			<script src='http://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js'></script>
 		<![endif]-->
 
-		<link rel="stylesheet" type="text/css" href="/static/cookbook.css">
+		<link rel='stylesheet' type='text/css' href='/static/cookbook.css'>
 
 		{% block styles %} {% endblock styles %}
 	</head>
 	<body>
 
-		{% include "web/header.html" %}
+		{% include 'web/header.html' %}
 
 		{% block content %} {% endblock content %}
 
 		{% block javascript %} {% endblock javascript %}
 
-		{% include "web/footer.html" %}
+		{% include 'web/footer.html' %}
 
 	</body>
 </html>

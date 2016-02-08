@@ -10,6 +10,7 @@
  * 2. Prevent iOS and IE text size adjust after device orientation change,
  *    without disabling user zoom.
  */
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700);
 html {
   font-family: sans-serif;
   /* 1 */
@@ -1775,3 +1776,31 @@ a.tabnav-extra:hover {
 .css-truncate.expandable.zeroclipboard-is-hover .css-truncate-target, .css-truncate.expandable.zeroclipboard-is-hover.css-truncate-target,
 .css-truncate.expandable:hover .css-truncate-target, .css-truncate.expandable:hover.css-truncate-target {
   max-width: 10000px !important; }
+
+* {
+  color: #444;
+  font-family: "Open Sans", sans-serif;
+  font-size: 18px; }
+
+header,
+footer {
+  background: #cb3837;
+  height: 50px; }
+
+header {
+  margin-bottom: 20px; }
+
+footer {
+  margin-top: 20px; }
+
+.description {
+  font-style: italic; }
+
+dt {
+  float: left;
+  padding: 5px;
+  width: 200px; }
+
+dd {
+  display: block;
+  padding: 5px 0; }
