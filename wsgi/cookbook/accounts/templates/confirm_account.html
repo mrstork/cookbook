@@ -1,46 +1,46 @@
-{% extends "web/base.html" %}
+{% extends 'web/base.html' %}
 
 {% block content %}
 
-<div class="container">
+<div class='container'>
 
-	<div class="columns">
+	<div class='columns'>
 
-	  <div class="one-half column centered">
+	  <div class='one-half column centered'>
 
 			<h2>Create Account</h2>
 
-			<form method="post">
+			<form method='post'>
 				{% csrf_token %}
 
         {% if form.errors %}
-          <div class="flash flash-warn">
+          <div class='flash flash-warn'>
             Please ensure all fields are filled out properly and try again.
           </div>
         {% endif %}
 
-        <dl class="form">
+        <dl class='form'>
           <dt><label>First name</label></dt>
           <dd>{{ form.first_name }}</dd>
         </dl>
 
-        <dl class="form">
+        <dl class='form'>
           <dt><label>Last name</label></dt>
           <dd>{{ form.last_name }}</dd>
         </dl>
 
-        <dl class="form">
+        <dl class='form'>
           <dt><label>Email address</label></dt>
-          <dd><input type="text" value={{ email }} disabled></dd>
+          <dd><input type='text' value={{ email }} disabled></dd>
         </dl>
 
-        <dl class="form">
+        <dl class='form'>
           <dt><label>Password</label></dt>
           <dd>{{ form.password }}</dd>
         </dl>
 
-				<div class="form-actions">
-				  <button type="submit" class="btn btn-primary">Submit</button>
+				<div class='form-actions'>
+				  <button type='submit' class='btn btn-primary'>Submit</button>
 				</div>
 
 			</form>
