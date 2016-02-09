@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .forms import RecipeForm
 
 
 def list_view(request):
@@ -7,7 +8,12 @@ def list_view(request):
 
 
 def add_view(request):
-    context = {}
+    form = RecipeForm()
+    context = {
+        'form': RecipeForm(
+            initial={'title': 'Untitled Recipe'},
+        )
+    }
     return render(request, 'edit-recipe.html', context)
 
 

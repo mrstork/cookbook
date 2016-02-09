@@ -26,14 +26,14 @@ class Instruction(models.Model):
 
 
 class Recipe(models.Model):
-    user = models.OneToOneField(
+    user = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
     )
-    title = models.CharField(max_length=100)
-    description = models.CharField(max_length=300)
-    serves = models.CharField(max_length=100)
-    time = models.FloatField()
-    ingredients = models.ForeignKey(RecipeIngredient)
-    equipment = models.ManyToManyField(Equipment)
-    instructions = models.ForeignKey(Instruction)
+    title = models.CharField(max_length=100, null=True, blank=True)
+    description = models.CharField(max_length=300, null=True, blank=True)
+    serves = models.CharField(max_length=100, null=True, blank=True)
+    time = models.FloatField(null=True, blank=True)
+    ingredients = models.ForeignKey(RecipeIngredient, null=True, blank=True)
+    equipment = models.ManyToManyField(Equipment, blank=True)
+    instructions = models.ForeignKey(Instruction, null=True, blank=True)
