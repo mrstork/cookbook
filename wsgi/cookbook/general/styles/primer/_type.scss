@@ -7,9 +7,9 @@ h3,
 h4,
 h5,
 h6 {
-  margin-top: 15px;
-  margin-bottom: 15px;
   line-height: 1.1;
+  margin-bottom: 15px;
+  margin-top: 15px;
 }
 
 h1 { font-size: 30px; }
@@ -33,10 +33,10 @@ blockquote {
 
 // Large leading paragraphs
 .lead {
-  margin-bottom: 30px;
+  color: #555;
   font-size: 20px;
   font-weight: 300;
-  color: #555;
+  margin-bottom: 30px;
 }
 
 // Text utilities
@@ -44,8 +44,8 @@ blockquote {
 .text-danger { color: $brand-red; }
 
 .text-emphasized {
-  font-weight: bold;
   color: #333;
+  font-weight: bold;
 }
 
 .text-small {
@@ -57,9 +57,9 @@ blockquote {
 
 ul,
 ol {
-  padding: 0;
-  margin-top: 0;
   margin-bottom: 0;
+  margin-top: 0;
+  padding: 0;
 }
 
 ol ol,
@@ -89,7 +89,7 @@ code {
 }
 
 pre {
-  margin-top: 0;
-  margin-bottom: 0;
   font: 12px $mono-font;
+  margin-bottom: 0;
+  margin-top: 0;
 }

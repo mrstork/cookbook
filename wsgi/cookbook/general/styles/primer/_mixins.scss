@@ -3,15 +3,15 @@
 // Clears floats via mixin (avoid using as a class).
 
 @mixin clearfix {
-  &:before {
+  &::before {
+    content: '';
     display: table;
-    content: "";
   }
 
-  &:after {
-    display: table;
+  &::after {
     clear: both;
-    content: "";
+    content: '';
+    display: table;
   }
 }
 
@@ -21,7 +21,7 @@
 // $end   - The color hex at the bottom.
 
 @mixin gradient($start: #fafafa, $end: #eaeaea) {
-  @warn "Gradient mixin is deprecated.";
+  @warn 'Gradient mixin is deprecated.';
   // scss-lint:disable VendorPrefix
   background-color: $end;
   // FF 3.6+
@@ -47,7 +47,7 @@
 // Quickly load the typography requirements for Octicons icon font.
 
 @mixin icon-bootstrap($size) {
-  font: normal normal #{$size}/1 "octicons";
+  font: normal normal #{$size}/1 'octicons';
   display: inline-block;
   text-decoration: none;
   -webkit-font-smoothing: antialiased;

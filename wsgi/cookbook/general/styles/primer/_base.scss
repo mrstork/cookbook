@@ -10,9 +10,9 @@ button {
 }
 
 body {
-  font: #{$body-font-size}/1.4 $body-font;
-  color: $brand-gray-dark;
   background-color: #fff;
+  color: $brand-gray-dark;
+  font: #{$body-font-size}/1.4 $body-font;
 }
 
 a {
@@ -30,11 +30,11 @@ a {
 // TODO-MDO: Remove `.rule` from everywhere and replace with `<hr>`s
 hr,
 .rule {
-  height: 0;
-  margin: 15px 0;
-  overflow: hidden;
+  @include clearfix();
   background: transparent;
   border: 0;
   border-bottom: 1px solid #ddd;
-  @include clearfix();
+  height: 0;
+  margin: 15px 0;
+  overflow: hidden;
 }

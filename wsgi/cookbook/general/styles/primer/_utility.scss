@@ -72,15 +72,15 @@
 }
 
 .warning {
-  padding: 0.5em;
-  margin-bottom: 0.8em;
-  font-weight: bold;
   background-color: #fffccc;
+  font-weight: bold;
+  margin-bottom: .8em;
+  padding: .5em;
 }
 
 .error_box {
-  padding: 1em;
-  font-weight: bold;
   background-color: #ffebe8;
   border: 1px solid #dd3c10;
+  font-weight: bold;
+  padding: 1em;
 }
