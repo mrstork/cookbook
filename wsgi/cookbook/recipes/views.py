@@ -1,19 +1,21 @@
 from django.shortcuts import render
-from .forms import RecipeForm
+from django.http import HttpResponse
+from .serializers import add_recipe
+from .models import Recipe
 
 
 def list_view(request):
-    context = {}
+    context = {
+        'recipes': Recipe.objects.all()
+    }
     return render(request, 'list-recipes.html', context)
 
 
 def add_view(request):
-    form = RecipeForm()
-    context = {
-        'form': RecipeForm(
-            initial={'title': 'Untitled Recipe'},
-        )
-    }
+    context = {}
+    if request.method == 'POST':
+        add_recipe(request)
+        return HttpResponse('Recipe Added')
     return render(request, 'edit-recipe.html', context)
 
 

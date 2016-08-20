@@ -3,11 +3,11 @@
 from setuptools import setup
 
 setup(
-    name='cookbook',
+    name='kukkubu',
     version='1.0',
-    description='A place to store recipes',
+    description='A place to store your personal recipes',
     author='Mateusz Bocian',
-    author_email='mateusz.bocian@mail.utoronto.ca',
+    author_email='support@kukkubu.com',
     url='http://mrstork.github.io/',
     install_requires=[
         'Django==1.8.4'

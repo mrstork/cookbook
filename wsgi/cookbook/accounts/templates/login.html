@@ -16,19 +16,21 @@
         {% if form.errors %}
           <div class='flash flash-warn'>
 						<p>Some of the fields were incorrect. Please try again.</p>
-						<p>Note: All fields are case sensitive</p>
+						<p>Note: All fields are case sensitive and required</p>
           </div>
         {% endif %}
 
-        <dl class='form'>
-          <dt><label>Email address</label></dt>
-          <dd>{{ form.username }}</dd>
-        </dl>
+				<div class="form-group">
+		      <label>Email address</label>
+					{{ form.username }}
+					<!-- <input type="text" class="form-control" placeholder="Email"> -->
+		    </div>
 
-        <dl class='form'>
-          <dt><label>Password</label></dt>
-          <dd>{{ form.password }}</dd>
-        </dl>
+				<div class="form-group">
+		      <label>Password</label>
+          {{ form.password }}
+					<!-- <input type="password" class="form-control" placeholder="Password"> -->
+        </div>
 
 				<div class='form-actions'>
 				  <button type='submit' class='btn btn-primary'>Submit</button>

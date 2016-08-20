@@ -1,72 +1,80 @@
 {% extends 'web/base.html' %}
 
 {% block content %}
+{% verbatim %}
 
-    {{form}}
-
-    <div class="container">
-      <div class="form-group">
-        <input type="text" value="Untitled" />
-      </div>
-      <section>
-        <div class="form-group">
-          <label>Description</label>
-          <textarea></textarea>
-        </div>
-      </section>
-      <section>
-        <div class="form-group">
-          <label>Time needed</label>
-          <input type="number"/>
-        </div>
-
-        <div class="form-group">
-          <label></label>
-          <input type="text"/>
-        </div>
-      </section>
-      <section>
-        <div class="form-group">
-          <input type="text" value="Equipement" />
-        </div>
-        <div class="form-group">
-          <input type="text"/>
-        </div>
-      </section>
-      <section>
-        <div class="form-group">
-          <input type="text" value="Ingredients" />
-        </div>
-        <div class="form-group">
-          <input type="number"/>
-          <input type="text"/>
-          <input type="text"/>
-        </div>
-        <div class="form-group">
-          <input type="number"/>
-          <input type="text"/>
-          <input type="text"/>
-        </div>
-        <div class="form-group">
-          <input type="number"/>
-          <input type="text"/>
-          <input type="text"/>
-        </div>
-      </section>
-      <section>
-        <div class="form-group">
-          <input type="text" value="Preperations" />
-        </div>
-        <div class="form-group">
-          <textarea></textarea>
-        </div>
-        <div class="form-group">
-          <textarea></textarea>
-        </div>
-        <div class="form-group">
-          <textarea></textarea>
-        </div>
-      </section>
+<section ng-app="cookbook" class="container">
+  <header>
+    <h3>Create Recipe</h3>
+  </header>
+  <form class="row" ng-controller="RecipeController as rc" ng-submit="rc.submit(recipe)">
+    <div class="form-group col-sm-12">
+      <label class="control-label">Title</label>
+      <input type="text" class="form-control" ng-model="rc.recipe.title" placeholder="What are you making? I'm starving!"></input>
     </div>
+    <div class="form-group col-sm-12">
+      <label class="control-label">Description</label>
+      <textarea class="form-control" ng-model="rc.recipe.description" placeholder="Write a description that will leave my mouth watering..."></textarea>
+    </div>
+    <div class="form-group col-sm-6">
+      <label class="control-label">How many people does the dish serve?</label>
+      <div class="input-group">
+        <input class="form-control" type="text" ng-model="rc.recipe.serves">
+        <span class="input-group-addon">people</span>
+      </div>
+    </div>
+    <div class="form-group col-sm-6">
+      <label class="control-label">How long does it take to make?</label>
+      <div class="input-group">
+        <input class="form-control" type="text" ng-model="rc.recipe.duration">
+        <span class="input-group-addon">minutes</span>
+      </div>
+    </div>
+    <div class="col-sm-7">
+      <label class="control-label">Ingredients</label>
+      <div class="form-group" ng-repeat="ingredient in rc.ingredients">
+        <div class="row">
+          <div class="col-sm-3">
+            <input class="form-control" type="text" ng-model="ingredient.quantity" placeholder="{{ingredient.quantity_placeholder}}">
+          </div>
+          <div class="col-sm-3">
+            <input class="form-control" type="text" ng-model="ingredient.measurement" placeholder="{{ingredient.measurement_placeholder}}">
+          </div>
+          <div class="col-sm-6">
+            <input class="form-control" type="text" ng-model="ingredient.name" placeholder="{{ingredient.name_placeholder}}">
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <button type="button" class="btn btn-primary pull-right" ng-click="rc.addIngredient()">Add Ingredient</button>
+      </div>
+    </div>
+    <div class="col-sm-5">
+      <label class="control-label">Equipment</label>
+      <div class="form-group" ng-repeat="equip in rc.equipment">
+        <input class="form-control" type="text" ng-model="equip.name" placeholder="{{equip.placeholder}}">
+      </div>
+      <div class="form-group">
+        <button type="button" class="btn btn-primary pull-right" ng-click="rc.addEquipment()">Add Equipment</button>
+      </div>
+    </div>
+    <div class="col-sm-12">
+      <label class="control-label">Instructions</label>
+      <div class="form-group" ng-repeat="instruction in rc.instructions">
+        <textarea class="form-control" ng-model="instruction.name" placeholder="{{instruction.placeholder}}"></textarea>
+      </div>
+    </div>
+    <div class="form-group col-sm-12">
+      <button type="button" class="btn btn-primary pull-right" ng-click="rc.addInstruction()">Add Instruction</button>
+    </div>
+    <div class="form-group col-sm-12">
+      <input type="submit" class="btn btn-success" value="Submit Recipe" />
+    </div>
+  </form>
+</section>
 
+<script src="/static/libs/angular.min.js"></script>
+<script src="/static/app.js"></script>
+
+{% endverbatim %}
 {% endblock content %}
