@@ -1,0 +1,54 @@
+{% extends 'web/base.html' %}
+
+{% block content %}
+
+<div class='container'>
+
+	<div class='columns'>
+
+	  <div class='one-half column centered'>
+
+			<h2>Create Account</h2>
+
+			<form method='post'>
+				{% csrf_token %}
+
+        {% if form.errors %}
+          <div class='flash flash-warn'>
+            Please ensure all fields are filled out properly and try again.
+          </div>
+        {% endif %}
+
+        <dl class='form'>
+          <dt><label>First name</label></dt>
+          <dd>{{ form.first_name }}</dd>
+        </dl>
+
+        <dl class='form'>
+          <dt><label>Last name</label></dt>
+          <dd>{{ form.last_name }}</dd>
+        </dl>
+
+        <dl class='form'>
+          <dt><label>Email address</label></dt>
+          <dd><input type='text' value={{ email }} disabled></dd>
+        </dl>
+
+        <dl class='form'>
+          <dt><label>Password</label></dt>
+          <dd>{{ form.password }}</dd>
+        </dl>
+
+				<div class='form-actions'>
+				  <button type='submit' class='btn btn-primary'>Submit</button>
+				</div>
+
+			</form>
+
+	  </div>
+
+	</div>
+
+</div>
+
+{% endblock content %}

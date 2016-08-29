@@ -1,10 +1,18 @@
+#!/usr/bin/env python
+
 from setuptools import setup
 
-setup(name='YourAppName',
-      version='1.0',
-      description='OpenShift App',
-      author='Your Name',
-      author_email='example@example.com',
-      url='http://www.python.org/sigs/distutils-sig/',
-#      install_requires=['Django>=1.3'],
-     )
+setup(
+    name='kukkubu',
+    version='1.0',
+    description='A place to store your personal recipes',
+    author='Mateusz Bocian',
+    author_email='support@kukkubu.com',
+    url='http://mrstork.github.io/',
+    install_requires=[
+        'Django==1.8.4'
+    ],
+    dependency_links=[
+        'https://pypi.python.org/simple/django/'
+    ],
+)

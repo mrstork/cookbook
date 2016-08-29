@@ -1,0 +1,11 @@
+{% extends 'email/base.html' %}
+
+{% block content %}
+
+http://cookbook-stork.rhcloud.com{% url 'confirm_account' uidb64=uid token=token %}
+
+{{ user.get_username }}
+
+Thanks for joining our site!
+
+{% endblock content %}
