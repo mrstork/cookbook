@@ -137,11 +137,13 @@ EMAIL_HOST_PASSWORD = os.getenv('SENDGRID_PASSWORD')
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
-
-# Successful login url
+# Login URLs
 # https://docs.djangoproject.com/en/1.9/ref/settings/
-LOGIN_REDIRECT_URL = '/recipes/'
 
+# Login required url
+LOGIN_URL = '/accounts/login'
+# Successful login url
+LOGIN_REDIRECT_URL = '/recipes/'
 
 # Overwrite settings for development environment
 
