@@ -1,6 +1,17 @@
 from django.test import TestCase
 from django.core import mail
 
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate
+
+
+def create_user(email, password):
+    user = User.objects.create_user(email, email=email)
+    user.set_password(password)
+    user.is_active = True
+    user.save()
+    authenticate(username=email, password=password)
+
 # request account but cannot sign in
 
 
