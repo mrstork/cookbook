@@ -12,5 +12,5 @@ gulp.task('scss', function () {
 });
 
 gulp.task('default', function () {
-  gulp.watch('./wsgi/cookbook/public/scss/*.scss', ['scss']);
+  gulp.watch('./wsgi/cookbook/public/scss/**/*.scss', ['scss']);
 });
