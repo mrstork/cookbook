@@ -6,6 +6,9 @@
   "dependencies": {
     "gulp": "^3.9.0",
     "gulp-clean-css": "^2.0.12",
-    "gulp-sass": "^2.1.1"
+    "gulp-imagemin": "^3.0.3",
+    "gulp-sass": "^2.1.1",
+    "imagemin-pngquant": "^5.0.0",
+    "path": "^0.12.7"
   }
 }
