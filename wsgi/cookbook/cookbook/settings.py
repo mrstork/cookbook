@@ -131,11 +131,11 @@ STATIC_ROOT = os.path.join(WSGI_DIR, 'static')
 # Email settings
 # https://developers.openshift.com/en/marketplace-sendgrid.html#python-django
 
-EMAIL_HOST = os.getenv('SENDGRID_HOSTNAME')
-EMAIL_HOST_USER = os.getenv('SENDGRID_USERNAME')
-EMAIL_HOST_PASSWORD = os.getenv('SENDGRID_PASSWORD')
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
+# EMAIL_HOST = os.getenv('SENDGRID_HOSTNAME')
+# EMAIL_HOST_USER = os.getenv('SENDGRID_USERNAME')
+# EMAIL_HOST_PASSWORD = os.getenv('SENDGRID_PASSWORD')
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
 
 # Login URLs
 # https://docs.djangoproject.com/en/1.9/ref/settings/
