@@ -1,2 +1,35 @@
 @import "bootstrap";
 @import "bootswatch";
+
+.landing-page-hero {
+  background-image: url('/static/images/food-salad-healthy-vegetables.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  color: #fff;
+  height: calc(100vh - 99px);
+  min-height: 325px;
+  padding-top: 40vh;
+  text-align: right;
+}
+
+nav {
+  margin: 0;
+}
+
+footer {
+  background: #3E3F3A;
+  color: #fff;
+  text-align: center;
+  p {
+    padding: 10px;
+    margin: 0;
+    font-size: 10px;
+  }
+}
+
+:-moz-placeholder { color: #333 !important; }
+:-ms-input-placeholder { color: #333 !important; }
+::-moz-placeholder { color: #333 !important; }
+::-webkit-input-placeholder { color: #333 !important; }

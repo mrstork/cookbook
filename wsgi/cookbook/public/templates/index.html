@@ -2,28 +2,22 @@
 
 {% block content %}
 
-<div class="container">
+<div class="landing-page-hero">
+	<div class="container">
+		<h1>Kukkubukku</h1>
+		<p class="lead">Your own personal cookbook</p>
 
-	<div class="columns">
-	  <div class="one-half column centered">
-			<h2>Request account</h2>
-
-			<form method="post" action={% url 'request_account' %}>
-				{% csrf_token %}
-
-				<dl class="form">
-					<dt><label>Email address</label></dt>
-					<dd>{{ request_account_form.email }}</dd>
-				</dl>
-
-				<div class="form-actions">
-					<button type="submit" class="btn btn-primary">Submit</button>
+		<div class="row">
+			<div class="col-md-6 col-md-offset-6">
+				<div class="input-group">
+					{{ request_account_form.email }}
+					<span class="input-group-btn">
+						<button type="submit" class="btn btn-primary">Request Account</button>
+					</span>
 				</div>
-
-			</form>
-	  </div>
+			</div>
+		</div>
 	</div>
-
 </div>
 
 {% endblock content %}

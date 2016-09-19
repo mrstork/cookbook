@@ -9,7 +9,13 @@ from django.utils.http import urlsafe_base64_encode
 
 
 class RequestAccountForm(forms.Form):
-    email = forms.EmailField(label='Email', max_length=254)
+    email = forms.EmailField(
+        label='Email',
+        max_length=254,
+        widget=forms.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'your@email.com',
+        }))
 
     def get_or_create_user(self):
         email = self.cleaned_data['email']
