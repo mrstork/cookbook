@@ -33,17 +33,7 @@
     <div class="col-sm-7">
       <label class="control-label">Ingredients</label>
       <div class="form-group" ng-repeat="ingredient in rc.ingredients">
-        <div class="row">
-          <div class="col-sm-3">
-            <input class="form-control" type="text" ng-model="ingredient.quantity" placeholder="{{ingredient.quantity_placeholder}}">
-          </div>
-          <div class="col-sm-3">
-            <input class="form-control" type="text" ng-model="ingredient.measurement" placeholder="{{ingredient.measurement_placeholder}}">
-          </div>
-          <div class="col-sm-6">
-            <input class="form-control" type="text" ng-model="ingredient.name" placeholder="{{ingredient.name_placeholder}}">
-          </div>
-        </div>
+        <input class="form-control" type="text" ng-model="ingredient.name" placeholder="{{ingredient.placeholder}}">
       </div>
       <div class="form-group">
         <button type="button" class="btn btn-primary pull-right" ng-click="rc.addIngredient()">Add Ingredient</button>

@@ -15,21 +15,9 @@
       { placeholder: 'Magnifying Glass' },
     ];
     this.ingredients = [
-      {
-        name_placeholder: 'Gummy Worms',
-        quantity_placeholder: 18,
-        measurement_placeholder: 'oz.',
-      },
-      {
-        name_placeholder: 'Socks',
-        quantity_placeholder: 3,
-        measurement_placeholder: 'pairs',
-      },
-      {
-        name_placeholder: 'Smelly Cheese',
-        quantity_placeholder: 15,
-        measurement_placeholder: 'block',
-      },
+      { placeholder: '18 oz. gummy worms' },
+      { placeholder: '3 pairs socks' },
+      { placeholder: '15 blocks smelly cheese' },
     ];
     this.instructions = [
       { placeholder: 'Step 1' },
@@ -42,11 +30,7 @@
     };
 
     this.addIngredient = function () {
-      this.ingredients.push({
-        name_placeholder: 'Gummy Worms',
-        quantity_placeholder: 18,
-        measurement_placeholder: 'oz.',
-      });
+      this.ingredients.push({ placeholder: '18 oz. Gummy Worms' });
     };
 
     this.addInstruction = function () {
