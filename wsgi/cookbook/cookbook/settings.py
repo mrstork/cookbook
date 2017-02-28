@@ -150,6 +150,9 @@ LOGIN_REDIRECT_URL = '/recipes/'
 if not os.environ.get('OPENSHIFT_APP_DNS'):
     DEBUG = True
 
+    # Allow requests from localhost during development
+    ALLOWED_HOSTS.append('127.0.0.1')
+
     # Local email server: python -m smtpd -n -c DebuggingServer localhost:1025
     EMAIL_HOST = 'localhost'
     EMAIL_HOST_USER = None
