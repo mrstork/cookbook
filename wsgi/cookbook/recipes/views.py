@@ -28,7 +28,17 @@ def edit_view(request):
     return render(request, 'edit-recipe.html', context)
 
 
+# @login_required
+# def detail_view(request):
+#     context = {}
+#     return render(request, 'view-recipe.html', context)
+
 @login_required
-def detail_view(request):
-    context = {}
+def detail_view(request, slug):
+    recipe = Recipe.objects.all()[0]
+    print(recipe)
+    print(recipe.title)
+    context = {
+        'recipe': recipe
+    }
     return render(request, 'view-recipe.html', context)
