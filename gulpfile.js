@@ -1,11 +1,14 @@
 'use strict';
 
-var cssmin = require('gulp-clean-css');
-var gulp = require('gulp');
-var imagemin = require('gulp-imagemin');
-var path = require('path');
-var pngquant = require('imagemin-pngquant');
-var sass = require('gulp-sass');
+const gulp = require('gulp');
+const path = require('path');
+
+const sass = require('gulp-sass');
+const cssmin = require('gulp-clean-css');
+const autoprefixer = require('gulp-autoprefixer');
+
+const imagemin = require('gulp-imagemin');
+const pngquant = require('imagemin-pngquant');
 
 var config = {
   images_directory: './wsgi/cookbook/public/static/images/',
