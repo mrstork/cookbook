@@ -3,21 +3,29 @@
 {% block content %}
 
 {% if not recipes %}
+
   <div class='container'>
     <h3>Recipe List</h3>
     <p>You have no recipes yet</p>
     <a class='btn btn-primary' href='{% url 'add_recipe' %}'>Create Recipe</a>
   </div>
+
 {% else %}
-    <div class='container'>
-      <h3>Recipe List</h3>
-      <ul>
-        {% for recipe in recipes %}
-          <li>{{ recipe.title }} - {{ recipe.description }}</li>
-        {% endfor %}
-      </ul>
-      <a class='btn btn-primary' href='{% url 'add_recipe' %}'>Create Recipe</a>
-    </div>
+
+  <div class='container'>
+    <h3>Recipe List</h3>
+    <ul>
+      {% for recipe in recipes %}
+        <li>
+          <a href='{% url 'view_recipe' recipe.title %}'>
+            {{ recipe.title }} - {{ recipe.description }}
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+    <a class='btn btn-primary' href='{% url 'add_recipe' %}'>Create Recipe</a>
+  </div>
+
 {% endif %}
 
 {% endblock content %}
