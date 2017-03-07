@@ -1,6 +1,6 @@
 import json
+from slugify import slugify
 from .models import Recipe
-
 
 def add_recipe(request):
     body = request.body.decode('utf-8')
@@ -9,5 +9,6 @@ def add_recipe(request):
     Recipe.objects.create(
         user=request.user,
         title=data['title'],
+        slug=slugify(data['title']),
         description=data['description'],
     )
