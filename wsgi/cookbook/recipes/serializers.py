@@ -19,24 +19,19 @@ def add_recipe(request):
 
     for ingredient in data['ingredients']:
         if 'name' in ingredient:
-            print(ingredient)
             recipe.ingredients.create(
                 name=ingredient['name'],
             )
 
     for equipment in data['equipment']:
         if 'name' in equipment:
-            print(equipment)
             recipe.equipment.create(
                 name=equipment['name'],
             )
 
     for instruction in data['instructions']:
         if 'description' in instruction:
-            print(instruction)
             recipe.instructions.create(
                 description=instruction['description'],
                 order=instruction['order'],
             )
-
-    recipe.save()
