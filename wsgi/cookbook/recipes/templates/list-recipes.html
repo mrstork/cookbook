@@ -17,7 +17,7 @@
     <ul>
       {% for recipe in recipes %}
         <li>
-          <a href='{% url 'view_recipe' recipe.title %}'>
+          <a href='{% url 'view_recipe' recipe.user recipe.slug %}'>
             {{ recipe.title }} - {{ recipe.description }}
           </a>
         </li>

@@ -5,10 +5,10 @@ from django.http import HttpResponse
 from django.shortcuts import render
 
 
-@login_required
-def list_view(request):
+def list_view(request, user):
+    # TODO: default to current user if no user provided
     context = {
-        'recipes': Recipe.objects.all()
+        'recipes': Recipe.objects.filter(user__username=user)
     }
     return render(request, 'list-recipes.html', context)
 
@@ -23,21 +23,18 @@ def add_view(request):
 
 
 @login_required
-def edit_view(request):
-    context = {}
+def edit_view(request, user, slug):
+    recipe = Recipe.objects.get(user__username=user, slug=slug)
+    # TODO: default to something if the recipe is not found
+    context = {
+        'recipe': recipe
+    }
     return render(request, 'edit-recipe.html', context)
 
 
-# @login_required
-# def detail_view(request):
-#     context = {}
-#     return render(request, 'view-recipe.html', context)
-
-@login_required
-def detail_view(request, slug):
-    recipe = Recipe.objects.all()[0]
-    print(recipe)
-    print(recipe.title)
+def detail_view(request, user, slug):
+    recipe = Recipe.objects.get(user__username=user, slug=slug)
+    # TODO: default to something if the recipe is not found
     context = {
         'recipe': recipe
     }
