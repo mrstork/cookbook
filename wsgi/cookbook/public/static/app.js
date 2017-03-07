@@ -20,9 +20,9 @@
       { placeholder: '15 blocks smelly cheese' },
     ];
     this.instructions = [
-      { placeholder: 'Step 1' },
-      { placeholder: 'Step 2' },
-      { placeholder: 'Step 3' },
+      { placeholder: 'Step 1', order: 0 },
+      { placeholder: 'Step 2', order: 1 },
+      { placeholder: 'Step 3', order: 2 },
     ];
 
     this.addEquipment = function () {
@@ -34,7 +34,10 @@
     };
 
     this.addInstruction = function () {
-      this.instructions.push({ placeholder: 'Step ' + (this.instructions.length + 1) });
+      this.instructions.push({
+        placeholder: 'Step ' + (this.instructions.length + 1),
+        order: this.instructions.length,
+      });
     };
 
     this.submit = function (recipe) {
