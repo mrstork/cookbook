@@ -2,26 +2,16 @@ from django.db import models
 from django.conf import settings
 
 
-class Ingredient(models.Model):
-    name = models.CharField(max_length=100)
-
-
-class Equipment(models.Model):
-    name = models.CharField(max_length=100)
-
-
-class Measurement(models.Model):
-    name = models.CharField(max_length=100)
-
-
 class RecipeIngredient(models.Model):
-    quantity = models.FloatField()
-    measurement = models.ForeignKey(Measurement)
-    ingredient = models.ForeignKey(Ingredient)
+    name = models.CharField(max_length=500)
 
 
-class Instruction(models.Model):
-    description = models.CharField(max_length=300)
+class RecipeEquipment(models.Model):
+    name = models.CharField(max_length=500)
+
+
+class RecipeInstruction(models.Model):
+    description = models.CharField(max_length=500)
     order = models.IntegerField()
 
 
@@ -30,10 +20,12 @@ class Recipe(models.Model):
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
     )
-    title = models.CharField(max_length=100, null=True, blank=True)
-    description = models.CharField(max_length=300, null=True, blank=True)
+    # TODO: Shrink max lengths once there are a few recipes in the database as examples
+    title = models.CharField(max_length=1000, null=True, blank=True)
+    slug = models.CharField(max_length=1000, null=True, blank=True)
+    description = models.CharField(max_length=1000, null=True, blank=True)
     serves = models.CharField(max_length=100, null=True, blank=True)
-    time = models.FloatField(null=True, blank=True)
-    ingredients = models.ForeignKey(RecipeIngredient, null=True, blank=True)
-    equipment = models.ManyToManyField(Equipment, blank=True)
-    instructions = models.ForeignKey(Instruction, null=True, blank=True)
+    time = models.FloatField(max_length=100, null=True, blank=True)
+    ingredients = models.ForeignKey(RecipeIngredient, blank=True)
+    equipment = models.ForeignKey(RecipeEquipment, blank=True)
+    instructions = models.ForeignKey(RecipeInstruction, null=True, blank=True)
