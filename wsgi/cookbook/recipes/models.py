@@ -26,6 +26,6 @@ class Recipe(models.Model):
     description = models.CharField(max_length=1000, null=True, blank=True)
     serves = models.CharField(max_length=100, null=True, blank=True)
     time = models.FloatField(max_length=100, null=True, blank=True)
-    ingredients = models.ForeignKey(RecipeIngredient, blank=True)
-    equipment = models.ForeignKey(RecipeEquipment, blank=True)
+    ingredients = models.ForeignKey(RecipeIngredient, null=True, blank=True)
+    equipment = models.ForeignKey(RecipeEquipment, null=True, blank=True)
     instructions = models.ForeignKey(RecipeInstruction, null=True, blank=True)
