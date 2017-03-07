@@ -5,12 +5,12 @@
 <div class="container">
   <img src="/static/images/veggie_lasagna.jpg" alt="">
   <div class="recipe-header">
-    <h1 class="recipe-title">{{ recipe.user }}</h1>
-    <p class="recipe-author">{{ recipe.author }}</p>
+    <h1 class="recipe-title">{{ recipe.title }}</h1>
+    <p class="recipe-author">by {{ recipe.user }}</p>
   </div>
   <section>
-    <h4 class="recipe-servings">Serves {{ recipe.serves }}</h4>
-    <h4 class="recipe-servings">Time needed {{ recipe.time }} min</h4>
+    <h4 class="recipe-servings">Makes {{ recipe.serves }} servings</h4>
+    <h4 class="recipe-servings">Takes {{ recipe.time }} min to make</h4>
   </section>
   <section class='recipe-description'>
     <p>{{ recipe.description }}</p>
@@ -19,7 +19,7 @@
     <h4 class="recipe-section-heading">Equipment</h4>
     <ul>
       {% for equipment in recipe.equipment.all %}
-        <li>{{ equipment }}</li>
+        <li>{{ equipment.name }}</li>
       {% empty %}
         <li>No equipment</li>
       {% endfor %}
@@ -29,7 +29,7 @@
     <h4 class="recipe-section-heading">Ingredients</h4>
     <ul>
       {% for ingredient in recipe.ingredients.all %}
-        <li>{{ ingredient }}</li>
+        <li>{{ ingredient.name }}</li>
       {% empty %}
         <li>No ingredients</li>
       {% endfor %}
@@ -39,7 +39,7 @@
     <h4 class="recipe-section-heading">Preperations</h4>
     <ol class="recipe-preparation-list">
       {% for instruction in recipe.instructions.all %}
-        <li>{{ instruction }}</li>
+        <li>{{ instruction.description }}</li>
       {% empty %}
         <li>No instructions</li>
       {% endfor %}
