@@ -11,6 +11,7 @@ class RecipeEquipment(models.Model):
 
 class RecipeInstruction(models.Model):
     description = models.CharField(max_length=500)
+    # TODO: see if ordering necessary
     order = models.IntegerField()
 
     # class Meta:
