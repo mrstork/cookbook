@@ -7,7 +7,7 @@
   <div class='container'>
     <h3>Recipe List</h3>
     <p>You have no recipes yet</p>
-    <a class='btn btn-primary' href='{% url 'add_recipe' %}'>Create Recipe</a>
+    <a class='btn btn-primary' href='{% url 'create-recipe' %}'>Create Recipe</a>
   </div>
 
 {% else %}
@@ -17,13 +17,13 @@
     <ul>
       {% for recipe in recipes %}
         <li>
-          <a href='{% url 'view_recipe' recipe.user recipe.slug %}'>
+          <a href='{% url 'view-recipe' recipe.user recipe.slug %}'>
             {{ recipe.title }} - {{ recipe.description }}
           </a>
         </li>
       {% endfor %}
     </ul>
-    <a class='btn btn-primary' href='{% url 'add_recipe' %}'>Create Recipe</a>
+    <a class='btn btn-primary' href='{% url 'create-recipe' %}'>Create Recipe</a>
   </div>
 
 {% endif %}

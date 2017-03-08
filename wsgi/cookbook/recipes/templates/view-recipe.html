@@ -9,22 +9,22 @@
     <p class="recipe-author">by {{ recipe.user }}</p>
   </div>
   <section>
-    <h4 class="recipe-servings">Makes {{ recipe.serves }} servings</h4>
-    <h4 class="recipe-servings">Takes {{ recipe.time }} min to make</h4>
+    <h4 class="recipe-servings">{{ recipe.serves }}</h4>
+    <h4 class="recipe-servings">{{ recipe.time }} min</h4>
   </section>
   <section class='recipe-description'>
     <p>{{ recipe.description }}</p>
   </section>
-  <section>
-    <h4 class="recipe-section-heading">Equipment</h4>
-    <ul>
-      {% for equipment in recipe.equipment.all %}
-        <li>{{ equipment.name }}</li>
-      {% empty %}
-        <li>No equipment</li>
-      {% endfor %}
-    </ul>
-  </section>
+  {% if recipe.equipment.all %}
+    <section>
+      <h4 class="recipe-section-heading">Equipment</h4>
+      <ul>
+        {% for equipment in recipe.equipment.all %}
+          <li>{{ equipment.name }}</li>
+        {% endfor %}
+      </ul>
+    </section>
+  {% endif %}
   <section>
     <h4 class="recipe-section-heading">Ingredients</h4>
     <ul>
