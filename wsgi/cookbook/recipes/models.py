@@ -31,6 +31,7 @@ class Recipe(models.Model):
     ingredients = models.ManyToManyField(RecipeIngredient)
     equipment = models.ManyToManyField(RecipeEquipment)
     instructions = models.ManyToManyField(RecipeInstruction)
+    draft = models.BooleanField(default=True)
 
     def __str__(self):
         return self.slug
