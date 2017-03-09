@@ -1,0 +1,64 @@
+.edit-recipe {
+  .recipe-title {
+    @extend .font-header;
+
+    font-size: 2rem;
+  }
+}
+
+.button-add-item {
+  background: none;
+  border: 1px solid transparent;
+  cursor: text;
+  text-align: left;
+  width: 400px;
+
+  &:hover {
+    border-color: #a9a9a9;
+  }
+
+  &--textarea {
+    height: 75px;
+    width: 500px;
+  }
+}
+
+.field-input {
+  border: 1px solid transparent;
+  width: 400px;
+
+  &:hover {
+    border-color: #a9a9a9;
+  }
+}
+
+.field-textarea {
+  height: 75px;
+  width: 500px;
+  resize: none;
+  vertical-align: top;
+  border: 1px solid transparent;
+
+  &:hover {
+    border-color: #a9a9a9;
+  }
+}
+
+.form-footer {
+  margin-top: 50px;
+}
+
+.button-save {
+  padding: 0.8rem 1.5rem;
+  border: none;
+  color: $white;
+  background-color: #3e3f3a;
+  margin-right: 40px;
+}
+
+.button-publish {
+  padding: 0.8rem 1.5rem;
+  border: none;
+  color: $white;
+  background-color: #325d88;
+}

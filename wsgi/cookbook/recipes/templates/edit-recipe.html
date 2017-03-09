@@ -4,65 +4,65 @@
 {% verbatim %}
 
 <div class="main-content">
-  <section ng-app="cookbook" class="container">
-    <header>
-      <h3>Create Recipe</h3>
-    </header>
-    <form class="row" ng-controller="RecipeController as rc" ng-submit="rc.submit(recipe)">
-      <div class="form-group col-sm-12">
-        <label class="control-label">Title</label>
-        <input type="text" class="form-control" ng-model="rc.recipe.title" placeholder="What are you making? I'm starving!"></input>
+  <div class="container" ng-app="cookbook">
+    <form class="edit-recipe" ng-controller="RecipeController as rc" ng-submit="rc.submit(recipe)">
+      <img src="/static/images/veggie_lasagna.jpg" alt="">
+      <div class="recipe-header">
+        <input class="field-input recipe-title" ng-model="rc.recipe.title" placeholder="Title"></input>
+{% endverbatim %}
+        <p class="recipe-author">by {{ user }}</p>
+{% verbatim %}
       </div>
-      <div class="form-group col-sm-12">
-        <label class="control-label">Description</label>
-        <textarea class="form-control" ng-model="rc.recipe.description" placeholder="Write a description that will leave my mouth watering..."></textarea>
-      </div>
-      <div class="form-group col-sm-6">
-        <label class="control-label">How many servings will this recipe make?</label>
-        <div class="input-group">
-          <input class="form-control" type="text" ng-model="rc.recipe.serves">
-          <span class="input-group-addon">servings</span>
+      <section class='recipe-description'>
+        <textarea class="field-textarea recipe-description" ng-model="rc.recipe.description"></textarea>
+      </section>
+      <section>
+        <div>
+          <input class="field-input recipe-servings" ng-model="rc.recipe.serves">
         </div>
-      </div>
-      <div class="form-group col-sm-6">
-        <label class="control-label">How long does it take to make?</label>
-        <div class="input-group">
-          <input class="form-control" type="text" ng-model="rc.recipe.time">
-          <span class="input-group-addon">minutes</span>
+        <div>
+          <input class="field-input recipe-servings" ng-model="rc.recipe.time">
         </div>
-      </div>
-      <div class="col-sm-7">
-        <label class="control-label">Ingredients</label>
-        <div class="form-group" ng-repeat="ingredient in rc.ingredients">
-          <input class="form-control" type="text" ng-model="ingredient.name" placeholder="{{ingredient.placeholder}}">
-        </div>
-        <div class="form-group">
-          <button type="button" class="btn btn-primary pull-right" ng-click="rc.addIngredient()">Add Ingredient</button>
-        </div>
-      </div>
-      <div class="col-sm-5">
-        <label class="control-label">Equipment</label>
-        <div class="form-group" ng-repeat="equip in rc.equipment">
-          <input class="form-control" type="text" ng-model="equip.name" placeholder="{{equip.placeholder}}">
-        </div>
-        <div class="form-group">
-          <button type="button" class="btn btn-primary pull-right" ng-click="rc.addEquipment()">Add Equipment</button>
-        </div>
-      </div>
-      <div class="col-sm-12">
-        <label class="control-label">Instructions</label>
-        <div class="form-group" ng-repeat="instruction in rc.instructions">
-          <textarea class="form-control" ng-model="instruction.description" placeholder="{{instruction.placeholder}}"></textarea>
-        </div>
-      </div>
-      <div class="form-group col-sm-12">
-        <button type="button" class="btn btn-primary pull-right" ng-click="rc.addInstruction()">Add Instruction</button>
-      </div>
-      <div class="form-group col-sm-12">
-        <input type="submit" class="btn btn-success" value="Submit Recipe" />
-      </div>
+      </section>
+      <section>
+        <h4 class="recipe-section-heading">Equipment</h4>
+        <ul>
+          <li ng-repeat="equip in rc.equipment">
+            <input class="field-input" ng-model="equip.name" placeholder="{{equip.placeholder}}">
+          </li>
+          <button type="button" class="button-add-item" ng-click="rc.addEquipment()">
+            + Add Equipment
+          </button>
+        </ul>
+      </section>
+      <section>
+        <h4 class="recipe-section-heading">Ingredients</h4>
+        <ul>
+          <li ng-repeat="ingredient in rc.ingredients">
+            <input class="field-input" ng-model="ingredient.name" placeholder="{{ingredient.placeholder}}">
+          </li>
+          <button type="button" class="button-add-item" ng-click="rc.addIngredient()">
+            + Add Ingredient
+          </button>
+        </ul>
+      </section>
+      <section>
+        <h4 class="recipe-section-heading">Preperations</h4>
+        <ol class="recipe-preparation-list">
+          <li ng-repeat="instruction in rc.instructions">
+            <textarea class="field-textarea" ng-model="instruction.description" placeholder="{{instruction.placeholder}}"></textarea>
+          </li>
+          <button type="button" class="button-add-item button-add-item--textarea" ng-click="rc.addInstruction()">
+              + Add Step
+          </button>
+        </ol>
+      </section>
+      <section class="form-footer">
+        <button type="submit" class="button-save">Save</button>
+        <button type="button" class="button-publish">Publish</button>
+      </section>
     </form>
-  </section>
+  </div>
 </div>
 
 {% endverbatim %}

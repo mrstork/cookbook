@@ -9,29 +9,34 @@
   ]);
 
   app.controller('RecipeController', function ($scope, $http) {
-    this.recipe = {};
+    this.recipe = {
+      title: 'New Recipe',
+      description: 'Write a description for the brilliant new recipe you came up with that makes your mouth water',
+      serves: 'Serves 5',
+      time: '30 - 40 min',
+    };
     this.equipment = [
-      { placeholder: 'Wok' },
-      { placeholder: 'Broom' },
-      { placeholder: 'Magnifying Glass' },
+      { name: 'Rolling pin' },
+      { name: 'Cake tin' },
     ];
     this.ingredients = [
-      { placeholder: '18 oz. gummy worms' },
-      { placeholder: '3 pairs socks' },
-      { placeholder: '15 blocks smelly cheese' },
+      { name: '3 cups of flour' },
+      { name: '1 stick of butter' },
     ];
     this.instructions = [
-      { placeholder: 'Step 1', order: 0 },
+      { description: 'This is what you do first...', placeholder: 'Step 1', order: 0 },
       { placeholder: 'Step 2', order: 1 },
       { placeholder: 'Step 3', order: 2 },
     ];
 
     this.addEquipment = function () {
-      this.equipment.push({ placeholder: 'Wok' });
+      this.equipment.push({});
+      // TODO: focus newly added element
     };
 
     this.addIngredient = function () {
-      this.ingredients.push({ placeholder: '18 oz. Gummy Worms' });
+      this.ingredients.push({});
+      // TODO: focus newly added element
     };
 
     this.addInstruction = function () {
@@ -39,6 +44,7 @@
         placeholder: 'Step ' + (this.instructions.length + 1),
         order: this.instructions.length,
       });
+      // TODO: focus newly added element
     };
 
     this.submit = function (recipe) {
