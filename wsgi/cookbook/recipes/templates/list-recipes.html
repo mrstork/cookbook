@@ -2,30 +2,34 @@
 
 {% block content %}
 
-{% if not recipes %}
+<div class="main-content">
 
-  <div class='container'>
-    <h3>Recipe List</h3>
-    <p>You have no recipes yet</p>
-    <a class='btn btn-primary' href='{% url 'create-recipe' %}'>Create Recipe</a>
-  </div>
+  {% if not recipes %}
 
-{% else %}
+    <div class='container'>
+      <h3>Recipe List</h3>
+      <p>You have no recipes yet</p>
+      <a class='btn btn-primary' href='{% url 'create-recipe' %}'>Create Recipe</a>
+    </div>
 
-  <div class='container'>
-    <h3>Recipe List</h3>
-    <ul>
-      {% for recipe in recipes %}
-        <li>
-          <a href='{% url 'view-recipe' recipe.user recipe.slug %}'>
-            {{ recipe.title }} - {{ recipe.description }}
-          </a>
-        </li>
-      {% endfor %}
-    </ul>
-    <a class='btn btn-primary' href='{% url 'create-recipe' %}'>Create Recipe</a>
-  </div>
+  {% else %}
 
-{% endif %}
+    <div class='container'>
+      <h3>Recipe List</h3>
+      <ul>
+        {% for recipe in recipes %}
+          <li>
+            <a href='{% url 'view-recipe' recipe.user recipe.slug %}'>
+              {{ recipe.title }} - {{ recipe.description }}
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+      <a class='btn btn-primary' href='{% url 'create-recipe' %}'>Create Recipe</a>
+    </div>
+
+  {% endif %}
+
+</div>
 
 {% endblock content %}
