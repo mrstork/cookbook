@@ -1,3 +1,4 @@
+// TODO: add to build process and minify
 (function () {
   var app = angular.module('cookbook', []);
 
