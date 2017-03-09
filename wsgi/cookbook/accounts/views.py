@@ -13,7 +13,7 @@ from django.views.decorators.http import require_POST
 
 def authentication(request):
     if request.user.is_authenticated():
-        return redirect('list_recipes')
+        return redirect('list-recipes', user=request.user)
 
     response = login(request,
                      authentication_form=AuthenticationForm,
@@ -75,11 +75,10 @@ def change_password(request):
 @login_required
 @require_POST
 def delete_account(request, password):
-    if request.method == 'POST':
-        user = request.user
-        logout(request)
-        user.delete()
-        return render(request, 'goodbye.html')
+    user = request.user
+    logout(request)
+    user.delete()
+    return render(request, 'goodbye.html')
 
 
 @login_required

@@ -2,11 +2,15 @@ from .models import Recipe
 from .serializers import add_recipe
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+
+
+def base_view(request):
+    # TODO: make a complete list or a trending list
+    return redirect('list-recipes', request.user)
 
 
 def list_view(request, user):
-    # TODO: default to current user if no user provided
     context = {
         'recipes': Recipe.objects.filter(user__username=user)
     }
@@ -15,6 +19,7 @@ def list_view(request, user):
 
 @login_required
 def add_view(request):
+    # TODO: merge this with edit view
     context = {}
     if request.method == 'POST':
         add_recipe(request)
