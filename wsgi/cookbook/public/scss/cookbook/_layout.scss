@@ -1,0 +1,30 @@
+.container {
+  margin: auto;
+  padding: 0 20px;
+  max-width: 800px;
+}
+
+.page-header {
+  @extend .font-header;
+
+  text-transform: capitalize;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 50px;
+  background: $dark-gray;
+  padding: 10px 100px;
+
+  &__logo {
+    font-size: 1.5rem;
+  }
+
+  &__navigation a {
+    margin-left: 15px;
+  }
+
+  a {
+    color: #fff;
+    text-decoration: none;
+  }
+}

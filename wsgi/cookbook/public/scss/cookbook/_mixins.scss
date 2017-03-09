@@ -1,0 +1,6 @@
+// Media query
+@mixin mq($device) {
+  @media (min-width: $device) {
+    @content;
+  }
+}

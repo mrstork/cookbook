@@ -1,0 +1,25 @@
+.landing-page-hero {
+  background-image: url('/static/images/food-salad-healthy-vegetables.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: $white;
+  height: calc(100vh - 70px);
+  min-height: 325px;
+  text-align: right;
+
+  &__content {
+    // TODO: mobile margins
+    margin: 0 100px 100px 0;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+
+  p {
+    @extend .font-username;
+
+    font-size: 1.2rem;
+  }
+}
