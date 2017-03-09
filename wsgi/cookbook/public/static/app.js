@@ -47,7 +47,7 @@
       this.recipe.instructions = this.instructions;
 
       // TODO: Watch for changes and post periodically
-      $http.post('/recipes/add/', this.recipe)
+      $http.post('/recipes/create', this.recipe)
         .success(function (data, status, headers, config) {
           window.location = '/recipes';
         })
