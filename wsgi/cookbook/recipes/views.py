@@ -28,17 +28,18 @@ def add_view(request):
 
 
 @login_required
-def edit_view(request, user, slug):
-    recipe = Recipe.objects.get(user__username=user, slug=slug)
+def edit_view(request, user, id):
+    recipe = Recipe.objects.get(id=id)
     # TODO: default to something if the recipe is not found
+    # get object or 404
     context = {
         'recipe': recipe
     }
     return render(request, 'edit-recipe.html', context)
 
 
-def detail_view(request, user, slug):
-    recipe = Recipe.objects.get(user__username=user, slug=slug)
+def detail_view(request, user, id):
+    recipe = Recipe.objects.get(id=id)
     # TODO: default to something if the recipe is not found
     context = {
         'recipe': recipe
