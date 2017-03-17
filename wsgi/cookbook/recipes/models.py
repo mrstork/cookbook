@@ -35,7 +35,4 @@ class Recipe(models.Model):
     draft = models.BooleanField(default=True)
 
     def __str__(self):
-        return self.slug
-
-    # class Meta:
-    #     unique_together = ('user', 'slug')
+        return self.title + ' - ' + self.description
