@@ -8,6 +8,9 @@
 @import "cookbook/_layout";
 @import "cookbook/_base";
 
+// Utilities
+@import "cookbook/_tooltips";
+
 // Pages
 @import "cookbook/pages/_landing-page";
 @import "cookbook/pages/_recipe";
