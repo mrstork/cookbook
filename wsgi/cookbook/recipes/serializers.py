@@ -15,6 +15,10 @@ def add_recipe(request):
         time=data['time'],
     )
 
+    if 'draft' in data:
+        print(data['draft'])
+        recipe.draft = data['draft']
+
     recipe.save()
 
     for ingredient in data['ingredients']:

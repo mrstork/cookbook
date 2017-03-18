@@ -47,7 +47,7 @@
       // TODO: focus newly added element
     };
 
-    this.submit = function (recipe) {
+    this.submit = function () {
       this.recipe.ingredients = this.ingredients;
       this.recipe.equipment = this.equipment;
       this.recipe.instructions = this.instructions;
@@ -60,6 +60,11 @@
         .error(function (data, status, header, config) {
           // nothing
         });
+    };
+
+    this.publish = function () {
+      this.recipe.draft = false;
+      this.submit();
     };
 
   });
