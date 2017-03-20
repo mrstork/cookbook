@@ -1,9 +1,8 @@
 from .models import Recipe
-from .serializers import add_recipe
+from .serializers import add_recipe, save_recipe
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-
 
 def base_view(request):
     # TODO: make a complete list or a trending list
@@ -22,7 +21,7 @@ def add_view(request):
     # TODO: merge this with edit view
     context = {}
     if request.method == 'POST':
-        add_recipe(request)
+        save_recipe(request)
         return HttpResponse('Recipe Added')
     return render(request, 'edit-recipe.html', context)
 
@@ -35,6 +34,9 @@ def edit_view(request, user, id):
     context = {
         'recipe': recipe
     }
+    if request.method == 'POST':
+        save_recipe(request, id)
+        return HttpResponse('Recipe Added')
     return render(request, 'edit-recipe.html', context)
 
 
