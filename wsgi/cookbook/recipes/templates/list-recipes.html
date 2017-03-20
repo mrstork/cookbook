@@ -17,7 +17,11 @@
       <div class='recipe-list'>
         {% for recipe in recipes %}
           <article class="recipe-list__item">
+            {% if user == recipe.user %}
+            <a class="recipe-list__link" href='{% url 'edit-recipe' recipe.user recipe.id %}'>
+            {% else %}
             <a class="recipe-list__link" href='{% url 'view-recipe' recipe.user recipe.id %}'>
+            {% endif %}
               {# TODO: draft vs published, stars #}
               <div class="">
                 <img class="recipe-list__image" src="/static/images/veggie_lasagna.jpg" alt="">
