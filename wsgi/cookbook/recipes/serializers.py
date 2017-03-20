@@ -40,43 +40,6 @@ class RecipeSerializer(serializers.ModelSerializer):
             'draft',
         )
 
-def add_recipe(request):
-    body = request.body.decode('utf-8')
-    data = json.loads(body)
-    recipe = Recipe.objects.create(
-        user=request.user,
-        title=data['title'],
-        # TODO: replace slugify with your own slugify function
-        slug=slugify(data['title']),
-        description=data['description'],
-        serves=data['serves'],
-        time=data['time'],
-    )
-
-    if 'draft' in data:
-        recipe.draft = data['draft']
-
-    recipe.save()
-
-    for ingredient in data['ingredients']:
-        if 'name' in ingredient:
-            recipe.ingredients.create(
-                name=ingredient['name'],
-            )
-
-    for equipment in data['equipment']:
-        if 'name' in equipment:
-            recipe.equipment.create(
-                name=equipment['name'],
-            )
-
-    for instruction in data['instructions']:
-        if 'description' in instruction:
-            recipe.instructions.create(
-                description=instruction['description'],
-                order=instruction['order'],
-            )
-
 def save_recipe(request, id=None):
     body = request.body.decode('utf-8')
     data = json.loads(body)
