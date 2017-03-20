@@ -22,7 +22,7 @@ def add_view(request):
     context = {}
     if request.method == 'POST':
         save_recipe(request)
-        return HttpResponse('Recipe Added')
+        return HttpResponse('Recipe created.')
     return render(request, 'edit-recipe.html', context)
 
 
@@ -36,7 +36,7 @@ def edit_view(request, user, id):
     }
     if request.method == 'POST':
         save_recipe(request, id)
-        return HttpResponse('Recipe Added')
+        return HttpResponse('Recipe saved.')
     return render(request, 'edit-recipe.html', context)
 
 
