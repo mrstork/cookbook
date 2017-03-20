@@ -40,7 +40,7 @@
       // TODO: Watch for changes and post periodically
       $http.post(window.location.href, this.recipe)
         .success(function (data, status, headers, config) {
-          // nothing
+          window.location = '/recipes'
         })
         .error(function (data, status, header, config) {
           // nothing
