@@ -9,25 +9,10 @@
   ]);
 
   app.controller('RecipeController', function ($scope, $http) {
-    this.recipe = {
-      title: 'New Recipe',
-      description: 'Write a description for the brilliant new recipe you came up with that makes your mouth water',
-      serves: 'Serves 5',
-      time: '30 - 40 min',
-    };
-    this.equipment = [
-      { name: 'Rolling pin' },
-      { name: 'Cake tin' },
-    ];
-    this.ingredients = [
-      { name: '3 cups of flour' },
-      { name: '1 stick of butter' },
-    ];
-    this.instructions = [
-      { description: 'This is what you do first...', placeholder: 'Step 1', order: 0 },
-      { placeholder: 'Step 2', order: 1 },
-      { placeholder: 'Step 3', order: 2 },
-    ];
+    this.recipe = recipe;
+    this.equipment = recipe.equipment;
+    this.ingredients = recipe.ingredients;
+    this.instructions = recipe.instructions;
 
     this.addEquipment = function () {
       this.equipment.push({});
@@ -53,13 +38,14 @@
       this.recipe.instructions = this.instructions;
 
       // TODO: Watch for changes and post periodically
-      $http.post('/recipes/create', this.recipe)
+      $http.post(window.location.href, this.recipe)
         .success(function (data, status, headers, config) {
-          window.location = '/recipes';
+          // nothing
         })
         .error(function (data, status, header, config) {
           // nothing
         });
+
     };
 
     this.publish = function () {
