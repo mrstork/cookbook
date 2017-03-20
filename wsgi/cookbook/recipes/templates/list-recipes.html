@@ -7,7 +7,6 @@
   {% if not recipes %}
 
     <div class='container'>
-      <h3>Recipe List</h3>
       <p>You have no recipes yet</p>
       <a class='btn btn-primary' href='{% url 'create-recipe' %}'>Create Recipe</a>
     </div>
@@ -15,17 +14,23 @@
   {% else %}
 
     <div class='container'>
-      <h3>Recipe List</h3>
-      <ul>
+      <div class='recipe-list'>
         {% for recipe in recipes %}
-          <li>
-            <a href='{% url 'view-recipe' recipe.user recipe.id %}'>
-              {{ recipe.title }} - {{ recipe.description }}
+          <article class="recipe-list__item">
+            <a class="recipe-list__link" href='{% url 'view-recipe' recipe.user recipe.id %}'>
+              {# TODO: draft vs published, stars #}
+              <div class="">
+                <img class="recipe-list__image" src="/static/images/veggie_lasagna.jpg" alt="">
+              </div>
+              <span class="recipe-list__title">{{ recipe.title }}</span>
+              <span class="recipe-list__author">{{ recipe.user }}</span>
+              <p class="recipe-list__description">{{ recipe.description }}</p>
             </a>
-          </li>
+          </article>
         {% endfor %}
-      </ul>
-      <a class='btn btn-primary' href='{% url 'create-recipe' %}'>Create Recipe</a>
+      </div>
+      {# TODO: move to top #}
+      <a class='btn btn-primary' href='{% url 'create-recipe' %}'>Add New Recipe</a>
     </div>
 
   {% endif %}
