@@ -72,33 +72,7 @@
 
 <script>
 {% if recipe %}
-  var recipe = {
-    id: '{{ recipe.id }}',
-    title: '{{ recipe.title }}',
-    slug: '{{ recipe.slug }}',
-    description: '{{ recipe.description }}',
-    serves: '{{ recipe.serves }}',
-    time: '{{ recipe.time }}',
-    equipment: [
-      {% for equipment in recipe.equipment.all %}
-        { name: '{{ equipment.name }}' },
-      {% endfor %}
-    ],
-    ingredients: [
-      {% for ingredient in recipe.ingredients.all %}
-        { name: '{{ ingredient.name }}' },
-      {% endfor %}
-    ],
-    instructions: [
-      {% for instruction in recipe.instructions.all %}
-        {
-          description: '{{ instruction.description }}',
-          order: '{{ instruction.order }}',
-        },
-      {% endfor %}
-    ],
-    draft: '{{ recipe.draft }}',
-  };
+  var recipe = {{ recipe | safe }};
 {% else %}
   var recipe = {
     title: 'New Recipe',

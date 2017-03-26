@@ -22,12 +22,15 @@ class RecipeInstructionSerializer(serializers.ModelSerializer):
 
 
 class RecipeSerializer(serializers.ModelSerializer):
+    id = serializers.IntegerField(read_only=True)
     equipment = RecipeEquipmentSerializer(read_only=True, many=True)
     ingredients = RecipeIngredientSerializer(read_only=True, many=True)
     instructions = RecipeInstructionSerializer(read_only=True, many=True)
+
     class Meta:
         model = Recipe
         fields = (
+            'id',
             'title',
             'user',
             'slug',
@@ -39,18 +42,3 @@ class RecipeSerializer(serializers.ModelSerializer):
             'instructions',
             'draft',
         )
-
-def save_recipe(request, id=None):
-    body = request.body.decode('utf-8')
-    data = json.loads(body)
-    data['user'] = request.user.pk
-    if id:
-        recipe = Recipe.objects.get(id=id)
-        serializer = RecipeSerializer(recipe, data=data)
-    else:
-        serializer = RecipeSerializer(data=data)
-    if serializer.is_valid():
-        serializer.save()
-    else:
-        # TODO: send error back to user
-        print(serializer.errors)
