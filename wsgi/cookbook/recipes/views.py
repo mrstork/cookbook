@@ -82,8 +82,11 @@ def edit_view(request, user, id):
 
 
 def detail_view(request, user, id):
-    recipe = Recipe.objects.get(id=id)
-    # TODO: default to something if the recipe is not found
+    try:
+        recipe = Recipe.objects.get(id=id)
+    except Recipe.DoesNotExist:
+        return HttpResponse(status=404)
+
     context = {
         'recipe': recipe
     }
