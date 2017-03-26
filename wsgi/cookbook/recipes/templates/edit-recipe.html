@@ -71,29 +71,7 @@
 {% block javascript %}
 
 <script>
-{% if recipe %}
   var recipe = {{ recipe | safe }};
-{% else %}
-  var recipe = {
-    title: 'New Recipe',
-    description: 'Write a description for the brilliant new recipe you came up with that makes your mouth water',
-    serves: 'Serves 5',
-    time: '30 - 40 min',
-    equipment: [
-      { name: 'Rolling pin' },
-      { name: 'Cake tin' },
-    ],
-    ingredients: [
-      { name: '3 cups of flour' },
-      { name: '1 stick of butter' },
-    ],
-    instructions: [
-      { description: 'This is what you do first...', placeholder: 'Step 1', order: 0 },
-      { placeholder: 'Step 2', order: 1 },
-      { placeholder: 'Step 3', order: 2 },
-    ],
-  };
-{% endif %}
 </script>
 
 <script src="/static/libs/angular.min.js"></script>
