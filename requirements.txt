@@ -1,2 +1,3 @@
 bcrypt
 python-slugify
+djangorestframework
