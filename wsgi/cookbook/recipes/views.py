@@ -20,12 +20,27 @@ def list_view(request, user):
 
 @login_required
 def add_view(request):
-    # TODO: merge this with edit view
-    context = {}
-    if request.method == 'POST':
-        save_recipe(request)
-        return HttpResponse('Recipe created.')
-    return render(request, 'edit-recipe.html', context)
+    serializer = RecipeSerializer(data={
+        'title': 'New Recipe',
+        'user': request.user.pk,
+        'description': 'Write a description for your brilliant new recipe that will make your mouth water',
+        'serves': 'Serves 5',
+        'time': '30 - 40 min',
+        # 'equipment': [
+        #   { 'name': 'Rolling pin' },
+        #   { 'name': 'Cake tin' },
+        # ],
+        # 'ingredients': [
+        #   { 'name': '3 cups of flour' },
+        #   { 'name': '1 stick of butter' },
+        # ],
+        # 'instructions': [
+        #   { 'description': 'This is what you do first...', 'order': 0 },
+        # ],
+    });
+    serializer.is_valid();
+    recipe = serializer.save();
+    return redirect('edit-recipe', request.user, recipe.id)
 
 
 @login_required

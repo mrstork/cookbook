@@ -1,7 +1,6 @@
-import json
-from slugify import slugify
+# from slugify import slugify
 from rest_framework import serializers
-from .models import Recipe, RecipeIngredient, RecipeEquipment, RecipeInstruction
+from recipes.models import Recipe, RecipeIngredient, RecipeEquipment, RecipeInstruction
 
 class RecipeEquipmentSerializer(serializers.ModelSerializer):
     class Meta:
@@ -41,4 +40,15 @@ class RecipeSerializer(serializers.ModelSerializer):
             'equipment',
             'instructions',
             'draft',
+        )
+
+    def create(self, validated_data):
+        # equipment = RecipeEquipment.objects.create(**validated_data)
+        # ingredients = RecipeIngredient.objects.create(**validated_data)
+        # instructions = RecipeInstruction.objects.create(**validated_data)
+        return Recipe.objects.create(
+            **validated_data,
+            # equipment=equipment,
+            # ingredients=ingredients,
+            # instructions=instructions,
         )
