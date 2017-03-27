@@ -127,6 +127,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(WSGI_DIR, 'static')
 
+MEDIA_ROOT=os.path.join(WSGI_DIR, 'media')
+MEDIA_URL='/media/'
 
 # Email settings
 # https://developers.openshift.com/en/marketplace-sendgrid.html#python-django
