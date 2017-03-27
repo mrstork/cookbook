@@ -42,7 +42,6 @@
     this.addInstruction = function () {
       this.instructions.push({
         placeholder: 'Step ' + (this.instructions.length + 1),
-        order: this.instructions.length,
       });
       // TODO: focus newly added element
     };
