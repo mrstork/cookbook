@@ -23,16 +23,19 @@ class Recipe(models.Model):
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
     )
-    # TODO: Shrink max lengths once there are a few recipes in the database as examples
-    title = models.CharField(max_length=1000, null=True, blank=True)
-    slug = models.CharField(max_length=1000, null=True, blank=True)
-    description = models.CharField(max_length=1000, null=True, blank=True)
-    serves = models.CharField(max_length=100, null=True, blank=True)
-    time = models.CharField(max_length=100, null=True, blank=True)
+    image = models.ImageField(upload_to='recipe-images/', blank=True, null=True)
+    title = models.CharField(max_length=1000, blank=True, null=True)
+    slug = models.CharField(max_length=1000, blank=True, null=True)
+    description = models.CharField(max_length=1000, blank=True, null=True)
+    serves = models.CharField(max_length=100, blank=True, null=True)
+    time = models.CharField(max_length=100, blank=True, null=True)
     ingredients = models.ManyToManyField(RecipeIngredient)
     equipment = models.ManyToManyField(RecipeEquipment)
     instructions = models.ManyToManyField(RecipeInstruction)
     draft = models.BooleanField(default=True)
+    date_created = models.DateTimeField(auto_now_add=True)
+
+    # TODO: Shrink max lengths of fields once there are a few recipes in the database as examples
 
     def __str__(self):
         return self.title + ' - ' + self.description
