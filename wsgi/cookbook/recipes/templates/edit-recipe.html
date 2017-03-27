@@ -6,7 +6,10 @@
 <div class="main-content">
   <div class="container" ng-app="cookbook">
     <form class="edit-recipe" ng-controller="RecipeController as rc" ng-submit="rc.submit(recipe)">
-      <img src="/static/images/veggie_lasagna.jpg" alt="">
+      <div class="image-container">
+        <img ng-src={{rc.recipe.image?rc.recipe.image:"/static/images/no-image.jpg"}}>
+      </div>
+      <input class="recipe-image-upload" type="file" file-change="setImage">
       <div class="recipe-header">
         <input class="field-input recipe-title" ng-model="rc.recipe.title" placeholder="Title"></input>
 {% endverbatim %}
@@ -75,6 +78,7 @@
 </script>
 
 <script src="/static/libs/angular.min.js"></script>
+<script src="/static/libs/cropper.min.js"></script>
 <script src="/static/app.js"></script>
 
 {% endblock javascript %}

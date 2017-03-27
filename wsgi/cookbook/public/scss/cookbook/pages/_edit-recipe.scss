@@ -6,6 +6,15 @@
   }
 }
 
+.image-container {
+  width: 800px;
+  height: 500px;
+
+  img {
+    width: 100%;
+  }
+}
+
 .button-add-item {
   background: none;
   border: 1px solid transparent;
