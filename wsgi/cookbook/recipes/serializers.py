@@ -5,42 +5,31 @@ from recipes.models import Recipe, RecipeIngredient, RecipeEquipment, RecipeInst
 class RecipeEquipmentSerializer(serializers.ModelSerializer):
     class Meta:
         model = RecipeEquipment
-        fields = ('name',)
+        fields = '__all__'
 
 
 class RecipeIngredientSerializer(serializers.ModelSerializer):
     class Meta:
         model = RecipeIngredient
-        fields = ('name',)
+        fields = '__all__'
 
 
 class RecipeInstructionSerializer(serializers.ModelSerializer):
     class Meta:
         model = RecipeInstruction
-        fields = ('description', 'order',)
+        fields = '__all__'
 
 
 class RecipeSerializer(serializers.ModelSerializer):
-    id = serializers.IntegerField(read_only=True)
+    image = serializers.ImageField(required=False, allow_null=True)
     equipment = RecipeEquipmentSerializer(read_only=True, many=True)
     ingredients = RecipeIngredientSerializer(read_only=True, many=True)
     instructions = RecipeInstructionSerializer(read_only=True, many=True)
 
     class Meta:
         model = Recipe
-        fields = (
-            'id',
-            'title',
-            'user',
-            'slug',
-            'description',
-            'serves',
-            'time',
-            'ingredients',
-            'equipment',
-            'instructions',
-            'draft',
-        )
+        exclude = ('slug', 'date_created', )
+
 
     def create(self, validated_data):
         # equipment = RecipeEquipment.objects.create(**validated_data)
