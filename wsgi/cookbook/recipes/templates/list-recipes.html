@@ -16,19 +16,19 @@
     <div class='container'>
       <div class='recipe-list'>
         {% for recipe in recipes %}
-          {% if user == recipe.user %}
-          <a class="recipe-list__item" href='{% url 'edit-recipe' recipe.user recipe.id %}'>
-          {% else %}
-          <a class="recipe-list__item" href='{% url 'view-recipe' recipe.user recipe.id %}'>
-          {% endif %}
-              <article>
-                {# TODO: other recipe info (e.g. draft vs published, stars) #}
-                <div class="">
-                  <img class="recipe-list__image" src="/static/images/veggie_lasagna.jpg" alt="">
-                </div>
-                <span class="recipe-list__title">{{ recipe.title }}</span>
-                <span class="recipe-list__author">{{ recipe.user }}</span>
-                <p class="recipe-list__description">{{ recipe.description }}</p>
+          <a class="recipe-list__item" href='{% url 'recipe-detail' recipe.user recipe.id %}'>
+            <article>
+              {# TODO: other recipe info (e.g. draft vs published, stars) #}
+              <div class="">
+                {% if recipe.image %}
+                  <img src="{{ recipe.image }}">
+                {% else %}
+                  <img class="recipe-list__image" src="/static/images/no-image.jpg" alt="">
+                {% endif %}
+              </div>
+              <span class="recipe-list__title">{{ recipe.title }}</span>
+              <span class="recipe-list__author">{{ recipe.user }}</span>
+              <p class="recipe-list__description">{{ recipe.description }}</p>
             </article>
           </a>
         {% endfor %}

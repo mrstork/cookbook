@@ -4,7 +4,11 @@
 
 <div class="main-content">
   <div class="container">
-    <img src="/static/images/veggie_lasagna.jpg" alt="">
+    {% if recipe.image %}
+      <img src="{{ recipe.image }}">
+    {% else %}
+      <img class="recipe-list__image" src="/static/images/no-image.jpg" alt="">
+    {% endif %}
     <div class="recipe-header">
       <h1 class="recipe-title">{{ recipe.title }}</h1>
       <p class="recipe-author">by {{ recipe.user }}</p>
