@@ -3,19 +3,15 @@ from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect
 from recipes.models import Recipe
 from recipes.serializers import RecipeSerializer
-from rest_framework.parsers import MultiPartParser
+from rest_framework import status
+from rest_framework.parsers import FormParser, MultiPartParser
 from rest_framework.renderers import JSONRenderer
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
 def base_view(request):
     # TODO: make a complete list or a trending list
-    return redirect('list-recipes', request.user)
-
-
-def list_view(request, user):
-    context = {
-        'recipes': Recipe.objects.filter(user__username=user)
-    }
-    return render(request, 'list-recipes.html', context)
+    return redirect('recipe-list', request.user)
 
 
 @login_required
@@ -26,6 +22,7 @@ def add_view(request):
         'description': 'Write a description for your brilliant new recipe that will make your mouth water',
         'serves': 'Serves 5',
         'time': '30 - 40 min',
+        # TODO: Add nested data back in. For some reason serializer isn't picking up the data
         # 'equipment': [
         #   { 'name': 'Rolling pin' },
         #   { 'name': 'Cake tin' },
@@ -40,54 +37,50 @@ def add_view(request):
     });
     serializer.is_valid();
     recipe = serializer.save();
-    return redirect('edit-recipe', request.user, recipe.id)
+    return redirect('recipe-detail', request.user, recipe.id)
 
 
-@login_required
-def edit_view(request, user, id):
-    try:
-        recipe = Recipe.objects.get(id=id)
-    except Recipe.DoesNotExist:
-        return HttpResponse(status=404)
+class RecipeList(APIView):
+    def get(self, request, user, format=None):
+        recipes = Recipe.objects.all()
+        # recipes = Recipe.objects.filter(user=user)
+        serializer = RecipeSerializer(recipes, many=True)
+        context = {
+            'recipes': serializer.data
+        }
+        return render(request, 'list-recipes.html', context)
 
-    if request.method == 'GET':
+
+class RecipeDetail(APIView):
+    parser_classes = (MultiPartParser, FormParser,)
+
+    def get_object(self, pk):
+        try:
+            return Recipe.objects.get(pk=pk)
+        except Recipe.DoesNotExist:
+            raise Http404
+
+    def get(self, request, user, pk, format=None):
+        recipe = self.get_object(pk)
         serializer = RecipeSerializer(recipe)
         context = {
             'recipe': JSONRenderer().render(serializer.data)
         }
-        return render(request, 'edit-recipe.html', context)
 
-    elif request.method == 'POST':
-    #     data = MultiPartParser().parse(request)
-        return HttpResponse(status=500)
-        # serializer = RecipeSerializer(recipe, data=data)
-        # if serializer.is_valid():
-        #     serializer.save()
-        #     return JsonResponse(serializer.data)
+        if request.user == recipe.user:
+            return render(request, 'edit-recipe.html', context)
 
-    # body = request.body.decode('utf-8')
-    # data = json.loads(body)
-    # data['user'] = request.user.pk
-    # print(data)
-    # if id:
-    #     recipe = Recipe.objects.get(id=id)
-    #     serializer = RecipeSerializer(recipe, data=data)
-    # else:
-    #     serializer = RecipeSerializer(data=data)
-    # if serializer.is_valid():
-    #     serializer.save()
-    # else:
-    #     # TODO: send error back to user
-    #     print(serializer.errors)
+        return render(request, 'view-recipe.html', context)
 
+    def post(self, request, user, pk, format=None):
+        recipe = self.get_object(pk)
+        serializer = RecipeSerializer(recipe, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-def detail_view(request, user, id):
-    try:
-        recipe = Recipe.objects.get(id=id)
-    except Recipe.DoesNotExist:
-        return HttpResponse(status=404)
-
-    context = {
-        'recipe': recipe
-    }
-    return render(request, 'view-recipe.html', context)
+    def delete(self, request, user, pk, format=None):
+        recipe = self.get_object(pk)
+        recipe.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)

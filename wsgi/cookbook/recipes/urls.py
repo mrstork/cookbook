@@ -1,10 +1,12 @@
+from recipes import views
 from django.conf.urls import url
-from . import views
+from rest_framework.urlpatterns import format_suffix_patterns
 
 urlpatterns = [
     url(r'^create$', views.add_view, name='create-recipe'),
-    url(r'^(?P<user>.+)/(?P<id>.+)/view$', views.detail_view, name='view-recipe'),
-    url(r'^(?P<user>.+)/(?P<id>.+)/edit$', views.edit_view, name='edit-recipe'),
-    url(r'^(?P<user>.+)(/)?$', views.list_view, name='list-recipes'),
+    url(r'^(?P<user>.+)/(?P<pk>[0-9]+)$', views.RecipeDetail.as_view(), name='recipe-detail'),
+    url(r'^(?P<user>.+)(/)?$', views.RecipeList.as_view(), name='recipe-list'),
     url(r'^$', views.base_view),
 ]
+
+urlpatterns = format_suffix_patterns(urlpatterns)
