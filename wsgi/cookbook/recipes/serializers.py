@@ -40,3 +40,8 @@ class RecipeSerializer(serializers.ModelSerializer):
             # ingredients=ingredients,
             # instructions=instructions,
         )
+
+    def to_representation(self, instance):
+        ret = super(RecipeSerializer, self).to_representation(instance)
+        ret['user'] = instance.user.username
+        return ret
