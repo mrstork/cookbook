@@ -15,6 +15,7 @@
 .recipe-servings {
   @extend .font-header-bold;
 
+  display: block;
   color: $light-gray;
   word-spacing: 0.2rem;
 }

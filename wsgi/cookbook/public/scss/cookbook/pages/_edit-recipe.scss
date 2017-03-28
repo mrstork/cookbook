@@ -16,6 +16,8 @@
 }
 
 .button-add-item {
+  @extend .font-body;
+
   background: none;
   border: 1px solid transparent;
   cursor: text;
@@ -33,15 +35,23 @@
 }
 
 .field-input {
+  @extend .font-body;
+
   border: 1px solid transparent;
   width: 400px;
 
   &:hover {
     border-color: #a9a9a9;
   }
+
+  &.recipe-servings {
+    @extend .font-header-bold;
+  }
 }
 
 .field-textarea {
+  @extend .font-body;
+
   height: 75px;
   width: 500px;
   resize: none;
