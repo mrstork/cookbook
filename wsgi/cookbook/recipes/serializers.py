@@ -20,7 +20,6 @@ class RecipeInstructionSerializer(serializers.ModelSerializer):
 
 
 class RecipeSerializer(serializers.ModelSerializer):
-    image = serializers.ImageField(required=False)
     equipment = RecipeEquipmentSerializer(read_only=True, many=True)
     ingredients = RecipeIngredientSerializer(read_only=True, many=True)
     instructions = RecipeInstructionSerializer(read_only=True, many=True)
