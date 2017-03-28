@@ -5,9 +5,9 @@
 <div class="main-content">
   <div class="container">
     {% if recipe.image %}
-      <img src="{{ recipe.image }}">
+      <img class="recipe-list__image" src="/media/{{ recipe.image }}">
     {% else %}
-      <img class="recipe-list__image" src="/static/images/no-image.jpg" alt="">
+      <img class="recipe-list__image" src="/static/images/no-image.jpg">
     {% endif %}
     <div class="recipe-header">
       <h1 class="recipe-title">{{ recipe.title }}</h1>
