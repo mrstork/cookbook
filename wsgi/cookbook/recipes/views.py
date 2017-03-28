@@ -70,7 +70,7 @@ class RecipeDetail(APIView):
         if request.user == recipe.user:
             return render(request, 'edit-recipe.html', context)
 
-        return render(request, 'view-recipe.html', context)
+        return render(request, 'view-recipe.html', { 'recipe': recipe })
 
     def post(self, request, user, pk, format=None):
         recipe = self.get_object(pk)
