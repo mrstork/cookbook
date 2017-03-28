@@ -43,5 +43,5 @@ class RecipeSerializer(serializers.ModelSerializer):
 
     def to_representation(self, instance):
         ret = super(RecipeSerializer, self).to_representation(instance)
-        ret['user'] = instance.user.username
+        ret['username'] = instance.user.username
         return ret

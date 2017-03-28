@@ -16,7 +16,7 @@
     <div class='container'>
       <div class='recipe-list'>
         {% for recipe in recipes %}
-          <a class="recipe-list__item" href='{% url 'recipe-detail' recipe.user recipe.id %}'>
+          <a class="recipe-list__item" href='{% url 'recipe-detail' recipe.username recipe.id %}'>
             <article>
               {# TODO: other recipe info (e.g. draft vs published, stars) #}
               {% if recipe.image %}
@@ -25,7 +25,7 @@
                 <img class="recipe-list__image" src="/static/images/no-image.jpg">
               {% endif %}
               <span class="recipe-list__title">{{ recipe.title }}</span>
-              <span class="recipe-list__author">{{ recipe.user }}</span>
+              <span class="recipe-list__author">{{ recipe.username }}</span>
               <p class="recipe-list__description">{{ recipe.description }}</p>
             </article>
           </a>
