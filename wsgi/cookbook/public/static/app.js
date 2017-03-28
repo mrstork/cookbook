@@ -92,13 +92,11 @@
 
       if (cropper) {
         var _this = this;
-        var data = this.recipe;
         cropper.getCroppedCanvas().toBlob(function (blob) {
           blob.name = Date.now() + '.png';
-          data.image = blob;
+          _this.recipe.image = blob;
           _this.post();
         }, 'image/png');
-
       } else {
         this.post();
       }
@@ -113,6 +111,9 @@
     this.post = function () {
       var url = window.location.href;
       var formdata = toFormData(this.recipe);
+      if (typeof this.recipe.image === 'string') {
+        formdata.delete('image');
+      }
       $http.post(url, formdata)
         .then(function () {
           window.location = '/recipes'
