@@ -4,14 +4,18 @@ from django.shortcuts import render, redirect
 from recipes.models import Recipe
 from recipes.serializers import RecipeSerializer
 from rest_framework import status
-from rest_framework.parsers import FormParser, MultiPartParser
+from rest_framework.parsers import FormParser, MultiPartParser, JSONParser
 from rest_framework.renderers import JSONRenderer
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
 def base_view(request):
-    # TODO: make a complete list or a trending list
-    return redirect('recipe-list', request.user)
+    recipes = Recipe.objects.all()
+    serializer = RecipeSerializer(recipes, many=True)
+    context = {
+        'recipes': serializer.data
+    }
+    return render(request, 'list-recipes.html', context)
 
 
 @login_required
@@ -22,18 +26,17 @@ def add_view(request):
         'description': 'Write a description for your brilliant new recipe that will make your mouth water',
         'serves': 'Serves 5',
         'time': '30 - 40 min',
-        # TODO: Add nested data back in. For some reason serializer isn't picking up the data
-        # 'equipment': [
-        #   { 'name': 'Rolling pin' },
-        #   { 'name': 'Cake tin' },
-        # ],
-        # 'ingredients': [
-        #   { 'name': '3 cups of flour' },
-        #   { 'name': '1 stick of butter' },
-        # ],
-        # 'instructions': [
-        #   { 'description': 'This is what you do first...', 'order': 0 },
-        # ],
+        'equipment': [
+          { 'name': 'Rolling pin' },
+          { 'name': 'Cake tin' },
+        ],
+        'ingredients': [
+          { 'name': '3 cups of flour' },
+          { 'name': '1 stick of butter' },
+        ],
+        'instructions': [
+          { 'description': 'This is what you do first...' },
+        ],
     });
     serializer.is_valid();
     recipe = serializer.save();
@@ -42,8 +45,7 @@ def add_view(request):
 
 class RecipeList(APIView):
     def get(self, request, user, format=None):
-        recipes = Recipe.objects.all()
-        # recipes = Recipe.objects.filter(user=user)
+        recipes = Recipe.objects.filter(user=user)
         serializer = RecipeSerializer(recipes, many=True)
         context = {
             'recipes': serializer.data
@@ -52,7 +54,7 @@ class RecipeList(APIView):
 
 
 class RecipeDetail(APIView):
-    parser_classes = (MultiPartParser, FormParser,)
+    parser_classes = (MultiPartParser, JSONParser, )
 
     def get_object(self, pk):
         try:
