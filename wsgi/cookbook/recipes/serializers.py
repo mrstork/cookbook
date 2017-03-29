@@ -55,9 +55,9 @@ class RecipeSerializer(serializers.ModelSerializer):
 
 
     def update(self, instance, validated_data):
-        equipment_data = validated_data.pop('equipment')
-        ingredients_data = validated_data.pop('ingredients')
-        instructions_data = validated_data.pop('instructions')
+        equipment_data = validated_data.get('equipment', [])
+        ingredients_data = validated_data.get('ingredients', [])
+        instructions_data = validated_data.get('instructions', [])
 
         # Update recipe model
         Recipe.objects.filter(id=instance.id).update(**validated_data)
