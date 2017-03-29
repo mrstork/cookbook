@@ -27,15 +27,15 @@ def add_view(request):
         'serves': 'Serves 5',
         'time': '30 - 40 min',
         'equipment': [
-          { 'name': 'Rolling pin' },
-          { 'name': 'Cake tin' },
+            { 'name': 'Rolling pin' },
+            { 'name': 'Cake tin' },
         ],
         'ingredients': [
-          { 'name': '3 cups of flour' },
-          { 'name': '1 stick of butter' },
+            { 'name': '3 cups of flour' },
+            { 'name': '1 stick of butter' },
         ],
         'instructions': [
-          { 'description': 'This is what you do first...' },
+            { 'description': 'This is what you do first...' },
         ],
     });
     serializer.is_valid();
