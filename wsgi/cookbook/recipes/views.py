@@ -18,11 +18,10 @@ def base_view(request):
     return render(request, 'list-recipes.html', context)
 
 
-@login_required
-def add_view(request):
+def new_recipe(user_id):
     serializer = RecipeSerializer(data={
         'title': 'New Recipe',
-        'user': request.user.pk,
+        'user': user_id,
         'description': 'Write a description for your brilliant new recipe that will make your mouth water',
         'serves': 'Serves 5',
         'time': '30 - 40 min',
@@ -37,9 +36,14 @@ def add_view(request):
         'instructions': [
             { 'description': 'This is what you do first...' },
         ],
-    });
-    serializer.is_valid();
-    recipe = serializer.save();
+    })
+    serializer.is_valid()
+    return serializer.save()
+
+
+@login_required
+def add_view(request):
+    recipe = new_recipe(request.user.pk)
     return redirect('recipe-detail', request.user, recipe.id)
 
 

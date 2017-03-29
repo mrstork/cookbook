@@ -1,7 +1,32 @@
+from accounts.tests import create_user
+from django.contrib.auth.models import User
 from django.test import TestCase
 from recipes.models import Recipe
 from recipes.serializers import RecipeSerializer
-from accounts.tests import create_user
+from recipes.views import new_recipe
+
+class TestNewRecipe(TestCase):
+    def setUp(self):
+        create_user('email@email.com', 'password')
+
+    def test_new_recipe(self):
+        new_recipe(1)
+        self.assertEqual(Recipe.objects.count(), 1)
+
+    def tearDown(self):
+        Recipe.objects.all().delete()
+        User.objects.all().delete()
+
+
+class TestModelDeleteCascade(TestCase):
+    def setUp(self):
+        create_user('email@email.com', 'password')
+        new_recipe(1)
+
+    def test_delete_user_cascade(self):
+        User.objects.all().delete()
+        self.assertEqual(Recipe.objects.count(), 0)
+
 
 class TestRecipeSerializers(TestCase):
     def setUp(self):
@@ -23,10 +48,10 @@ class TestRecipeSerializers(TestCase):
             'instructions': [
                 { 'description': '...' },
             ],
-        };
-        serializer = RecipeSerializer(data=recipe_json);
-        serializer.is_valid();
-        serializer.save();
+        }
+        serializer = RecipeSerializer(data=recipe_json)
+        serializer.is_valid()
+        serializer.save()
 
         # check if in database
         self.assertEqual(Recipe.objects.count(), 1)
@@ -49,8 +74,28 @@ class TestRecipeSerializers(TestCase):
         self.assertEqual(recipe_json['instructions'][0]['description'], recipe.instructions.all()[0].description)
 
     def test_fail_add(self):
-        recipe_json = {};
-        serializer = RecipeSerializer(data=recipe_json);
-        serializer.is_valid();
-        # user is a required field
+        recipe_json = {}
+        serializer = RecipeSerializer(data=recipe_json)
+        serializer.is_valid()
+        # user is a required field so adding should fail
         self.assertNotEqual(len(serializer.errors), 0)
+
+    def test_edit(self):
+        new_recipe(1)
+        recipe = Recipe.objects.get(id=1)
+        serializer = RecipeSerializer(recipe)
+
+        test_title = 'Something else'
+        serializer = RecipeSerializer(recipe, data={
+            'title': test_title,
+            'user': 1,
+        })
+        self.assertTrue(serializer.is_valid())
+        serializer.save()
+
+        # resync with db and check that values made it into the database
+        recipe = Recipe.objects.get(id=1)
+        self.assertEqual(test_title, recipe.title)
+
+    def tearDown(self):
+        User.objects.all().delete()
