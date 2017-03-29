@@ -1,0 +1,30 @@
+{% extends 'web/base.html' %}
+
+{% block content %}
+
+<div class='container'>
+
+	<div class='columns'>
+
+	  <div class='one-half column centered'>
+
+			<h2>Registration</h2>
+
+			<form method='post'>
+				{% csrf_token %}
+
+				{{ form }}
+
+				<div class='form-actions'>
+				  <button type='submit' class='btn btn-primary'>Submit</button>
+				</div>
+
+			</form>
+
+	  </div>
+
+	</div>
+
+</div>
+
+{% endblock content %}
