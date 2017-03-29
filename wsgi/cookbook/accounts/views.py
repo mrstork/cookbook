@@ -16,6 +16,10 @@ def register(request):
     context = {
         'form': RequestAccountForm()
     }
+
+    if request.method == 'POST':
+        return request_account(request)
+
     return render(request, 'register.html', context)
 
 
