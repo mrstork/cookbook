@@ -47,3 +47,10 @@ class TestRecipeSerializers(TestCase):
 
         self.assertEqual(recipe.instructions.count(), 1)
         self.assertEqual(recipe_json['instructions'][0]['description'], recipe.instructions.all()[0].description)
+
+    def test_fail_add(self):
+        recipe_json = {};
+        serializer = RecipeSerializer(data=recipe_json);
+        serializer.is_valid();
+        # user is a required field
+        self.assertNotEqual(len(serializer.errors), 0)
