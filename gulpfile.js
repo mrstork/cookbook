@@ -11,7 +11,7 @@ const imagemin = require('gulp-imagemin');
 const pngquant = require('imagemin-pngquant');
 
 var config = {
-  images_directory: './wsgi/cookbook/public/static/images/',
+  // images_directory: ['./wsgi/cookbook/public/static/images/', './wsgi/media/'],
   scss_directory: './wsgi/cookbook/public/scss/',
   static_directory: './wsgi/cookbook/public/static/',
 };
@@ -24,7 +24,7 @@ gulp.task('scss', function () {
 });
 
 gulp.task('images', function () {
-  return gulp.src(config.images_directory)
+  return gulp.src(['**/*.png', '**/*.jpg', '**/*.gif', '**/*.svg'])
     .pipe(imagemin({
       optimizationLevel: 7,
       multipass: true,
@@ -36,7 +36,7 @@ gulp.task('images', function () {
       ],
       use: [pngquant()],
     }))
-    .pipe(gulp.dest(config.static_directory));
+    .pipe(gulp.dest('.'));
 });
 
 
