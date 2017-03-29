@@ -45,7 +45,7 @@ def add_view(request):
 
 class RecipeList(APIView):
     def get(self, request, user, format=None):
-        recipes = Recipe.objects.filter(user=user)
+        recipes = Recipe.objects.filter(user__username=user)
         serializer = RecipeSerializer(recipes, many=True)
         context = {
             'recipes': serializer.data
