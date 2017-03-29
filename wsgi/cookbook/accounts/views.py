@@ -13,7 +13,7 @@ from django.views.decorators.http import require_POST
 
 def authentication(request):
     if request.user.is_authenticated():
-        return redirect('list-recipes', user=request.user)
+        return redirect('recipe-list', user=request.user)
 
     response = login(request,
                      authentication_form=AuthenticationForm,
