@@ -13,7 +13,10 @@
 			<form method='post'>
 				{% csrf_token %}
 
-				{{ form }}
+        <div class="form-group">
+		      <label>Email address</label>
+          {{ form.email }}
+		    </div>
 
 				<div class='form-actions'>
 				  <button type='submit' class='btn btn-primary'>Submit</button>
