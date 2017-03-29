@@ -9,6 +9,14 @@ from django.shortcuts import render, redirect
 from django.utils.encoding import force_text
 from django.utils.http import urlsafe_base64_decode
 from django.views.decorators.http import require_POST
+from accounts.forms import RequestAccountForm
+
+
+def register(request):
+    context = {
+        'form': RequestAccountForm()
+    }
+    return render(request, 'register.html', context)
 
 
 def authentication(request):

@@ -3,7 +3,4 @@ from accounts.forms import RequestAccountForm
 
 
 def index(request):
-    context = {
-        'request_account_form': RequestAccountForm()
-    }
-    return render(request, 'index.html', context, content_type="text/html")
+    return render(request, 'index.html', content_type="text/html")
