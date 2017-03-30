@@ -116,7 +116,10 @@
 
     this.postImage = function () {
       var _this = this;
-      cropper.getCroppedCanvas().toBlob(function (blob) {
+      cropper.getCroppedCanvas({
+        width: 800,
+        height: 450,
+      }).toBlob(function (blob) {
         var url = window.location.href;
         var filename = Date.now() + '.png';
         var formdata = new FormData();
