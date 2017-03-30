@@ -1,4 +1,5 @@
 from django import forms
+from django.conf import settings
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 from django.contrib.auth.tokens import default_token_generator
@@ -35,6 +36,7 @@ class RequestAccountForm(forms.Form):
         context = {
             'user': user,
             'email': user.email,
+            'base_url': settings.BASE_URL,
             'uid': urlsafe_base64_encode(force_bytes(user.pk)),
             'token': default_token_generator.make_token(user),
         }

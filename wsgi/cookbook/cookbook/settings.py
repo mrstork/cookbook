@@ -33,6 +33,10 @@ SECRET_KEY = SECRETS['secret_key']
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
+# Application base url - might need to change to hard coded value
+# BASE_URL = 'http://cookbook-stork.rhcloud.com'
+BASE_URL = os.environ.get('OPENSHIFT_APP_DNS')
+
 ALLOWED_HOSTS = [
     gethostname(),  # For internal OpenShift load balancer security purposes.
     os.environ.get('OPENSHIFT_APP_DNS'),  # OpenShift gear name.
@@ -151,6 +155,7 @@ LOGIN_REDIRECT_URL = '/recipes/'
 
 if not os.environ.get('OPENSHIFT_APP_DNS'):
     DEBUG = True
+    BASE_URL = 'http://127.0.0.1:8000'
 
     # Allow requests from localhost during development
     ALLOWED_HOSTS.append('127.0.0.1')
