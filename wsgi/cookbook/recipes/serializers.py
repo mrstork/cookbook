@@ -55,9 +55,42 @@ class RecipeSerializer(serializers.ModelSerializer):
 
 
     def update(self, instance, validated_data):
-        equipment_data = validated_data.get('equipment', [])
-        ingredients_data = validated_data.get('ingredients', [])
-        instructions_data = validated_data.get('instructions', [])
+        # Equipment - create or update
+        if 'equipment' in validated_data:
+            equipment_data = validated_data.pop('equipment')
+
+            for data in equipment_data:
+                if 'id' in data:
+                    equipment = RecipeEquipment(**data)
+                    equipment.save()
+                else:
+                    equipment = RecipeEquipment.objects.create(**data)
+                    instance.equipment.add(equipment)
+
+
+        # Ingredients - create or update
+        if 'ingredients' in validated_data:
+            ingredients_data = validated_data.pop('ingredients')
+
+            for data in ingredients_data:
+                if 'id' in data:
+                    ingredient = RecipeIngredient(**data)
+                    ingredient.save()
+                else:
+                    ingredient = RecipeIngredient.objects.create(**data)
+                    instance.ingredients.add(ingredient)
+
+        # Instructions - create or update
+        if 'instructions' in validated_data:
+            instructions_data = validated_data.pop('instructions')
+
+            for data in instructions_data:
+                if 'id' in data:
+                    instruction = RecipeInstruction(**data)
+                    instruction.save()
+                else:
+                    instruction = RecipeInstruction.objects.create(**data)
+                    instance.instructions.add(instruction)
 
         # Update recipe model
         Recipe.objects.filter(id=instance.id).update(**validated_data)
@@ -66,33 +99,6 @@ class RecipeSerializer(serializers.ModelSerializer):
         if 'image' in validated_data:
             instance.image = validated_data['image']
             instance.save()
-
-        # Equipment - create or update
-        for data in equipment_data:
-            if 'id' in data:
-                equipment = RecipeEquipment(**data)
-                equipment.save()
-            else:
-                equipment = RecipeEquipment.objects.create(**data)
-                instance.equipment.add(equipment)
-
-        # Ingredients - create or update
-        for data in ingredients_data:
-            if 'id' in data:
-                ingredient = RecipeIngredient(**data)
-                ingredient.save()
-            else:
-                ingredient = RecipeIngredient.objects.create(**data)
-                instance.ingredients.add(ingredient)
-
-        # Instructions - create or update
-        for data in instructions_data:
-            if 'id' in data:
-                instruction = RecipeInstruction(**data)
-                instruction.save()
-            else:
-                instruction = RecipeInstruction.objects.create(**data)
-                instance.instructions.add(instruction)
 
         return instance
 
