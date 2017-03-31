@@ -12,3 +12,7 @@ for filename in os.listdir(recipe_images_directory):
     absolute_filepath = os.path.join(recipe_images_directory, filename)
     image = Image.open(absolute_filepath)
     image.save(absolute_filepath, optimize=True)
+
+# TODO: Images could probably be smaller with another library since pillow doesnt seem to have the best optimization
+# https://pypi.python.org/pypi/picopt/
+# https://pypi.python.org/pypi/pngquant/1.0.5
