@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from recipes.models import Recipe, RecipeIngredient, RecipeEquipment, RecipeInstruction
+from recipes.fields import PNGField
 
 class RecipeEquipmentSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(required=False)
@@ -21,8 +22,8 @@ class RecipeInstructionSerializer(serializers.ModelSerializer):
         model = RecipeInstruction
         fields = '__all__'
 
-
 class RecipeSerializer(serializers.ModelSerializer):
+    image = serializers.ImageField(required=False, _DjangoImageField=PNGField)
     equipment = RecipeEquipmentSerializer(many=True, required=False)
     ingredients = RecipeIngredientSerializer(many=True, required=False)
     instructions = RecipeInstructionSerializer(many=True, required=False)
@@ -102,6 +103,9 @@ class RecipeSerializer(serializers.ModelSerializer):
 
         return instance
 
+    def validate_image(self, value):
+        print(value)
+        return value
 
     def to_representation(self, instance):
         ret = super(RecipeSerializer, self).to_representation(instance)
