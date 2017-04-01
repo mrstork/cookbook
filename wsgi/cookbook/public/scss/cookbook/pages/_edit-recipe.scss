@@ -15,6 +15,18 @@
   }
 }
 
+.recipe-image-upload {
+  &__message {
+    @extend .font-username;
+  }
+
+  &__error {
+    @extend .font-username;
+
+    color: $red;
+  }
+}
+
 .button-add-item {
   @extend .font-body;
 

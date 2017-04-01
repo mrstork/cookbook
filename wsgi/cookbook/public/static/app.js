@@ -25,6 +25,7 @@
     this.equipment = recipe.equipment;
     this.ingredients = recipe.ingredients;
     this.instructions = recipe.instructions;
+    this.imageError = false;
 
     this.addEquipment = function () {
       this.equipment.push({});
@@ -52,17 +53,19 @@
       });
     };
 
-    $scope.setImage = function () {
+    this.setImage = function () {
       var imageFile = event.target.files[0];
 
       if (!imageFile) {
-        return console.log('No file selected');
+        return console.log('Image upload: No file selected');
       }
 
       if (imageFile.size > 1e6) {
-        return console.log('File too big');
+        this.imageError = true;
+        return console.log('Image upload: File selected was too big');
       }
 
+      this.imageError = false;
       var imageURL = URL.createObjectURL(imageFile);
       var imageElement = document.querySelector('.image-container img');
 
@@ -119,7 +122,8 @@
         }
       }, function () {
         // TODO: display a readable error
-        console.log('error');
+        // Server response error
+        // or put way too many characters into a field
       });
     };
 
@@ -145,7 +149,7 @@
         .then(function () {
           window.location = '/recipes'
         }, function () {
-          // TODO: display a readable error
+          // server error
         });
       }, 'image/png');
     };
