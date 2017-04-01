@@ -20,7 +20,7 @@
     };
   });
 
-  app.controller('RecipeController', function ($scope, $http) {
+  app.controller('RecipeController', function ($scope, $http, $timeout) {
     this.recipe = recipe;
     this.equipment = recipe.equipment;
     this.ingredients = recipe.ingredients;
@@ -28,19 +28,28 @@
 
     this.addEquipment = function () {
       this.equipment.push({});
-      // TODO: focus newly added element
+      var elementIndex = this.equipment.length - 1;
+      $timeout(function () {
+        document.querySelectorAll('.equipment-section .field-input')[elementIndex].focus();
+      });
     };
 
     this.addIngredient = function () {
       this.ingredients.push({});
-      // TODO: focus newly added element
+      var elementIndex = this.ingredients.length - 1;
+      $timeout(function () {
+        document.querySelectorAll('.ingredients-section .field-input')[elementIndex].focus();
+      });
     };
 
     this.addInstruction = function () {
       this.instructions.push({
         placeholder: 'Step ' + (this.instructions.length + 1),
       });
-      // TODO: focus newly added element
+      var elementIndex = this.instructions.length - 1;
+      $timeout(function () {
+        document.querySelectorAll('.instructions-section .field-textarea')[elementIndex].focus();
+      });
     };
 
     $scope.setImage = function () {

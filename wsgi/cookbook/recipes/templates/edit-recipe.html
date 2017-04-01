@@ -27,7 +27,7 @@
           <input class="field-input recipe-servings" ng-model="rc.recipe.time">
         </div>
       </section>
-      <section>
+      <section class="equipment-section">
         <h4 class="recipe-section-heading">Equipment</h4>
         <ul>
           <li ng-repeat="equip in rc.equipment">
@@ -38,7 +38,7 @@
           </button>
         </ul>
       </section>
-      <section>
+      <section class="ingredients-section">
         <h4 class="recipe-section-heading">Ingredients</h4>
         <ul>
           <li ng-repeat="ingredient in rc.ingredients">
@@ -49,7 +49,7 @@
           </button>
         </ul>
       </section>
-      <section>
+      <section class="instructions-section">
         <h4 class="recipe-section-heading">Preparations</h4>
         <ol class="recipe-preparation-list">
           <li ng-repeat="instruction in rc.instructions">
