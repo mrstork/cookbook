@@ -61,7 +61,8 @@
       }
 
       if (imageFile.size > 1e6) {
-        this.imageError = true;
+        $scope.rc.imageError = true;
+        $scope.$apply();
         return console.log('Image upload: File selected was too big');
       }
 
@@ -140,7 +141,7 @@
         formdata.append('user', _this.recipe.user);
         formdata.append('image', blob, filename);
         $http.post(url, formdata, {
-          // Allows angular to send files
+          // These configs allow angular to send files
           headers: {
             'Content-Type': undefined,
           },
