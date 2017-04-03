@@ -40,8 +40,7 @@ BASE_URL = os.environ.get('OPENSHIFT_APP_DNS')
 ALLOWED_HOSTS = [
     gethostname(),  # For internal OpenShift load balancer security purposes.
     os.environ.get('OPENSHIFT_APP_DNS'),  # OpenShift gear name.
-    # 'example.com', # First DNS alias (set up in the app)
-    # 'www.example.com', # Second DNS alias (set up in the app)
+    'http://www.ryorisho.com/', # DNS Alias
 ]
 
 # Application definition
