@@ -94,7 +94,7 @@ class TestRecipeSerializers(TestCase):
         serializer.save()
 
         # resync with db and check that values made it into the database
-        recipe = Recipe.objects.get(id=1)
+        recipe.refresh_from_db()
         self.assertEqual(test_title, recipe.title)
 
     def tearDown(self):
