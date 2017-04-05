@@ -1,19 +1,19 @@
-@import "cookbook/_normalize";
-@import "cookbook/_mixins";
-@import "cookbook/_variables";
-@import "cookbook/_typography";
-@import "cookbook/_layout";
-@import "cookbook/_base";
+@import "_normalize";
+@import "_mixins";
+@import "_variables";
+@import "_typography";
+@import "_layout";
+@import "_base";
 
 // Utilities
-@import "cookbook/_tooltips";
+@import "_tooltips";
 
 // Libraries
-@import "cookbook/libs/_cropper";
+@import "libs/_cropper";
 
 // Pages
-@import "cookbook/pages/_landing-page";
-@import "cookbook/pages/_recipe";
-@import "cookbook/pages/_recipe-list";
-@import "cookbook/pages/_edit-recipe";
-@import "cookbook/pages/_logout";
+@import "pages/_landing-page";
+@import "pages/_recipe";
+@import "pages/_recipe-list";
+@import "pages/_edit-recipe";
+@import "pages/_logout";
