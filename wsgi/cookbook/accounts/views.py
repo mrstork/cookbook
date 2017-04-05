@@ -93,7 +93,6 @@ def delete_account(request, password):
     return render(request, 'goodbye.html')
 
 
-@login_required
 def logout_view(request):
     logout(request)
     return render(request, 'logout.html')
