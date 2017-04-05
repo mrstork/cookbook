@@ -78,7 +78,11 @@
 }
 
 .form-footer {
-  margin: 50px 0 0 160px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin: 50px 0;
+  width: 75%;
 }
 
 .button-save {
@@ -86,7 +90,6 @@
   border: none;
   color: $white;
   background-color: #3e3f3a;
-  margin-right: 40px;
 }
 
 .button-publish {
