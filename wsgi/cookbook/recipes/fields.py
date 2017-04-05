@@ -60,12 +60,11 @@ class PNGField(DjangoImageField):
                 )
 
             # Validate image resolution
-            if image.width != 800 or image.height != 450:
+            if image.width != 800 or image.height != 449:
                 raise ValidationError(
                     self.error_messages['invalid_image_resolution'],
                     code='invalid_image_resolution',
                 )
-
 
         except Exception as exc:
             # Pillow doesn't recognize uploaded file as an image.
@@ -73,6 +72,8 @@ class PNGField(DjangoImageField):
                 self.error_messages['invalid_image'],
                 code='invalid_image',
             ) from exc
+
         if hasattr(f, 'seek') and callable(f.seek):
             f.seek(0)
+
         return f
