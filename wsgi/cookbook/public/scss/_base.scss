@@ -1,5 +1,5 @@
 body {
-  @extend .font-body;
+  @extend .font-serif;
 
   font-size: 16px;
   line-height: 1.5rem;
@@ -11,9 +11,12 @@ h3,
 h4,
 h5,
 h6 {
-  @extend .font-header;
+  @extend .font-sans-serif;
+
+  text-transform: uppercase;
 }
 
+// TODO: this looks like a horrible idea
 ul {
   padding-left: 25px;
   list-style: none;

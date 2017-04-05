@@ -1,6 +1,6 @@
 .edit-recipe {
   .recipe-title {
-    @extend .font-header;
+    @extend .font-sans-serif;
 
     font-size: 2rem;
   }
@@ -17,18 +17,18 @@
 
 .recipe-image-upload {
   &__message {
-    @extend .font-username;
+    @extend .font-sans-serif;
   }
 
   &__error {
-    @extend .font-username;
+    @extend .font-sans-serif;
 
     color: $red;
   }
 }
 
 .button-add-item {
-  @extend .font-body;
+  @extend .font-sans-serif;
 
   background: none;
   border: 1px solid transparent;
@@ -47,7 +47,7 @@
 }
 
 .field-input {
-  @extend .font-body;
+  @extend .font-sans-serif;
 
   border: 1px solid transparent;
   width: 400px;
@@ -57,12 +57,14 @@
   }
 
   &.recipe-servings {
-    @extend .font-header-bold;
+    @extend .font-sans-serif-bold;
+
+    text-transform: uppercase;
   }
 }
 
 .field-textarea {
-  @extend .font-body;
+  @extend .font-sans-serif;
 
   height: 75px;
   width: 500px;

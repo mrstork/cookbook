@@ -23,13 +23,14 @@
   }
 
   &__title {
-    @extend .font-header;
+    @extend .font-sans-serif;
 
+    text-transform: uppercase;
     font-size: 1.25rem;
   }
 
   &__author {
-    @extend .font-username;
+    @extend .font-sans-serif;
 
     display: block;
   }

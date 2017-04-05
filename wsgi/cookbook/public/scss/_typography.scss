@@ -1,25 +1,22 @@
 @import url('https://fonts.googleapis.com/css?family=Lato:400,700|Playfair+Display:400,400i');
 
-.font-header {
-  font-family: 'Lato', sans-serif;
-  font-weight: 400;
-  // TODO: remove upppercase
-  text-transform: uppercase;
-}
-
-.font-username {
+.font-sans-serif {
   font-family: 'Lato', sans-serif;
   font-weight: 400;
 }
 
-.font-header-bold {
+.font-sans-serif-bold {
   font-family: 'Lato', sans-serif;
   font-weight: 700;
-  // TODO: remove upppercase
-  text-transform: uppercase;
 }
 
-.font-body {
+.font-serif {
   font-family: 'Playfair Display', serif;
   font-weight: normal;
+}
+
+.font-serif-italic {
+  @extend .font-serif;
+
+  font-style: italic;
 }

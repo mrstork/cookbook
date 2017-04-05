@@ -5,9 +5,8 @@
 }
 
 .page-header {
-  @extend .font-header;
+  @extend .font-sans-serif;
 
-  text-transform: capitalize;
   display: flex;
   align-items: center;
   justify-content: space-between;

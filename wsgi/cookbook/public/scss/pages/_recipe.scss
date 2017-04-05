@@ -7,16 +7,17 @@
 }
 
 .recipe-author {
-  @extend .font-username;
+  @extend .font-sans-serif;
 
   margin-top: 10px;
 }
 
 .recipe-servings {
-  @extend .font-header-bold;
+  @extend .font-sans-serif-bold;
 
   display: block;
   color: $light-gray;
+  text-transform: uppercase;
   word-spacing: 0.2rem;
 }
 
@@ -26,7 +27,7 @@
 }
 
 .recipe-section-heading {
-  @extend .font-header-bold;
+  @extend .font-sans-serif-bold;
 }
 
 .recipe-preparation-list li {
