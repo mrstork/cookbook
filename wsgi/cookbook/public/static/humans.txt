@@ -1,8 +1,0 @@
-/* TEAM */
-	Chef: Mateusz Bocian
-	From: Toronto, Ontario, Canada
-
-/* SITE */
-	Last update: 2015/08/19
-	Language: English
-	Doctype: HTML5
