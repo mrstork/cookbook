@@ -7,14 +7,14 @@
 .form-control {
   display: block;
   width: 100%;
-  padding: .5rem .75rem;
+  padding: 0.5rem 0.75rem;
   font-size: 1rem;
   line-height: 1.25;
   color: #464a4c;
   background-color: $white;
   background-image: none;
   background-clip: padding-box;
-  border: 1px solid rgba(0,0,0,.15);
+  border: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 0;
 
   &:focus {
