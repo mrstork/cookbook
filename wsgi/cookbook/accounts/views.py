@@ -74,14 +74,7 @@ def confirm_account(request, uidb64, token):
     return render(request, 'confirm_account.html', context)
 
 
-@login_required
-def change_email(request):
-    pass
-
-
-@login_required
-def change_password(request):
-    pass
+# TODO: edit profile view: change password, email, username, ...
 
 
 @login_required
