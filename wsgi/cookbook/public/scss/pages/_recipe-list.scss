@@ -17,6 +17,19 @@
     color: $black;
   }
 
+  &__draft {
+    @extend .font-sans-serif;
+
+    display: block;
+    text-transform: uppercase;
+    text-align: center;
+    width: 200px;
+    margin: 0 auto 10px;
+    border-radius: 10px;
+    background: $dark-gray;
+    color: $white;
+  }
+
   &__image {
     width: 100%;
     margin-bottom: 10px;

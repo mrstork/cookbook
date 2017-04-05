@@ -18,7 +18,7 @@
         {% for recipe in recipes %}
           <a class="recipe-list__item" href='{% url 'recipe-detail' recipe.username recipe.id %}'>
             <article>
-              {# TODO: other recipe info (e.g. draft vs published, stars) #}
+              {# TODO: other recipe info (e.g. stars, follows) #}
               {% if recipe.image %}
                 <img class="recipe-list__image" src="{{ recipe.image }}">
               {% else %}
@@ -27,6 +27,9 @@
               <span class="recipe-list__title">{{ recipe.title }}</span>
               <span class="recipe-list__author">{{ recipe.username }}</span>
               <p class="recipe-list__description">{{ recipe.description }}</p>
+              {% if recipe.draft %}
+                <div class="recipe-list__draft">Draft</div>
+              {% endif %}
             </article>
           </a>
         {% endfor %}
