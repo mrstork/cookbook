@@ -10,7 +10,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 def base_view(request):
-    recipes = Recipe.objects.all()
+    recipes = Recipe.objects.filter(draft=False)
     serializer = RecipeSerializer(recipes, many=True)
     context = {
         'recipes': serializer.data
