@@ -50,6 +50,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'anymail'
     'general',
     'public',
     'accounts',
@@ -143,7 +144,6 @@ if os.environ.get('OPENSHIFT_APP_DNS'):
 
     BASE_URL = os.environ.get('OPENSHIFT_APP_DNS')
 
-    INSTALLED_APPS.append('anymail')
     ANYMAIL = {
         'MAILGUN_API_KEY': os.environ.get('MAILGUN_API_KEY'),
         'MAILGUN_SENDER_DOMAIN': 'ryorisho.com',
