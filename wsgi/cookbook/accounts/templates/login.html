@@ -10,9 +10,8 @@
 		{% csrf_token %}
 
     {% if form.errors %}
-      <div class='flash flash-warn'>
-				<p>Some of the fields were incorrect. Please try again.</p>
-				<p>Note: All fields are case sensitive and required</p>
+      <div class='form-errors'>
+				<p>Please check your username and password and try again.</p>
       </div>
     {% endif %}
 

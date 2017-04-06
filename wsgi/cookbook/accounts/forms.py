@@ -57,6 +57,7 @@ class ConfirmAccountForm(forms.Form):
     )
 
     def confirm_account(self, user):
+        # TODO: username cannot contain symbols
         username = self.cleaned_data.get('username')
         password = self.cleaned_data.get('password')
 

@@ -36,3 +36,13 @@
     opacity: 1;
   }
 }
+
+.form-errors {
+  display: inline-block;
+  background-color: #f2dede;
+  border-color: #ebcccc;
+  color: #a94442;
+  margin-bottom: 1rem;
+  padding: 0 15px;
+  border: 1px solid transparent;
+}
