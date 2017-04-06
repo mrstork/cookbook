@@ -96,7 +96,7 @@ class AuthenticationForm(DjangoAuthenticationForm):
                     params={'username': self.username_field.verbose_name},
                 )
             else:
-                self.user_cache = authenticate(self.request, username=user.username, password=password)
+                self.user_cache = authenticate(username=user.username, password=password)
                 if self.user_cache is None:
                     raise forms.ValidationError(
                         self.error_messages['invalid_login'],
