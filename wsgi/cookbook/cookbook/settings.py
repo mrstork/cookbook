@@ -52,6 +52,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'anymail',
     'general',
     'public',
     'accounts',
@@ -134,13 +135,14 @@ MEDIA_ROOT=os.path.join(WSGI_DIR, 'media')
 MEDIA_URL='/media/'
 
 # Email settings
-# https://developers.openshift.com/en/marketplace-sendgrid.html#python-django
+# https://github.com/anymail/django-anymail
 
-# EMAIL_HOST = os.getenv('SENDGRID_HOSTNAME')
-# EMAIL_HOST_USER = os.getenv('SENDGRID_USERNAME')
-# EMAIL_HOST_PASSWORD = os.getenv('SENDGRID_PASSWORD')
-# EMAIL_PORT = 587
-# EMAIL_USE_TLS = True
+ANYMAIL = {
+    'MAILGUN_API_KEY': os.environ.get('MAILGUN_API_KEY'),
+    'MAILGUN_SENDER_DOMAIN': 'ryorisho.com',
+}
+EMAIL_BACKEND = 'anymail.backends.mailgun.EmailBackend'
+DEFAULT_FROM_EMAIL = 'support@ryorisho.com'
 
 # Login URLs
 # https://docs.djangoproject.com/en/1.9/ref/settings/
@@ -158,6 +160,9 @@ if not os.environ.get('OPENSHIFT_APP_DNS'):
 
     # Allow requests from localhost during development
     ALLOWED_HOSTS.append('127.0.0.1')
+
+    # Anymail installed in 2.7
+    sys.path.append('/usr/local/lib/python2.7/dist-packages')
 
     # Local email server: python -m smtpd -n -c DebuggingServer localhost:1025
     EMAIL_HOST = 'localhost'
