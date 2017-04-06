@@ -49,11 +49,11 @@ class ConfirmAccountForm(forms.Form):
     username = forms.CharField(
         label='Username',
         max_length=100,
-        widget=forms.TextInput(attrs={'required': 'true', 'autofocus': ''})
+        widget=forms.TextInput(attrs={'class': 'form-control', 'required': 'true', 'autofocus': ''})
     )
     password = forms.CharField(
         label='Password',
-        widget=forms.PasswordInput(attrs={'required': 'true'})
+        widget=forms.PasswordInput(attrs={'class': 'form-control', 'required': 'true'})
     )
 
     def confirm_account(self, user):
