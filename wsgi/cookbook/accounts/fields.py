@@ -1,4 +1,5 @@
 from django import forms
+import unicodedata
 
 class UsernameField(forms.CharField):
     def to_python(self, value):
