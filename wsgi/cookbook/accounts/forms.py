@@ -76,7 +76,6 @@ class AuthenticationForm(DjangoAuthenticationForm):
     )
     password = forms.CharField(
         label="Password",
-        strip=False,
         widget=forms.PasswordInput(attrs={'class': 'form-control'})
     )
 
