@@ -2,3 +2,4 @@ bcrypt
 djangorestframework
 Pillow
 django-anymail[mailgun]
+premailer

@@ -8,6 +8,7 @@ from django.core.mail import EmailMultiAlternatives
 from django.template import loader
 from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
+from premailer import transform
 
 class RequestAccountForm(forms.Form):
     email = forms.EmailField(
@@ -30,7 +31,7 @@ class RequestAccountForm(forms.Form):
 
     def send_confirmation_email(self, user):
         from_email = 'support@cookbook-stork.rhcloud.com'
-        subject = 'Request to join'
+        subject = 'Ryōrisho - Registration confirmation'
         context = {
             'user': user,
             'email': user.email,
@@ -39,7 +40,7 @@ class RequestAccountForm(forms.Form):
             'token': default_token_generator.make_token(user),
         }
         body = loader.render_to_string('request_account_email.html', context)
-        email_message = EmailMultiAlternatives(subject, body, from_email, [user.email])
+        email_message = EmailMultiAlternatives(subject, transform(body), from_email, [user.email])
         email_message.content_subtype = 'html'
         email_message.send()
 
