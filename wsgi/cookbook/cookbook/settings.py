@@ -3,6 +3,8 @@
 
 import os
 import sys
+import logging
+import cssutils
 from socket import gethostname
 
 """
@@ -33,10 +35,6 @@ SECRET_KEY = SECRETS['secret_key']
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-# Application base url - might need to change to hard coded value
-# BASE_URL = 'http://cookbook-stork.rhcloud.com'
-BASE_URL = os.environ.get('OPENSHIFT_APP_DNS')
-
 ALLOWED_HOSTS = [
     gethostname(),  # For internal OpenShift load balancer security purposes.
     os.environ.get('OPENSHIFT_APP_DNS'),  # OpenShift gear name.
@@ -52,7 +50,6 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'anymail',
     'general',
     'public',
     'accounts',
@@ -137,12 +134,29 @@ MEDIA_URL='/media/'
 # Email settings
 # https://github.com/anymail/django-anymail
 
-ANYMAIL = {
-    'MAILGUN_API_KEY': os.environ.get('MAILGUN_API_KEY'),
-    'MAILGUN_SENDER_DOMAIN': 'ryorisho.com',
-}
-EMAIL_BACKEND = 'anymail.backends.mailgun.EmailBackend'
 DEFAULT_FROM_EMAIL = 'support@ryorisho.com'
+
+# Turn off logging about unfound properties
+cssutils.log.setLevel(logging.CRITICAL)
+
+if os.environ.get('OPENSHIFT_APP_DNS'):
+
+    BASE_URL = os.environ.get('OPENSHIFT_APP_DNS')
+
+    INSTALLED_APPS.append('anymail')
+    ANYMAIL = {
+        'MAILGUN_API_KEY': os.environ.get('MAILGUN_API_KEY'),
+        'MAILGUN_SENDER_DOMAIN': 'ryorisho.com',
+    }
+    EMAIL_BACKEND = 'anymail.backends.mailgun.EmailBackend'
+
+else:
+
+    BASE_URL = 'http://127.0.0.1:8000'
+
+    EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+    EMAIL_FILE_PATH = 'mail'
+
 
 # Login URLs
 # https://docs.djangoproject.com/en/1.9/ref/settings/
@@ -152,21 +166,9 @@ LOGIN_URL = '/accounts/login'
 # Successful login url
 LOGIN_REDIRECT_URL = '/recipes/'
 
-# Overwrite settings for development environment
-
+# Development environment vaues
 if not os.environ.get('OPENSHIFT_APP_DNS'):
     DEBUG = True
-    BASE_URL = 'http://127.0.0.1:8000'
 
     # Allow requests from localhost during development
     ALLOWED_HOSTS.append('127.0.0.1')
-
-    # Anymail installed in 2.7
-    sys.path.append('/usr/local/lib/python2.7/dist-packages')
-
-    # Local email server: python -m smtpd -n -c DebuggingServer localhost:1025
-    EMAIL_HOST = 'localhost'
-    EMAIL_HOST_USER = None
-    EMAIL_HOST_PASSWORD = None
-    EMAIL_PORT = 1025
-    EMAIL_USE_TLS = False

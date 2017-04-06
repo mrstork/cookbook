@@ -30,7 +30,7 @@ class RequestAccountForm(forms.Form):
         return user
 
     def send_confirmation_email(self, user):
-        from_email = 'support@cookbook-stork.rhcloud.com'
+        from_email = settings.DEFAULT_FROM_EMAIL
         subject = 'Ryōrisho - Registration confirmation'
         context = {
             'user': user,
