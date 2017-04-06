@@ -1,0 +1,28 @@
+.thank-you-page {
+  @extend .landing-page-hero;
+
+  background-image: url('/static/images/thank-you.jpg');
+  text-align: left;
+
+  &__content {
+    width: 500px;
+    position: absolute;
+    top: 200px;
+    left: 100px;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+  }
+
+  &__description {
+    @extend .font-serif;
+
+    margin: 0;
+  }
+
+  &__notice {
+    @extend .font-serif;
+
+    font-size: 0.8rem;
+  }
+}
