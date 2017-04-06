@@ -31,6 +31,8 @@
 
   &:disabled,
   &[readonly] {
+    cursor: not-allowed;
+    background-color: #eceeef;
     opacity: 1;
   }
 }
