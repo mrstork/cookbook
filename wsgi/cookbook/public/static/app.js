@@ -119,7 +119,10 @@
         if (cropper) {
           _this.postImage();
         } else {
-          window.location = '/recipes'
+          document.querySelector('.flash-message').classList.remove('hidden');
+          $timeout(function () {
+            document.querySelector('.flash-message').classList.add('hidden');
+          }, 2000);
         }
       }, function () {
         // TODO: display a readable error
@@ -148,9 +151,12 @@
           transformRequest: angular.identity,
         })
         .then(function () {
-          window.location = '/recipes'
+          document.querySelector('.flash-message').classList.remove('hidden');
+          $timeout(function () {
+            document.querySelector('.flash-message').classList.add('hidden');
+          }, 2000);
         }, function () {
-          // server error
+          // Server error
         });
       }, 'image/png');
     };
