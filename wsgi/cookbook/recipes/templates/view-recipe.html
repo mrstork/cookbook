@@ -14,8 +14,12 @@
       <p class="recipe-author">by {{ recipe.user }}</p>
     </div>
     <section>
-      <span class="recipe-servings">{{ recipe.serves }}</span>
-      <span class="recipe-servings">{{ recipe.time }}</span>
+      {% if recipe.serves %}
+        <span class="recipe-servings">{{ recipe.serves }}</span>
+      {% endif %}
+      {% if recipe.time %}
+        <span class="recipe-servings">{{ recipe.time }}</span>
+      {% endif %}
     </section>
     <section class='recipe-description'>
       <p>{{ recipe.description }}</p>
@@ -30,16 +34,19 @@
         </ul>
       </section>
     {% endif %}
-    <section>
-      <h4 class="recipe-section-heading">Ingredients</h4>
-      <ul>
-        {% for ingredient in recipe.ingredients.all %}
-          <li>{{ ingredient.name }}</li>
-        {% empty %}
-          <li>No ingredients</li>
-        {% endfor %}
-      </ul>
-    </section>
+    {% if recipe.ingredients.all %}
+      <section>
+        <h4 class="recipe-section-heading">Ingredients</h4>
+        <ul>
+          {% for ingredient in recipe.ingredients.all %}
+            <li>{{ ingredient.name }}</li>
+          {% empty %}
+            <li>No ingredients</li>
+          {% endfor %}
+        </ul>
+      </section>
+    {% endif %}
+    {% if recipe.instructions.all %}
     <section>
       <h4 class="recipe-section-heading">Preparations</h4>
       <ol class="recipe-preparation-list">
@@ -50,6 +57,7 @@
         {% endfor %}
       </ol>
     </section>
+    {% endif %}
   </div>
 </div>
 
