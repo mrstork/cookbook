@@ -1,7 +1,8 @@
+from accounts.fields import UsernameField
 from django import forms
 from django.conf import settings
 from django.contrib.auth import authenticate
-from django.contrib.auth.forms import UsernameField, AuthenticationForm as DjangoAuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm as DjangoAuthenticationForm
 from django.contrib.auth.models import User
 from django.contrib.auth.tokens import default_token_generator
 from django.core.mail import EmailMultiAlternatives
