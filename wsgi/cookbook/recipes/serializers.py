@@ -122,10 +122,6 @@ class RecipeSerializer(serializers.ModelSerializer):
 
         return instance
 
-    def validate_image(self, value):
-        print(value)
-        return value
-
     def to_representation(self, instance):
         ret = super(RecipeSerializer, self).to_representation(instance)
         ret['username'] = instance.user.username
