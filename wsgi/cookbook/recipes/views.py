@@ -4,7 +4,6 @@ from django.shortcuts import render, redirect
 from recipes.models import Recipe
 from recipes.serializers import RecipeSerializer
 from rest_framework import status
-from rest_framework.parsers import FormParser, MultiPartParser, JSONParser
 from rest_framework.renderers import JSONRenderer
 from rest_framework.response import Response
 from rest_framework.views import APIView

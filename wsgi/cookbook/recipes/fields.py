@@ -60,7 +60,7 @@ class PNGField(DjangoImageField):
                 )
 
             # Validate image resolution
-            if image.width != 800 or image.height != 449:
+            if image.width != 800 or image.height > 450:
                 raise ValidationError(
                     self.error_messages['invalid_image_resolution'],
                     code='invalid_image_resolution',
