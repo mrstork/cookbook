@@ -126,17 +126,18 @@ USE_TZ = True
 # Security
 # https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
-CSRF_COOKIE_HTTPONLY = True
 SECURE_BROWSER_XSS_FILTER = True
 SECURE_CONTENT_TYPE_NOSNIFF = True
-SESSION_COOKIE_SECURE = True
 X_FRAME_OPTIONS = 'DENY'
+
+# TODO: CSRF_COOKIE_HTTPONLY = True
 
 # TODO: SSL
 # CSRF_COOKIE_SECURE = True
 # SECURE_SSL_REDIRECT = True
 # SECURE_HSTS_SECONDS
 # https://docs.djangoproject.com/en/1.8/ref/middleware/#http-strict-transport-security
+# SESSION_COOKIE_SECURE = True
 
 # Static files
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
