@@ -139,8 +139,8 @@ X_FRAME_OPTIONS = 'DENY'
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(WSGI_DIR, 'static')
 
-MEDIA_ROOT=os.path.join(WSGI_DIR, 'media')
-MEDIA_URL='/media/'
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(WSGI_DIR, 'media')
 
 # Email settings
 # https://github.com/anymail/django-anymail
