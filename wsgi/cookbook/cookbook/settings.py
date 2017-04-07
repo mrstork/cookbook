@@ -155,7 +155,7 @@ else:
     BASE_URL = 'http://127.0.0.1:8000'
 
     EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
-    EMAIL_FILE_PATH = 'mail'
+    EMAIL_FILE_PATH = 'mail-logs'
 
 
 # Login URLs

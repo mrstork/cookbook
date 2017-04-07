@@ -10,4 +10,4 @@ npm_debug.log
 wsgi/cookbook/db.cookbook
 wsgi/media
 venv
-mail
+mail-logs
