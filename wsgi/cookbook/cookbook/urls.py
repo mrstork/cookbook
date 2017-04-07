@@ -8,6 +8,7 @@ urlpatterns = [
     url(r'^accounts/', include('accounts.urls')),
     url(r'^recipes/', include('recipes.urls')),
     url(r'^admin/', include(admin.site.urls)),
+    # /health, /env used by openshift
 ]
 
 if settings.DEBUG is True:
