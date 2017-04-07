@@ -10,7 +10,7 @@ setup(
     author_email='support@ryorisho.com',
     url='http://mrstork.github.io/',
     install_requires=[
-        'Django==1.11'
+        'Django==1.8.15'
     ],
     dependency_links=[
         'https://pypi.python.org/simple/django/'
