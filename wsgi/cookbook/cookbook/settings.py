@@ -65,6 +65,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.security.SecurityMiddleware',
 )
 
 ROOT_URLCONF = 'cookbook.urls'
@@ -100,7 +101,7 @@ DATABASES = {
 
 
 # Passwords
-# https://docs.djangoproject.com/en/1.9/topics/auth/passwords/
+# https://docs.djangoproject.com/en/1.8/topics/auth/passwords/
 
 PASSWORD_HASHERS = [
     'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',
@@ -122,8 +123,17 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
+# Security
+# https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
-# Static files (CSS, JavaScript, Images)
+CSRF_COOKIE_HTTPONLY = True
+CSRF_COOKIE_SECURE = True
+SECURE_BROWSER_XSS_FILTER = True
+SECURE_CONTENT_TYPE_NOSNIFF = True
+SESSION_COOKIE_SECURE = True
+X_FRAME_OPTIONS = 'DENY'
+
+# Static files
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
@@ -159,7 +169,7 @@ else:
 
 
 # Login URLs
-# https://docs.djangoproject.com/en/1.9/ref/settings/
+# https://docs.djangoproject.com/en/1.8/ref/settings/
 
 # Login required url
 LOGIN_URL = '/accounts/login'
