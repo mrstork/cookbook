@@ -145,7 +145,7 @@ X_FRAME_OPTIONS = 'DENY'
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(WSGI_DIR, 'static')
 
-MEDIA_URL = '/media/'
+MEDIA_URL = '/static/media/'
 MEDIA_ROOT = os.path.join(WSGI_DIR, 'static', 'media')
 
 # Email settings
