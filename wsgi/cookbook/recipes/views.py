@@ -58,8 +58,6 @@ class RecipeList(APIView):
 
 
 class RecipeDetail(APIView):
-    parser_classes = (MultiPartParser, JSONParser, )
-
     def get_object(self, pk):
         try:
             return Recipe.objects.get(pk=pk)

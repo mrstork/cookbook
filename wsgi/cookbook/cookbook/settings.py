@@ -166,6 +166,15 @@ LOGIN_URL = '/accounts/login'
 # Successful login url
 LOGIN_REDIRECT_URL = '/recipes/'
 
+# Django Rest Framework
+# http://www.django-rest-framework.org/api-guide/permissions/
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticatedOrReadOnly',
+    )
+}
+
 # Development environment vaues
 if not os.environ.get('OPENSHIFT_APP_DNS'):
     DEBUG = True
