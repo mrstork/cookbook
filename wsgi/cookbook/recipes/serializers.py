@@ -56,39 +56,58 @@ class RecipeSerializer(serializers.ModelSerializer):
 
 
     def update(self, instance, validated_data):
-        # Equipment - create or update
+        # TODO: handle efiiciency of deleting then creating
+        # Equipment - create, update, or delete
         if 'equipment' in validated_data:
             equipment_data = validated_data.pop('equipment')
 
+            # Delete
+            ids = [item['id'] for item in equipment_data if 'id' in item]
+            instance.equipment.exclude(id__in=ids).delete()
+
             for data in equipment_data:
+                # Update
                 if 'id' in data:
                     equipment = RecipeEquipment(**data)
                     equipment.save()
+                # Create
                 else:
                     equipment = RecipeEquipment.objects.create(**data)
                     instance.equipment.add(equipment)
 
 
-        # Ingredients - create or update
+        # Ingredients - create, update, or delete
         if 'ingredients' in validated_data:
             ingredients_data = validated_data.pop('ingredients')
 
+            # Delete
+            ids = [item['id'] for item in ingredients_data if 'id' in item]
+            instance.ingredients.exclude(id__in=ids).delete()
+
             for data in ingredients_data:
+                # Update
                 if 'id' in data:
                     ingredient = RecipeIngredient(**data)
                     ingredient.save()
+                # Create
                 else:
                     ingredient = RecipeIngredient.objects.create(**data)
                     instance.ingredients.add(ingredient)
 
-        # Instructions - create or update
+        # Instructions - create, update, or delete
         if 'instructions' in validated_data:
             instructions_data = validated_data.pop('instructions')
 
+            # Delete
+            ids = [item['id'] for item in instructions_data if 'id' in item]
+            instance.instructions.exclude(id__in=ids).delete()
+
             for data in instructions_data:
+                # Update
                 if 'id' in data:
                     instruction = RecipeInstruction(**data)
                     instruction.save()
+                # Create
                 else:
                     instruction = RecipeInstruction.objects.create(**data)
                     instance.instructions.add(instruction)
