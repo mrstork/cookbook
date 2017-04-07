@@ -112,7 +112,12 @@
       var _this = this;
       var url = window.location.href;
       var data = Object.assign({}, this.recipe);
+
+      // Clean up data before submission
       delete data.image;
+      data.equipment = data.equipment.filter(x => !!x.name);
+      data.ingredients = data.ingredients.filter(x => !!x.name);
+      data.instructions = data.instructions.filter(x => !!x.description);
 
       $http.post(url, data)
       .then(function () {
