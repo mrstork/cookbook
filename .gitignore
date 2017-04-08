@@ -8,6 +8,6 @@
 node_modules
 npm-debug.log
 wsgi/cookbook/db.cookbook
-wsgi/static
+wsgi/media
 venv
 mail-logs
