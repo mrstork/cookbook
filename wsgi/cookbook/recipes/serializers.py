@@ -125,4 +125,10 @@ class RecipeSerializer(serializers.ModelSerializer):
     def to_representation(self, instance):
         ret = super(RecipeSerializer, self).to_representation(instance)
         ret['username'] = instance.user.username
+
+        if instance.image:
+            ret['image'] = "/media/{}".format(instance.image)
+        else:
+            ret['image'] = "/static/images/no-image.jpg"
+
         return ret

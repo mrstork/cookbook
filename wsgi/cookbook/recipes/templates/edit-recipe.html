@@ -8,7 +8,7 @@
     <div class="flash-message hidden">Saved!</div>
     <form class="edit-recipe" ng-controller="RecipeController as rc" ng-submit="rc.submit(recipe)">
       <div class="image-container">
-        <img ng-src={{rc.recipe.image?rc.recipe.image:"/static/images/no-image.jpg"}}>
+        <img ng-src={{rc.recipe.image}}>
       </div>
       <input class="recipe-image-upload" type="file" file-change="rc.setImage">
       <p class="recipe-image-upload__message">Upload a JPG, GIF, or PNG. Maximum 1MB in size</p>
