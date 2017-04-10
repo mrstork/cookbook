@@ -106,6 +106,19 @@ class TestAccountValidation(TestCase):
 
         self.assertEqual(self.user2_object.username, self.user2['username'])
 
+    def test_account_validation_bad_token(self):
+        self.test_starting_state()
+
+        uidb64 = urlsafe_base64_encode(force_bytes(self.user1_object))
+        bad_token = '1212121212121-12121212121212121212'
+        url = '/accounts/create_account/{}/{}/'.format(uidb64.decode('ascii'), bad_token)
+
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 403)
+
+        # Asser nothing changed
+        self.test_starting_state()
+
     def tearDown(self):
         mail.outbox = []
         User.objects.all().delete()

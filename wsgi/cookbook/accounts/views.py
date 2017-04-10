@@ -53,7 +53,7 @@ def confirm_account(request, uidb64, token):
         user = None
 
     if user is None or not default_token_generator.check_token(user, token):
-        return render(request, 'invalid_token.html')
+        return render(request, 'invalid_token.html', status=403)
 
     form = ConfirmAccountForm(request.POST or None)
 
