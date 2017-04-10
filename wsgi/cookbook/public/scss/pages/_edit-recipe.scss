@@ -21,7 +21,7 @@
 }
 
 .button-add-item {
-  @extend .font-sans-serif;
+  @extend .font-serif;
 
   background: none;
   border: 1px solid transparent;
@@ -40,7 +40,7 @@
 }
 
 .field-input {
-  @extend .font-sans-serif;
+  @extend .font-serif;
 
   border: 1px solid transparent;
   width: 400px;
