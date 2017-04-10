@@ -1,13 +1,15 @@
 .logout-page {
+  @extend .landing-page-hero;
+
   background-image: url('/static/images/logout.jpg');
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  color: $white;
-  height: calc(100vh - 70px);
-  min-height: 325px;
+  text-align: left;
 
   &__content {
-    padding: 100px;
+    position: absolute;
+    top: 200px;
+    left: 50px;
+    padding: 20px 50px;
+    width: 300px;
+    background-color: rgba(0, 0, 0, 0.5);
   }
 }
