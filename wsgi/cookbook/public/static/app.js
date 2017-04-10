@@ -163,7 +163,7 @@
         }, function () {
           // Server error
         });
-      }, 'image/png');
+      });
     };
 
   });
