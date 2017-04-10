@@ -56,7 +56,13 @@ class RecipeSerializer(serializers.ModelSerializer):
 
 
     def update(self, instance, validated_data):
-        # TODO: handle efiiciency of deleting then creating
+        # Allow partial update for image uploads
+        if 'image' in validated_data:
+            instance.image = validated_data['image']
+            instance.save()
+            return instance
+
+        # TODO: handle efficiency of deleting then creating
         # Equipment - create, update, or delete
         if 'equipment' in validated_data:
             equipment_data = validated_data.pop('equipment')
@@ -114,11 +120,6 @@ class RecipeSerializer(serializers.ModelSerializer):
 
         # Update recipe model
         Recipe.objects.filter(id=instance.id).update(**validated_data)
-
-        # Image field needs explicit save
-        if 'image' in validated_data:
-            instance.image = validated_data['image']
-            instance.save()
 
         return instance
 
