@@ -18,12 +18,6 @@
   &__message {
     @extend .font-sans-serif;
   }
-
-  &__error {
-    @extend .font-sans-serif;
-
-    color: $red;
-  }
 }
 
 .button-add-item {

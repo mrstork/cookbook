@@ -12,9 +12,6 @@
       </div>
       <input class="recipe-image-upload" type="file" file-change="rc.setImage">
       <p class="recipe-image-upload__message">Upload a JPG, GIF, or PNG. Maximum 1MB in size</p>
-      <div ng-if="rc.imageError">
-        <p class="recipe-image-upload__error">The selected image was too big. Please choose an image that is less than 1MB.</p>
-      </div>
       <div class="recipe-header">
         <input class="field-input recipe-title" ng-model="rc.recipe.title" placeholder="Title"></input>
 {% endverbatim %}

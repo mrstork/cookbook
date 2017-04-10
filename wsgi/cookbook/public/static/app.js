@@ -25,7 +25,6 @@
     this.equipment = recipe.equipment;
     this.ingredients = recipe.ingredients;
     this.instructions = recipe.instructions;
-    this.imageError = false;
 
     this.addEquipment = function () {
       this.equipment.push({});
@@ -60,13 +59,6 @@
         return console.log('Image upload: No file selected');
       }
 
-      if (imageFile.size > 1e6) {
-        $scope.rc.imageError = true;
-        $scope.$apply();
-        return console.log('Image upload: File selected was too big');
-      }
-
-      this.imageError = false;
       var imageURL = URL.createObjectURL(imageFile);
       var imageElement = document.querySelector('.image-container img');
 
