@@ -21,6 +21,7 @@
   });
 
   app.controller('RecipeController', function ($scope, $http, $timeout) {
+    var _this = this;
     this.recipe = recipe;
     this.equipment = recipe.equipment;
     this.ingredients = recipe.ingredients;
@@ -78,11 +79,14 @@
         highlight: false,
         restore: false,
         toggleDragModeOnDblclick: false,
-        cropend: function (event) {
-          // image changed
+        ready: function () {
+          _this.debouncedPostImage();
         },
-        zoom: function (event) {
-          // image changed
+        cropend: function () {
+          _this.debouncedPostImage();
+        },
+        zoom: function () {
+          _this.debouncedPostImage();
         },
       });
     };
@@ -99,9 +103,7 @@
       this.submit();
     };
 
-    // TODO: Watch for changes and post periodically
     this.post = function () {
-      var _this = this;
       var url = window.location.href;
       var data = Object.assign({}, this.recipe);
 
@@ -113,14 +115,10 @@
 
       $http.post(url, data)
       .then(function () {
-        if (cropper) {
-          _this.postImage();
-        } else {
-          document.querySelector('.flash-message').classList.remove('hidden');
-          $timeout(function () {
-            document.querySelector('.flash-message').classList.add('hidden');
-          }, 2000);
-        }
+        document.querySelector('.flash-message').classList.remove('hidden');
+        $timeout(function () {
+          document.querySelector('.flash-message').classList.add('hidden');
+        }, 2000);
       }, function () {
         // TODO: display a readable error
         // Server response error
@@ -129,7 +127,6 @@
     };
 
     this.postImage = function () {
-      var _this = this;
       cropper.getCroppedCanvas({
         width: 800,
         height: 450,
@@ -158,5 +155,27 @@
       });
     };
 
+    $scope.$watchCollection('rc.recipe', debounce(this.post, 2000));
+    this.debouncedPostImage = debounce(this.postImage, 2000);
+
   });
 })();
+
+// Returns a function, that, as long as it continues to be invoked, will not
+// be triggered. The function will be called after it stops being called for
+// N milliseconds. If `immediate` is passed, trigger the function on the
+// leading edge, instead of the trailing.
+function debounce (func, wait, immediate) {
+  var timeout;
+  return function () {
+    var context = this, args = arguments;
+    var later = function () {
+      timeout = null;
+      if (!immediate) func.apply(context, args);
+    };
+    var callNow = immediate && !timeout;
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+    if (callNow) func.apply(context, args);
+  };
+};
