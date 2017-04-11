@@ -10,6 +10,7 @@ from django.template import loader
 from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
 from premailer import transform
+import re
 
 class RequestAccountForm(forms.Form):
     email = forms.EmailField(
@@ -57,8 +58,17 @@ class ConfirmAccountForm(forms.Form):
         widget=forms.PasswordInput(attrs={'class': 'form-control', 'required': 'true'})
     )
 
+    def clean_username(self):
+        """
+        Validate that the username is unique and symbol free
+        """
+        if not re.match(r'^\w+$', self.cleaned_data['username']):
+            raise forms.ValidationError("Username cannot contain symbols.")
+        if User.objects.filter(username__iexact=self.cleaned_data['username']):
+            raise forms.ValidationError("Username is not available.")
+        return self.cleaned_data['username']
+
     def confirm_account(self, user):
-        # TODO: username cannot contain symbols
         username = self.cleaned_data.get('username')
         password = self.cleaned_data.get('password')
 
