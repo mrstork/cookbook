@@ -65,15 +65,15 @@ class RecipeDetail(APIView):
 
     def get(self, request, user, pk, format=None):
         recipe = self.get_object(pk)
+        serializer = RecipeSerializer(recipe)
 
         if request.user == recipe.user:
-            serializer = RecipeSerializer(recipe)
             context = {
                 'recipe': JSONRenderer().render(serializer.data)
             }
             return render(request, 'edit-recipe.html', context)
 
-        return render(request, 'view-recipe.html', { 'recipe': recipe })
+        return render(request, 'view-recipe.html', { 'recipe': serializer.data })
 
     def post(self, request, user, pk, format=None):
         recipe = self.get_object(pk)
