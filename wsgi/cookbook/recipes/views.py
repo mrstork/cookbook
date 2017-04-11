@@ -49,6 +49,11 @@ def add_view(request):
 class RecipeList(APIView):
     def get(self, request, user, format=None):
         recipes = Recipe.objects.filter(user__username=user)
+
+        # Exclude draft recipes when visiting other people's profile page
+        if request.user.username != user:
+            recipes = recipes.exclude(draft=True)
+
         serializer = RecipeSerializer(recipes, many=True)
         context = {
             'recipes': serializer.data
