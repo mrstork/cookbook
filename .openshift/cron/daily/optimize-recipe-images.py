@@ -6,7 +6,7 @@ CRON_DIR = os.path.dirname(CRON_DAILY_DIR)
 OPENSHIFT_DIR = os.path.dirname(CRON_DIR)
 REPO_DIR = os.path.dirname(OPENSHIFT_DIR)
 
-recipe_images_directory = os.path.join(REPO_DIR, 'wsgi', 'media', 'recipe-images')
+recipe_images_directory = os.path.join(REPO_DIR, 'wsgi', 'static', 'media','recipe-images')
 
 for filename in os.listdir(recipe_images_directory):
     absolute_filepath = os.path.join(recipe_images_directory, filename)
