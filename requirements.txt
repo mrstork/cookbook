@@ -4,3 +4,4 @@ djangorestframework
 Pillow
 django-anymail[mailgun]
 premailer
+pngquant
