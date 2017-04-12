@@ -32,14 +32,22 @@ SECRETS = secrets.getter(os.path.join(DATA_DIR, 'secrets.json'))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = SECRETS['secret_key']
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+if os.environ.get('OPENSHIFT_APP_DNS'):
+    # SECURITY WARNING: don't run with debug turned on in production!
+    DEBUG = False
 
-ALLOWED_HOSTS = [
-    gethostname(),  # For internal OpenShift load balancer security purposes.
-    os.environ.get('OPENSHIFT_APP_DNS'),  # OpenShift gear name.
-    'www.ryorisho.com', # DNS Alias
-]
+    ALLOWED_HOSTS = [
+        gethostname(),  # For internal OpenShift load balancer security purposes.
+        os.environ.get('OPENSHIFT_APP_DNS'),  # OpenShift gear name.
+        'www.ryorisho.com', # DNS Alias
+    ]
+else:
+    DEBUG = True
+
+    # Allow requests from localhost during development
+    ALLOWED_HOSTS = [
+        '127.0.0.1'
+    ]
 
 # Application definition
 
@@ -196,10 +204,3 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticatedOrReadOnly',
     )
 }
-
-# Development environment vaues
-if not os.environ.get('OPENSHIFT_APP_DNS'):
-    DEBUG = True
-
-    # Allow requests from localhost during development
-    ALLOWED_HOSTS.append('127.0.0.1')
