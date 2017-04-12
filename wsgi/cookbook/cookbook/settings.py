@@ -43,19 +43,23 @@ ALLOWED_HOSTS = [
 
 # Application definition
 
-INSTALLED_APPS = (
+REQUIRED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'anymail',
+]
+
+PROJECT_APPS = [
     'general',
     'public',
     'accounts',
     'recipes',
-)
+]
+
+INSTALLED_APPS = REQUIRED_APPS + PROJECT_APPS
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -157,6 +161,8 @@ DEFAULT_FROM_EMAIL = 'support@ryorisho.com'
 cssutils.log.setLevel(logging.CRITICAL)
 
 if os.environ.get('OPENSHIFT_APP_DNS'):
+
+    INSTALLED_APPS.append('anymail')
 
     BASE_URL = os.environ.get('OPENSHIFT_APP_DNS')
 
