@@ -1,18 +1,16 @@
-.container {
-  margin: auto;
-  padding: 0 20px;
-  max-width: 800px;
-}
-
 .page-header {
   @extend .font-sans-serif;
 
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: 10px 20px;
   height: 50px;
   background: $dark-gray;
-  padding: 10px 100px;
+
+  @include mq($tablet) {
+    padding: 10px 100px;
+  }
 
   &__logo {
     font-size: 1.5rem;
@@ -30,4 +28,10 @@
 
 .main-content {
   margin: 50px 0 100px;
+}
+
+.container {
+  margin: auto;
+  padding: 0 20px;
+  max-width: 800px;
 }
