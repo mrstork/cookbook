@@ -53,7 +53,7 @@ def confirm_account(request, uidb64, token):
         user = None
 
     if user is None or not default_token_generator.check_token(user, token):
-        return render(request, 'invalid_token.html', status=403)
+        return render(request, 'invalid-token.html', status=403)
 
     form = ConfirmAccountForm(request.POST or None)
 
@@ -70,7 +70,7 @@ def confirm_account(request, uidb64, token):
         'form': form,
     }
 
-    return render(request, 'confirm_account.html', context)
+    return render(request, 'confirm-account.html', context)
 
 
 # TODO: edit profile view: change password, email, username, ...

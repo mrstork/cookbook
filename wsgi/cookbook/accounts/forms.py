@@ -41,7 +41,7 @@ class RequestAccountForm(forms.Form):
             'uid': urlsafe_base64_encode(force_bytes(user.pk)),
             'token': default_token_generator.make_token(user),
         }
-        body = loader.render_to_string('request_account_email.html', context)
+        body = loader.render_to_string('request-account-email.html', context)
         email_message = EmailMultiAlternatives(subject, transform(body), from_email, [user.email])
         email_message.content_subtype = 'html'
         email_message.send()
