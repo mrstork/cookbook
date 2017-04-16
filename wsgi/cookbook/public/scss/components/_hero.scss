@@ -1,0 +1,10 @@
+// Pages with just a background image and a little bit of text
+// Landing page, welcome page, error page, etc.
+.hero-container {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: $white;
+  height: calc(100vh - 70px);
+  min-height: 325px;
+}
