@@ -42,7 +42,7 @@ def request_account(request):
         if not user.is_active:
             form.send_confirmation_email(user)
 
-    return render(request, 'thank_you.html')
+    return render(request, 'thank-you.html')
 
 
 def confirm_account(request, uidb64, token):
