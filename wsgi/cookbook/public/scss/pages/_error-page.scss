@@ -1,18 +1,24 @@
 .error-page {
+  @extend .hero-container;
+
   background-image: url('/static/images/error.jpg');
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  color: $white;
-  height: calc(100vh - 70px);
-  min-height: 325px;
 
   &__content {
-    background-color: rgba(0, 0, 0, 0.75);
     position: absolute;
     top: 200px;
-    left: 100px;
-    padding: 20px 50px;
+    padding: 20px;
+    margin: 20px;
+    background-color: rgba(0, 0, 0, 0.75);
+
+    @include mq($tablet) {
+      left: 100px;
+      margin: 0;
+      padding: 20px 50px;
+    }
+  }
+
+  &__title {
+    line-height: 2rem;
   }
 
   &__description {
