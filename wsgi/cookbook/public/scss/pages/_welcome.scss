@@ -1,20 +1,28 @@
 .welcome-page {
-  @extend .landing-page-hero;
+  @extend .hero-container;
 
   background-image: url('/static/images/welcome.jpg');
 
   &__content {
-    margin: 0 100px 100px 0;
     position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    bottom: 50px;
+    left: 20px;
+
+    @include mq($tablet) {
+      bottom: 100px;
+      left: 100px;
+    }
+  }
+
+  &__title {
+    line-height: 2.2rem;
+    margin: 0;
   }
 
   &__description {
     @extend .font-serif-italic;
 
     font-size: 1.2rem;
-    margin-bottom: 30px;
+    margin: 10px 0 30px;
   }
 }

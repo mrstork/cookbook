@@ -1,15 +1,19 @@
 .logout-page {
-  @extend .landing-page-hero;
+  @extend .hero-container;
 
   background-image: url('/static/images/logout.jpg');
-  text-align: left;
 
   &__content {
     position: absolute;
-    top: 200px;
-    left: 50px;
-    padding: 20px 50px;
-    width: 300px;
-    background-color: rgba(0, 0, 0, 0.5);
+    top: 150px;
+    margin: 20px;
+    padding: 10px 20px;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.7);
+
+    @include mq($tablet) {
+      left: 100px;
+      margin: 0;
+    }
   }
 }

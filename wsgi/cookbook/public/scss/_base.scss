@@ -14,9 +14,9 @@ h6 {
   @extend .font-sans-serif;
 
   text-transform: uppercase;
+  line-height: 1.25em;
 }
 
-// TODO: this looks like a horrible idea
 ul {
   padding-left: 25px;
   list-style: none;

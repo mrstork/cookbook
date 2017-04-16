@@ -5,7 +5,7 @@
 
   &__content {
     position: absolute;
-    top: 200px;
+    top: 150px;
     padding: 20px;
     margin: 20px;
     background-color: rgba(0, 0, 0, 0.75);
@@ -15,10 +15,6 @@
       margin: 0;
       padding: 20px 50px;
     }
-  }
-
-  &__title {
-    line-height: 2rem;
   }
 
   &__description {

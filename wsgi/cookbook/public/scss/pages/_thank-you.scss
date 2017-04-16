@@ -1,15 +1,20 @@
 .thank-you-page {
-  @extend .landing-page-hero;
+  @extend .hero-container;
 
   background-image: url('/static/images/thank-you.jpg');
-  text-align: left;
 
   &__content {
     position: absolute;
-    top: 200px;
-    left: 100px;
-    background-color: rgba(0, 0, 0, 0.5);
-    padding: 20px 50px;
+    top: 150px;
+    margin: 10px;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.7);
+
+    @include mq($tablet) {
+      left: 100px;
+      margin: 0;
+      padding: 20px 50px;
+    }
   }
 
   &__description {
