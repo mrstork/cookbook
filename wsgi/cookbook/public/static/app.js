@@ -103,6 +103,19 @@
       this.submit();
     };
 
+    this.delete = function () {
+      var url = window.location.href;
+      var data = Object.assign({}, this.recipe);
+
+      $http.delete(url, data)
+      .then(function () {
+        window.location.href = './';
+      }, function () {
+        // TODO: display a readable error
+        // Server unable to delete
+      });
+    };
+
     this.post = function () {
       var url = window.location.href;
       var data = Object.assign({}, this.recipe);

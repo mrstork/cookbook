@@ -76,7 +76,7 @@
 }
 
 .button-save {
-  padding: 0.8rem 1.7rem;
+  padding: 0.8rem 1.5rem;
   border: none;
   color: $white;
   background-color: #3e3f3a;
@@ -88,6 +88,14 @@
   border: none;
   color: $white;
   background-color: $blue;
+  text-decoration: none;
+}
+
+.button-delete {
+  padding: 0.8rem 1.5rem;
+  border: none;
+  color: $white;
+  background-color: $dark-red;
   text-decoration: none;
 }
 
