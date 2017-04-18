@@ -10,6 +10,15 @@
   @extend .font-sans-serif;
 
   margin-top: 10px;
+
+  &--link {
+    color: $black;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 }
 
 .recipe-servings {

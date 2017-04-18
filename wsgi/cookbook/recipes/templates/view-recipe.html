@@ -11,7 +11,9 @@
     {% endif %}
     <div class="recipe-header">
       <h1 class="recipe-title">{{ recipe.title }}</h1>
-      <p class="recipe-author">by {{ recipe.user }}</p>
+      <p class="recipe-author">
+        by <a class="recipe-author--link" href={% url 'recipe-list' recipe.user %}>{{ recipe.user }}</a>
+      </p>
     </div>
     <section>
       {% if recipe.serves %}

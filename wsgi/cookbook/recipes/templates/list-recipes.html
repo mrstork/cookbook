@@ -16,18 +16,15 @@
     <div class='container'>
       <div class='recipe-list'>
         {% for recipe in recipes %}
-          <a class="recipe-list__item" href='{% url 'recipe-detail' recipe.username recipe.id %}'>
-            <article>
-              {# TODO: other recipe info (e.g. stars, follows) #}
-              <img class="recipe-list__image" src="{{ recipe.image }}">
-              <span class="recipe-list__title">{{ recipe.title }}</span>
-              <span class="recipe-list__author">{{ recipe.username }}</span>
-              <p class="recipe-list__description">{{ recipe.description }}</p>
-              {% if recipe.draft %}
-                <div class="recipe-list__draft">Draft</div>
-              {% endif %}
-            </article>
-          </a>
+          <article class="recipe-list__item" onClick="window.location='{% url 'recipe-detail' recipe.username recipe.id %}';" tabindex="0">
+            <img class="recipe-list__image" src="{{ recipe.image }}">
+            <h4 class="recipe-list__title">{{ recipe.title }}</h4>
+            <a class="recipe-list__author" href={% url 'recipe-list' recipe.username %}>{{ recipe.username }}</a>
+            <p class="recipe-list__description">{{ recipe.description }}</p>
+            {% if recipe.draft %}
+              <div class="recipe-list__draft">Draft</div>
+            {% endif %}
+          </article>
         {% endfor %}
       </div>
       {% if user.is_authenticated %}
