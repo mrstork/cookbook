@@ -13,11 +13,12 @@
 @import "components/_hero";
 
 // Pages
+@import "pages/_edit-recipe";
 @import "pages/_error-page";
 @import "pages/_landing-page";
-@import "pages/_welcome";
-@import "pages/_thank-you";
-@import "pages/_recipe";
-@import "pages/_recipe-list";
-@import "pages/_edit-recipe";
 @import "pages/_logout";
+@import "pages/_recipe-list";
+@import "pages/_recipe";
+@import "pages/_teapot";
+@import "pages/_thank-you";
+@import "pages/_welcome";

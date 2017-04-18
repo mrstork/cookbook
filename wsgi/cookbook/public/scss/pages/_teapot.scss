@@ -1,0 +1,25 @@
+.teapot-page {
+  @extend .hero-container;
+
+  background-image: url('/static/images/teapot.jpg');
+
+  &__content {
+    position: absolute;
+    top: 150px;
+    padding: 20px;
+    margin: 20px;
+    background-color: rgba(0, 0, 0, 0.75);
+
+    @include mq($tablet) {
+      left: 100px;
+      margin: 0;
+      padding: 20px 50px;
+    }
+  }
+
+  &__description {
+    @extend .font-serif;
+
+    margin: 0;
+  }
+}

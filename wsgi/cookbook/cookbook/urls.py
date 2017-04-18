@@ -5,8 +5,9 @@ from django.contrib import admin
 
 urlpatterns = [
     url(r'^', include('public.urls')),
+    url(r'^', include('general.urls')),
     url(r'^accounts/', include('accounts.urls')),
-    url(r'^recipes/', include('recipes.urls')),
     url(r'^admin/', include(admin.site.urls)),
-    # /health, /env used by openshift
+    url(r'^recipes/', include('recipes.urls')),
+    # Note: /health, /env used by openshift
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
