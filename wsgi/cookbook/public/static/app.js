@@ -53,7 +53,7 @@
       });
     };
 
-    this.setImage = function () {
+    this.setImage = function (event) {
       var imageFile = event.target.files[0];
 
       if (!imageFile) {
