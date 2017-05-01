@@ -168,7 +168,7 @@
       });
     };
 
-    $scope.$watchCollection('rc.recipe', debounce(this.post, 2000));
+    $scope.$watch('rc.recipe', debounce(this.post, 2000), true);
     this.debouncedPostImage = debounce(this.postImage, 2000);
 
   });
