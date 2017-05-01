@@ -128,14 +128,15 @@
 
       $http.post(url, data)
       .then(function () {
-        document.querySelector('.flash-message').classList.remove('hidden');
+        document.querySelector('.flash-message.save').classList.remove('hidden');
         $timeout(function () {
-          document.querySelector('.flash-message').classList.add('hidden');
+          document.querySelector('.flash-message.save').classList.add('hidden');
         }, 2000);
       }, function () {
-        // TODO: display a readable error
-        // Server response error
-        // or put way too many characters into a field
+        document.querySelector('.flash-message.error').classList.remove('hidden');
+        $timeout(function () {
+          document.querySelector('.flash-message.error').classList.add('hidden');
+        }, 2000);
       });
     };
 
@@ -158,12 +159,15 @@
           transformRequest: angular.identity,
         })
         .then(function () {
-          document.querySelector('.flash-message').classList.remove('hidden');
+          document.querySelector('.flash-message.save').classList.remove('hidden');
           $timeout(function () {
-            document.querySelector('.flash-message').classList.add('hidden');
+            document.querySelector('.flash-message.save').classList.add('hidden');
           }, 2000);
         }, function () {
-          // Server error
+          document.querySelector('.flash-message.error').classList.remove('hidden');
+          $timeout(function () {
+            document.querySelector('.flash-message.error').classList.add('hidden');
+          }, 2000);
         });
       });
     };

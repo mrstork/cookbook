@@ -119,4 +119,11 @@
     opacity: 0;
     transition: opacity 1s ease-out;
   }
+
+  &.error {
+    width: 300px;
+    background-color: $dark-red;
+    border-color: transparent;
+    color: $white;
+  }
 }

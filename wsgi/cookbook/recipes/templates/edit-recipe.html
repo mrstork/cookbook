@@ -5,7 +5,8 @@
 
 <div class="main-content">
   <div class="container" ng-app="cookbook">
-    <div class="flash-message hidden">Saved!</div>
+    <div class="flash-message save hidden">Saved!</div>
+    <div class="flash-message error hidden">Error! Check your internet connection</div>
     <form class="edit-recipe" ng-controller="RecipeController as rc" ng-submit="rc.submit(recipe)">
       <div class="image-container">
         <img ng-src={{rc.recipe.image}}>
