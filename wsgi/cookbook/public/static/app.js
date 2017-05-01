@@ -109,10 +109,13 @@
 
       $http.delete(url, data)
       .then(function () {
-        window.location.href = './';
+        var url = window.location.href;
+        window.location.href = url.substring(0, url.lastIndexOf('/'));
       }, function () {
-        // TODO: display a readable error
-        // Server unable to delete
+        document.querySelector('.flash-message.error').classList.remove('hidden');
+        $timeout(function () {
+          document.querySelector('.flash-message.error').classList.add('hidden');
+        }, 2000);
       });
     };
 
