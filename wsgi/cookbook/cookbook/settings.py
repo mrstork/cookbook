@@ -35,11 +35,12 @@ SECRET_KEY = SECRETS['secret_key']
 if os.environ.get('OPENSHIFT_APP_DNS'):
     # SECURITY WARNING: don't run with debug turned on in production!
     DEBUG = False
+    DNS_ALIAS = 'www.ryorisho.com'
 
     ALLOWED_HOSTS = [
         gethostname(),  # For internal OpenShift load balancer security purposes.
         os.environ.get('OPENSHIFT_APP_DNS'),  # OpenShift gear name.
-        'www.ryorisho.com', # DNS Alias
+        DNS_ALIAS,
     ]
 else:
     DEBUG = True
@@ -172,7 +173,7 @@ if os.environ.get('OPENSHIFT_APP_DNS'):
 
     INSTALLED_APPS.append('anymail')
 
-    BASE_URL = os.environ.get('OPENSHIFT_APP_DNS')
+    BASE_URL = 'http://' + DNS_ALIAS
 
     ANYMAIL = {
         'MAILGUN_API_KEY': os.environ.get('MAILGUN_API_KEY'),
