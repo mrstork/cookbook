@@ -143,14 +143,13 @@ SECURE_BROWSER_XSS_FILTER = True
 SECURE_CONTENT_TYPE_NOSNIFF = True
 X_FRAME_OPTIONS = 'DENY'
 
-# TODO: CSRF_COOKIE_HTTPONLY = True
+if os.environ.get('OPENSHIFT_APP_DNS'):
+    SECURE_SSL_REDIRECT = True
+    CSRF_COOKIE_SECURE = True
+    SESSION_COOKIE_SECURE = True
 
-# TODO: SSL
-# CSRF_COOKIE_SECURE = True
-# SECURE_SSL_REDIRECT = True
-# SECURE_HSTS_SECONDS
+# TODO: SECURE_HSTS_SECONDS
 # https://docs.djangoproject.com/en/1.8/ref/middleware/#http-strict-transport-security
-# SESSION_COOKIE_SECURE = True
 
 # Static files
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
