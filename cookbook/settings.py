@@ -149,14 +149,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 if PRODUCTION:
-    STATIC_URL = '/static/'
+    STATIC_URL = 'http://storage.googleapis.com/ryorisho-static/static/'
     STATIC_ROOT = 'static/'
 
-    MEDIA_URL = '/media/'
+    MEDIA_URL = 'http://storage.googleapis.com/ryorisho-static/media/'
     MEDIA_ROOT = 'media/'
 
-    # STATIC_URL = 'http://storage.googleapis.com/ryorisho-static/static/'
-    # MEDIA_URL = 'http://storage.googleapis.com/ryorisho-static/media/'
 else:
     STATIC_URL = '/static/'
     STATIC_ROOT = os.path.join(BASE_DIR, 'static')
