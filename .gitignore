@@ -11,3 +11,5 @@ media
 static
 venv
 mail-logs
+google-cloud-sdk
+cloud_sql_proxy
