@@ -5,3 +5,4 @@ Pillow
 django-anymail[mailgun]
 premailer
 pngquant
+mysqlclient

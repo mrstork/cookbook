@@ -1,46 +1,33 @@
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
-
 import os
 import sys
 import logging
 import cssutils
-from socket import gethostname
 
-"""
-Django settings for cookbook project.
-
-For more information on this file, see
-https://docs.djangoproject.com/en/1.8/topics/settings/
-
-For the full list of settings and their values, see
-https://docs.djangoproject.com/en/1.8/ref/settings/
-"""
+PRODUCTION = bool(os.getenv('GAE_INSTANCE'))
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-DJ_PROJECT_DIR = os.path.dirname(__file__)
-BASE_DIR = os.path.dirname(DJ_PROJECT_DIR)
-WSGI_DIR = os.path.dirname(BASE_DIR)
-REPO_DIR = os.path.dirname(WSGI_DIR)
-DATA_DIR = os.environ.get('OPENSHIFT_DATA_DIR', BASE_DIR)
+SETTINGS_DIR = os.path.dirname(__file__)
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-sys.path.append(os.path.join(REPO_DIR, 'libs'))
+# # Application secret keys
+# from libs import secrets
+# SECRETS = secrets.getter(os.path.join(BASE_DIR, 'secrets.json'))
+# # SECURITY WARNING: keep the secret key used in production secret!
+# SECRET_KEY = SECRETS['secret_key']
 
-# Application secret keys
-import secrets
-SECRETS = secrets.getter(os.path.join(DATA_DIR, 'secrets.json'))
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = SECRETS['secret_key']
+SECRET_KEY = 'pf-@jxtojga)z+4s*uwbgjrq$aep62-thd0q7f&o77xtpla!_m'
 
-if os.environ.get('OPENSHIFT_APP_DNS'):
-    # SECURITY WARNING: don't run with debug turned on in production!
+if PRODUCTION:
     DEBUG = False
     DNS_ALIAS = 'www.ryorisho.com'
 
+    # SECURITY WARNING: App Engine's security features ensure that it is safe to
+    # have ALLOWED_HOSTS = ['*'] when the app is deployed. If you deploy a Django
+    # app not on App Engine, make sure to set an appropriate host here.
     ALLOWED_HOSTS = [
-        gethostname(),  # For internal OpenShift load balancer security purposes.
-        os.environ.get('OPENSHIFT_APP_DNS'),  # OpenShift gear name.
-        DNS_ALIAS,
+        '*',
+        # os.environ.get('OPENSHIFT_APP_DNS'),  # OpenShift gear name.
+        # DNS_ALIAS,
     ]
 else:
     DEBUG = True
@@ -103,15 +90,22 @@ WSGI_APPLICATION = 'cookbook.wsgi.application'
 
 
 # Database
-# https://docs.djangoproject.com/en/1.8/ref/settings/#databases
+# https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(DATA_DIR, 'db.cookbook'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'ryorisho',
+        'USER': 'application',
+        'PASSWORD': ',dNB@38$-Ue8HAJ<',
+        'PORT': '3306',
     }
 }
 
+if PRODUCTION:
+    DATABASES['default']['HOST'] = '/cloudsql/ryorisho:us-central1:ryorisho-mysql'
+else:
+    DATABASES['default']['HOST'] = '127.0.0.1'
 
 # Passwords
 # https://docs.djangoproject.com/en/1.8/topics/auth/passwords/
@@ -143,7 +137,7 @@ SECURE_BROWSER_XSS_FILTER = True
 SECURE_CONTENT_TYPE_NOSNIFF = True
 X_FRAME_OPTIONS = 'DENY'
 
-if os.environ.get('OPENSHIFT_APP_DNS'):
+if PRODUCTION:
     SECURE_SSL_REDIRECT = True
     CSRF_COOKIE_SECURE = True
     SESSION_COOKIE_SECURE = True
@@ -155,10 +149,10 @@ if os.environ.get('OPENSHIFT_APP_DNS'):
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(WSGI_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(os.environ.get('OPENSHIFT_DATA_DIR', WSGI_DIR), 'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Email settings
 # https://github.com/anymail/django-anymail
@@ -168,7 +162,7 @@ DEFAULT_FROM_EMAIL = 'support@ryorisho.com'
 # Turn off logging about unfound properties
 cssutils.log.setLevel(logging.CRITICAL)
 
-if os.environ.get('OPENSHIFT_APP_DNS'):
+if PRODUCTION:
 
     INSTALLED_APPS.append('anymail')
 

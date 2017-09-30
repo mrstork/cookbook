@@ -7,7 +7,7 @@
 .pydevproject
 node_modules
 npm-debug.log
-wsgi/cookbook/db.cookbook
-wsgi/media
+media
+static
 venv
 mail-logs
