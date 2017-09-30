@@ -108,7 +108,7 @@ else:
     DATABASES['default']['HOST'] = '127.0.0.1'
 
 # Passwords
-# https://docs.djangoproject.com/en/1.8/topics/auth/passwords/
+# https://docs.djangoproject.com/en/1.11/topics/auth/passwords/
 
 PASSWORD_HASHERS = [
     'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',
@@ -122,7 +122,7 @@ PASSWORD_HASHERS = [
 
 
 # Internationalization
-# https://docs.djangoproject.com/en/1.8/topics/i18n/
+# https://docs.djangoproject.com/en/1.11/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
@@ -131,7 +131,7 @@ USE_L10N = True
 USE_TZ = True
 
 # Security
-# https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
+# https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 SECURE_BROWSER_XSS_FILTER = True
 SECURE_CONTENT_TYPE_NOSNIFF = True
@@ -143,16 +143,20 @@ if PRODUCTION:
     SESSION_COOKIE_SECURE = True
 
 # TODO: SECURE_HSTS_SECONDS
-# https://docs.djangoproject.com/en/1.8/ref/middleware/#http-strict-transport-security
+# https://docs.djangoproject.com/en/1.11/ref/middleware/#http-strict-transport-security
 
 # Static files
-# https://docs.djangoproject.com/en/1.8/howto/static-files/
+# https://docs.djangoproject.com/en/1.11/howto/static-files/
 
-STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+if PRODUCTION:
+    STATIC_URL = 'http://storage.googleapis.com/ryorisho-static/static/'
+    MEDIA_URL = 'http://storage.googleapis.com/ryorisho-static/media/'
+else:
+    STATIC_URL = '/static/'
+    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+    MEDIA_URL = '/media/'
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Email settings
 # https://github.com/anymail/django-anymail
@@ -183,7 +187,7 @@ else:
 
 
 # Login URLs
-# https://docs.djangoproject.com/en/1.8/ref/settings/
+# https://docs.djangoproject.com/en/1.11/ref/settings/
 
 # Login required url
 LOGIN_URL = '/accounts/login'
