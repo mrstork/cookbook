@@ -1,7 +1,7 @@
 # [START runtime]
 runtime: python
 env: flex
-entrypoint: gunicorn -b :$PORT mysite.wsgi
+entrypoint: gunicorn -b :$PORT cookbook.wsgi
 
 beta_settings:
     cloud_sql_instances: ryorisho:us-central1:ryorisho-mysql
