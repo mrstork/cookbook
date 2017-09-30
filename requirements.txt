@@ -1,8 +1,10 @@
-Django==1.8
 bcrypt
-djangorestframework
-Pillow
 django-anymail[mailgun]
-premailer
+Django==1.11.5
+djangorestframework
+gunicorn==19.7.1
+mysqlclient==1.3.12
+Pillow
 pngquant
-mysqlclient
+premailer
+wheel==0.30.0
