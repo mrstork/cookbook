@@ -133,14 +133,14 @@ USE_TZ = True
 # Security
 # https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
-SECURE_BROWSER_XSS_FILTER = True
-SECURE_CONTENT_TYPE_NOSNIFF = True
-X_FRAME_OPTIONS = 'DENY'
-
-if PRODUCTION:
-    SECURE_SSL_REDIRECT = True
-    CSRF_COOKIE_SECURE = True
-    SESSION_COOKIE_SECURE = True
+# SECURE_BROWSER_XSS_FILTER = True
+# SECURE_CONTENT_TYPE_NOSNIFF = True
+# X_FRAME_OPTIONS = 'DENY'
+#
+# if PRODUCTION:
+#     SECURE_SSL_REDIRECT = True
+#     CSRF_COOKIE_SECURE = True
+#     SESSION_COOKIE_SECURE = True
 
 # TODO: SECURE_HSTS_SECONDS
 # https://docs.djangoproject.com/en/1.11/ref/middleware/#http-strict-transport-security
@@ -149,8 +149,14 @@ if PRODUCTION:
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 if PRODUCTION:
-    STATIC_URL = 'http://storage.googleapis.com/ryorisho-static/static/'
-    MEDIA_URL = 'http://storage.googleapis.com/ryorisho-static/media/'
+    STATIC_URL = '/static/'
+    STATIC_ROOT = 'static/'
+
+    MEDIA_URL = '/media/'
+    MEDIA_ROOT = 'media/'
+
+    # STATIC_URL = 'http://storage.googleapis.com/ryorisho-static/static/'
+    # MEDIA_URL = 'http://storage.googleapis.com/ryorisho-static/media/'
 else:
     STATIC_URL = '/static/'
     STATIC_ROOT = os.path.join(BASE_DIR, 'static')
@@ -161,30 +167,30 @@ else:
 # Email settings
 # https://github.com/anymail/django-anymail
 
-DEFAULT_FROM_EMAIL = 'support@ryorisho.com'
+# DEFAULT_FROM_EMAIL = 'support@ryorisho.com'
 
 # Turn off logging about unfound properties
-cssutils.log.setLevel(logging.CRITICAL)
+# cssutils.log.setLevel(logging.CRITICAL)
 
-if PRODUCTION:
-
-    INSTALLED_APPS.append('anymail')
-
-    BASE_URL = 'http://' + DNS_ALIAS
-
-    ANYMAIL = {
-        'MAILGUN_API_KEY': os.environ.get('MAILGUN_API_KEY'),
-        'MAILGUN_SENDER_DOMAIN': 'ryorisho.com',
-    }
-    EMAIL_BACKEND = 'anymail.backends.mailgun.EmailBackend'
-
-else:
-
-    BASE_URL = 'http://127.0.0.1:8000'
-
-    EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
-    EMAIL_FILE_PATH = 'mail-logs'
-
+# if PRODUCTION:
+#
+#     INSTALLED_APPS.append('anymail')
+#
+#     BASE_URL = 'http://' + DNS_ALIAS
+#
+#     ANYMAIL = {
+#         'MAILGUN_API_KEY': os.environ.get('MAILGUN_API_KEY'),
+#         'MAILGUN_SENDER_DOMAIN': 'ryorisho.com',
+#     }
+#     EMAIL_BACKEND = 'anymail.backends.mailgun.EmailBackend'
+#
+# else:
+#
+#     BASE_URL = 'http://127.0.0.1:8000'
+#
+#     EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+#     EMAIL_FILE_PATH = 'mail-logs'
+#
 
 # Login URLs
 # https://docs.djangoproject.com/en/1.11/ref/settings/
