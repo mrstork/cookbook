@@ -6,6 +6,14 @@ entrypoint: gunicorn -b :$PORT cookbook.wsgi
 beta_settings:
     cloud_sql_instances: ryorisho:us-central1:ryorisho-mysql
 
+handlers:
+- url: /static
+  static_dir: static
+- url: /media
+  static_dir: media
+- url: /.*
+  script: cookbook.wsgi.application
+
 runtime_config:
   python_version: 3
 # [END runtime]

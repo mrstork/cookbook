@@ -148,19 +148,11 @@ USE_TZ = True
 # Static files
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
-if PRODUCTION:
-    STATIC_URL = 'http://storage.googleapis.com/ryorisho-static/static/'
-    STATIC_ROOT = 'static/'
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-    MEDIA_URL = 'http://storage.googleapis.com/ryorisho-static/media/'
-    MEDIA_ROOT = 'media/'
-
-else:
-    STATIC_URL = '/static/'
-    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-
-    MEDIA_URL = '/media/'
-    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Email settings
 # https://github.com/anymail/django-anymail
