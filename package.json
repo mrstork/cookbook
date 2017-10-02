@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "description": "Share recipes and discover new ones",
   "author": "Mateusz Bocain",
-  "scripts": {
-    "start": "python wsgi/cookbook/manage.py runserver"
-  },
   "dependencies": {
     "gulp": "^3.9.0",
     "gulp-autoprefixer": "^3.1.1",

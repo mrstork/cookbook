@@ -1,11 +1,9 @@
 import os
-import sys
 import logging
 import cssutils
 
 PRODUCTION = bool(os.getenv('GAE_INSTANCE'))
 
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 SETTINGS_DIR = os.path.dirname(__file__)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -26,8 +24,8 @@ if PRODUCTION:
     # app not on App Engine, make sure to set an appropriate host here.
     ALLOWED_HOSTS = [
         '*',
-        # os.environ.get('OPENSHIFT_APP_DNS'),  # OpenShift gear name.
-        # DNS_ALIAS,
+        'ryorisho.appspot.com',
+        DNS_ALIAS,
     ]
 else:
     DEBUG = True
@@ -95,16 +93,15 @@ WSGI_APPLICATION = 'cookbook.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'ryorisho',
-        'USER': 'application',
-        'PASSWORD': ',dNB@38$-Ue8HAJ<',
+        'HOST': '/cloudsql/ryorisho:us-central1:ryorisho-mysql',
         'PORT': '3306',
+        'USER': 'application',
+        'NAME': 'ryorisho',
+        'PASSWORD': ',dNB@38$-Ue8HAJ<',
     }
 }
 
-if PRODUCTION:
-    DATABASES['default']['HOST'] = '/cloudsql/ryorisho:us-central1:ryorisho-mysql'
-else:
+if not PRODUCTION:
     DATABASES['default']['HOST'] = '127.0.0.1'
 
 # Passwords
@@ -136,7 +133,7 @@ USE_TZ = True
 # SECURE_BROWSER_XSS_FILTER = True
 # SECURE_CONTENT_TYPE_NOSNIFF = True
 # X_FRAME_OPTIONS = 'DENY'
-#
+
 # if PRODUCTION:
 #     SECURE_SSL_REDIRECT = True
 #     CSRF_COOKIE_SECURE = True
@@ -149,38 +146,38 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = 'static'
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = 'media'
 
 # Email settings
 # https://github.com/anymail/django-anymail
 
-# DEFAULT_FROM_EMAIL = 'support@ryorisho.com'
+DEFAULT_FROM_EMAIL = 'support@ryorisho.com'
 
 # Turn off logging about unfound properties
-# cssutils.log.setLevel(logging.CRITICAL)
+cssutils.log.setLevel(logging.CRITICAL)
 
-# if PRODUCTION:
-#
-#     INSTALLED_APPS.append('anymail')
-#
-#     BASE_URL = 'http://' + DNS_ALIAS
-#
-#     ANYMAIL = {
-#         'MAILGUN_API_KEY': os.environ.get('MAILGUN_API_KEY'),
-#         'MAILGUN_SENDER_DOMAIN': 'ryorisho.com',
-#     }
-#     EMAIL_BACKEND = 'anymail.backends.mailgun.EmailBackend'
-#
-# else:
-#
-#     BASE_URL = 'http://127.0.0.1:8000'
-#
-#     EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
-#     EMAIL_FILE_PATH = 'mail-logs'
-#
+if PRODUCTION:
+
+    INSTALLED_APPS.append('anymail')
+
+    BASE_URL = 'http://' + DNS_ALIAS
+
+    ANYMAIL = {
+        'MAILGUN_API_KEY': os.environ.get('MAILGUN_API_KEY'),
+        'MAILGUN_SENDER_DOMAIN': 'ryorisho.com',
+    }
+    EMAIL_BACKEND = 'anymail.backends.mailgun.EmailBackend'
+
+else:
+
+    BASE_URL = 'http://127.0.0.1:8000'
+
+    EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+    EMAIL_FILE_PATH = 'mail-logs'
+
 
 # Login URLs
 # https://docs.djangoproject.com/en/1.11/ref/settings/

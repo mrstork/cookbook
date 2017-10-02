@@ -10,7 +10,7 @@ A recipe sharing site - a side project of mine combining several of my hobbies.
 ### Getting started
 
   ```
-  virtualenv -p /path/to/python venv
+  python -m venv venv
   source venv/bin/activate
   pip install -r requirements.txt
   ./manage.py migrate
