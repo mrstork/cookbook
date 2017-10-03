@@ -3,9 +3,9 @@ pre-deploy:
 deploy:
 	./google-cloud-sdk/bin/gcloud app deploy
 dbshell:
-	./cloud_sql_proxy -instances="ryorisho-app:us-central1:ryorisho-mysql"=tcp:3306
+	./cloud_sql_proxy -instances="ryorisho-app:us-central1:ryorisho-mysql"=tcp:5406
 tail:
-	./google-cloud-sdk/bin/gcloud app logs tail -s default
+	./google-cloud-sdk/bin/gcloud app logs tail -s default | grep -v _ah/health
 clean:
 	find . -type f -name "*.py[co]" -delete
 	find . -type d -name "__pycache__" -delete

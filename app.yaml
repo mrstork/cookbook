@@ -16,17 +16,16 @@ skip_files:
 - ^(.*/)?\..*$
 - ^venv/.*$
 
+# google app engine management code
 - ^google-cloud-sdk/.*$
 - ^cloud-sql-proxy$
-- ^Makefile$
-- ^README.md$
 
-- ^server-data-backup.json$
-
+# Remove files/folders
 - ^libs/.*$
 - ^gulpfile.js$
 - ^package.json$
 
+# Centralize notes
 - ^ideas$
 - ^in-season$
 - ^todo$

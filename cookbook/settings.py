@@ -22,18 +22,12 @@ if PRODUCTION:
     # SECURITY WARNING: App Engine's security features ensure that it is safe to
     # have ALLOWED_HOSTS = ['*'] when the app is deployed. If you deploy a Django
     # app not on App Engine, make sure to set an appropriate host here.
-    ALLOWED_HOSTS = [
-        '*',
-        'ryorisho.appspot.com',
-        DNS_ALIAS,
-    ]
+    ALLOWED_HOSTS = ['*']
 else:
     DEBUG = True
 
     # Allow requests from localhost during development
-    ALLOWED_HOSTS = [
-        '127.0.0.1'
-    ]
+    ALLOWED_HOSTS = ['127.0.0.1']
 
 # Application definition
 
@@ -86,14 +80,13 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'cookbook.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'HOST': '/cloudsql/ryorisho:us-central1:ryorisho-mysql',
+        'HOST': '/cloudsql/ryorisho-app:us-central1:ryorisho-mysql',
         'PORT': '3306',
         'NAME': 'ryorisho',
         'USER': 'application',
@@ -103,6 +96,7 @@ DATABASES = {
 
 if not PRODUCTION:
     DATABASES['default']['HOST'] = '127.0.0.1'
+    DATABASES['default']['PORT'] = '5406'
 
 # Passwords
 # https://docs.djangoproject.com/en/1.11/topics/auth/passwords/
@@ -116,7 +110,6 @@ PASSWORD_HASHERS = [
     'django.contrib.auth.hashers.MD5PasswordHasher',
     'django.contrib.auth.hashers.CryptPasswordHasher',
 ]
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
@@ -134,10 +127,10 @@ USE_TZ = True
 # SECURE_CONTENT_TYPE_NOSNIFF = True
 # X_FRAME_OPTIONS = 'DENY'
 
-# if PRODUCTION:
-#     SECURE_SSL_REDIRECT = True
-#     CSRF_COOKIE_SECURE = True
-#     SESSION_COOKIE_SECURE = True
+if PRODUCTION:
+    SECURE_SSL_REDIRECT = True
+    CSRF_COOKIE_SECURE = True
+    SESSION_COOKIE_SECURE = True
 
 # TODO: SECURE_HSTS_SECONDS
 # https://docs.djangoproject.com/en/1.11/ref/middleware/#http-strict-transport-security
