@@ -95,8 +95,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'HOST': '/cloudsql/ryorisho:us-central1:ryorisho-mysql',
         'PORT': '3306',
-        'USER': 'application',
         'NAME': 'ryorisho',
+        'USER': 'application',
         'PASSWORD': ',dNB@38$-Ue8HAJ<',
     }
 }
