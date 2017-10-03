@@ -1,12 +1,12 @@
 runtime: python
 env: flex
-entrypoint: uwsgi --http :$PORT --static-map /static=static --static-map /favicon.ico=static/favicon.ico --wsgi-file cookbook/wsgi.py
+entrypoint: uwsgi --http :$PORT --static-map /static=static --static-map /media=media --static-map /favicon.ico=static/favicon.ico --wsgi-file cookbook/wsgi.py
 
 beta_settings:
     cloud_sql_instances: ryorisho:us-central1:ryorisho-mysql
 
 runtime_config:
-  python_version: 3
+  python_version: 3.5
 
 skip_files:
 - ^(.*/)?#.*#$
@@ -30,6 +30,3 @@ skip_files:
 - ^ideas$
 - ^in-season$
 - ^todo$
-
-health_check:
-  enable_health_check: False
