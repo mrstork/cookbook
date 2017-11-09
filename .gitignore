@@ -5,8 +5,6 @@
 *.py[co]
 *.sw[po]
 *~
-cloud_sql_proxy
-/google-cloud-sdk
 mail-logs
 /media
 /node_modules

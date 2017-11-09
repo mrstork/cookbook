@@ -7,12 +7,8 @@ PRODUCTION = bool(os.getenv('GAE_INSTANCE'))
 SETTINGS_DIR = os.path.dirname(__file__)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-# # Application secret keys
-# from libs import secrets
-# SECRETS = secrets.getter(os.path.join(BASE_DIR, 'secrets.json'))
-# # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = SECRETS['secret_key']
-
+# Application secret keys
+# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'pf-@jxtojga)z+4s*uwbgjrq$aep62-thd0q7f&o77xtpla!_m'
 
 if PRODUCTION:
@@ -85,18 +81,10 @@ WSGI_APPLICATION = 'cookbook.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'HOST': '/cloudsql/ryorisho-app:us-central1:ryorisho-mysql',
-        'PORT': '3306',
-        'NAME': 'ryorisho',
-        'USER': 'application',
-        'PASSWORD': ',dNB@38$-Ue8HAJ<',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'sqlite.db',
     }
 }
-
-if not PRODUCTION:
-    DATABASES['default']['HOST'] = '127.0.0.1'
-    DATABASES['default']['PORT'] = '5406'
 
 # Passwords
 # https://docs.djangoproject.com/en/1.11/topics/auth/passwords/
@@ -126,14 +114,12 @@ USE_TZ = True
 # SECURE_BROWSER_XSS_FILTER = True
 # SECURE_CONTENT_TYPE_NOSNIFF = True
 # X_FRAME_OPTIONS = 'DENY'
+# SECURE_HSTS_SECONDS - https://docs.djangoproject.com/en/1.11/ref/middleware/#http-strict-transport-security
 
 if PRODUCTION:
     SECURE_SSL_REDIRECT = True
     CSRF_COOKIE_SECURE = True
     SESSION_COOKIE_SECURE = True
-
-# TODO: SECURE_HSTS_SECONDS
-# https://docs.djangoproject.com/en/1.11/ref/middleware/#http-strict-transport-security
 
 # Static files
 # https://docs.djangoproject.com/en/1.11/howto/static-files/

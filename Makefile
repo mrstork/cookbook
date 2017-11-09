@@ -1,11 +1,7 @@
-pre-deploy:
-	./manage.py collectstatic --no-input
-deploy:
-	./google-cloud-sdk/bin/gcloud app deploy
-dbshell:
-	./cloud_sql_proxy -instances="ryorisho-app:us-central1:ryorisho-mysql"=tcp:5406
-tail:
-	./google-cloud-sdk/bin/gcloud app logs tail -s default | grep -v _ah/health
+# help:
+# 	cat Makefile | grep -E '^[a-zA-Z_-]+:.*?## .*$$' | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 clean:
 	find . -type f -name "*.py[co]" -delete
 	find . -type d -name "__pycache__" -delete
+db_backup:
+	./manage.py dumpdata --exclude auth.permission --exclude contenttypes > backup.json
