@@ -11,3 +11,4 @@ mail-logs
 npm-debug.log
 /static
 /venv
+sqlite.db
